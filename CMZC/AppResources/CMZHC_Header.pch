@@ -1,0 +1,83 @@
+//
+//  CMZHC_Header.pch
+//  CMZC
+//
+//  Created by 财毛 on 16/3/1.
+//  Copyright © 2016年 郑浩然. All rights reserved.
+//
+
+#ifndef CMZHC_Header_pch
+#define CMZHC_Header_pch
+
+//存储当前账号的key
+#define kAccountNumberKey @"kAccountNumberTextFieldKey"
+#define iOS7  [[[UIDevice currentDevice] systemVersion] floatValue] <= 8.0
+#define iPhone5 ([UIScreen mainScreen].bounds.size.height < 568)
+#define iPhone6 ([UIScreen mainScreen].bounds.size.height > 568)
+//倒计时时间
+#define kMaxVerifyTime 120
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+
+//网络请求
+#import "CMAPI_Header.h"
+//拓展
+#import "Extension_Header.h"
+
+#import "CMAccountTool.h"
+
+//自定义颜色
+#import "UIColor+CMColors.h"
+//view的拓展
+#import "UIView+Plus.h"
+//textfield 的类别
+#import "CMTextField.h"
+
+#import "CMTokenTimer.h"
+
+#import "CMCommonTool.h"
+#import "TitleView.h"
+
+//第三方的头文件
+#import "AFNetworking.h"
+#import "MBProgressHUD.h"
+#import "SDWebImageManager.h"
+#import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
+#import "YYModel.h"
+#import "CYLTableViewPlaceHolder.h"
+
+//***************先放到这里。测试用。到时候再改地址。如果忘记了。后来人请改位置
+//格式化打印
+#ifdef DEBUG // 调试
+#define MyLog(format, ...) do {                                                                          \
+fprintf(stderr, "<%s : %d> %s\n",                                           \
+[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+__LINE__, __func__);                                                        \
+(NSLog)((format), ##__VA_ARGS__);                                           \
+fprintf(stderr, "-------\n");                                               \
+} while (0)
+#else // 发布打包
+#define MyLog(...)
+#endif
+//先写着。等空了换。同上
+#define  kCurTableView_foot isPage ?[_curTableView resetNoMoreData]:[_curTableView noMoreData];
+
+
+//默认图片名字
+#define kCMDefault_imageName @"title_log"
+
+#define kVerifyStarDateKey @"kVerifyStarDateKey"
+
+
+
+
+
+
+
+
+#endif /* CMZHC_Header_pch */

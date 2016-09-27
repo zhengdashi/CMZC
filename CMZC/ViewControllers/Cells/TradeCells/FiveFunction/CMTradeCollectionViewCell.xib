@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CMTradeCollectionViewCell" id="gTV-IL-0wX" customClass="CMTradeCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="60"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tupian.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yDN-T5-i9N">
+                        <rect key="frame" x="15" y="16" width="40" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="7Dg-l5-I8T"/>
+                            <constraint firstAttribute="height" constant="30" id="yyY-gu-cqc"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="买入" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBE-8g-hcb">
+                        <rect key="frame" x="63" y="16" width="28" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="买入产品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKz-Ok-g1k">
+                        <rect key="frame" x="63" y="36" width="48" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="uKz-Ok-g1k" firstAttribute="top" secondItem="eBE-8g-hcb" secondAttribute="bottom" constant="3" id="7mF-r6-xZ3"/>
+                <constraint firstItem="eBE-8g-hcb" firstAttribute="top" secondItem="yDN-T5-i9N" secondAttribute="top" id="Hqg-hN-oSq"/>
+                <constraint firstItem="eBE-8g-hcb" firstAttribute="leading" secondItem="yDN-T5-i9N" secondAttribute="trailing" constant="8" id="Ire-J1-faN"/>
+                <constraint firstItem="yDN-T5-i9N" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="SA7-vX-wbI"/>
+                <constraint firstItem="yDN-T5-i9N" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="mBQ-km-cfk"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uKz-Ok-g1k" secondAttribute="trailing" constant="5" id="qhy-gz-Ctf"/>
+                <constraint firstItem="uKz-Ok-g1k" firstAttribute="leading" secondItem="eBE-8g-hcb" secondAttribute="leading" id="t7U-XX-dgg"/>
+            </constraints>
+            <size key="customSize" width="130" height="60"/>
+            <connections>
+                <outlet property="introduceLab" destination="uKz-Ok-g1k" id="bpq-f3-6P6"/>
+                <outlet property="nameLab" destination="eBE-8g-hcb" id="l98-S0-qx0"/>
+                <outlet property="titleImage" destination="yDN-T5-i9N" id="GrT-iA-Lf5"/>
+            </connections>
+            <point key="canvasLocation" x="247" y="237"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="tupian.jpg" width="275" height="220"/>
+    </resources>
+</document>

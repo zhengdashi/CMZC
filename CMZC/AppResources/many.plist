@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>countArr</key>
+		<array>
+			<dict>
+				<key>titName</key>
+				<string>什么是新经版?</string>
+				<key>countStr</key>
+				<string>新经版是立足新经济行业的3.5板交易所，为成长型的新经济行业企业提供挂牌宣推、投融资服务等全方位金融服务和支持。同时，平台精选优质项目，独创保底+浮动收益模式，满足投资者100%安全及高收益的双重投资喜好。</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>为什么选择新经版?</string>
+				<key>countStr</key>
+				<string>1、	每个产品都有专业的领投人领投，金牌保荐人提供保障，专业的分析师进行产品的分析研究和用户及时交流
+2、	产品来源各大机构的推荐和财猫平台的海选，经过多层专业的审核，保障项目的质量
+3、	为确保“0风险”投资安全保障，新经版拥有7层风险管控，确保100%投资安全
+4、	唯一一家可实现流通性的众筹平台
+5、	资金第三方托管，专款专用100%保本保息（保底10%收益）
+6、	申购期满前可申请撤单
+7、	持有3个月后，可在新经版ＡＰＰ转让退出
+</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>新经版选择产品有什么标准？</string>
+				<key>countStr</key>
+				<string>(1)年回报率高于20%;
+(2)具有1年以上经营年限;
+(3)产品方出资不低于总投资的20%;
+(4)具有良好的征信记录;
+(5)具有特色和可复制性;
+(6)具有注册商标。
+</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>什么叫众筹成功?什么叫众筹失败? </string>
+				<key>countStr</key>
+				<string>感谢您的关注!在众筹期限内，达到产品最低众筹金额要求的视为众筹成功;反之，视为众筹失败。</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>为何要使用第三方支付? </string>
+				<key>countStr</key>
+				<string>感谢您的关注!使用第三方支付，第一，为确保投资人资金安全;第二，为避免平台设立资金池;第三，连连支付是由央行直接监管的支付平台，更具安全性与稳定性。</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>项目盈利收益是不是固定的? </string>
+				<key>countStr</key>
+				<string>感谢您的关注!网站中描述的产品盈利预期数据是不固定的，该数据是我司经过对众筹产品进行尽职调查、参考产品的历史经营数据得到的预估值，众筹产品的盈利情况最终视产品实际经营情况而定。网站数据仅供投资人参考，不作为投资分红的依据</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>领投人需要做什么？</string>
+				<key>countStr</key>
+				<string>在成功申请领投人之后，领投人可与产品方先行建立联系，从而进行产品分析、尽职调查等。领投人应在线上跟其他投资人分享产品分析和尽职调查结论，帮助其他投资人更好地了解产品的风险与前景，同时帮助产品方完成融资。在完成产品融资之后负责投后管理和维护投资人关系的工作。为便于投后管理</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>新经版公司是合法的吗? </string>
+				<key>countStr</key>
+				<string>感谢您的关注!我公司是依法在北京市工商局注册登记成立的企业，拥有合法的营业执照等相关证件，营业执照号码：01584747，公司全称为财猫资产管理（北京）有限公司，公司位于北京市朝阳区朝阳门外大街丰联广场A座10层，欢迎您来访和参观。</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>投资人的钱是直接打到公司的账户吗? </string>
+				<key>countStr</key>
+				<string>感谢您的关注!新经版不设立资金池，所有投资资金均进入第三方监管账户。众筹成功后新经版按照协议约定条款分批次、按比例放款给产品，如果众筹失败，投资金额将解除冻结，退还给投资人。</string>
+			</dict>
+		</array>
+		<key>titleName</key>
+		<string>关于新经版</string>
+	</dict>
+	<dict>
+		<key>titleName</key>
+		<string>登录注册</string>
+		<key>countArr</key>
+		<array>
+			<dict>
+				<key>titName</key>
+				<string>忘记新经版账号的密码怎么办?</string>
+				<key>countStr</key>
+				<string>1、	ＡＰＰ用户通过首页－进入登录界面，点击“忘记密码”根据提示即可重置密码
+2、	您也可以在电脑端（zc.58cm.com）的登录界面，点击“忘记密码”通过手机号或邮箱两种方式找回密码
+</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>提示&quot;登录超时&quot;或者&quot;链接失败&quot;等</string>
+				<key>countStr</key>
+				<string>1、	请检查您的网络是否正常
+2、	如果网络正常，请确认是否能正常查看行情数据
+3、	如果不能正常查看行情数据，请到首页切换到其他页面试试
+4、	如果行情数据正常，可能是您当前连接的交易系统连接人数过多导致后台处理繁忙，您可尝试，退出软件重新进入
+</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>titleName</key>
+		<string>充值/提现</string>
+		<key>countArr</key>
+		<array>
+			<dict>
+				<key>titName</key>
+				<string>支持的银行有哪些？</string>
+				<key>countStr</key>
+				<string>农业银行、工商银行、储蓄银行、广发银行、民生银行、平安银行、招商银行、建设银行、光大银行、兴业银行、中信银行、华夏银行、浦发银行</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>单笔提现金额及提现费用?</string>
+				<key>countStr</key>
+				<string>1、	单笔提现金额不超过五万元，以及正确无误的银行帐号信息，并且银行卡户主姓名务必和您实名认证的姓名一致；
+2、	手续费为3‰，单笔手续费不满3元按3元收取，单笔手续费超过100元，按100元收取；
+</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>手机端不支持大额投资怎么办?</string>
+				<key>countStr</key>
+				<string>登录新经版ｐｃ站（http://zc.58cm.com/），通过网上银行可进行大额充值支付</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>提现到账时间</string>
+				<key>countStr</key>
+				<string>1、	周一至周四每日17点30之前的提现，一般下1个工作日即可到账；
+2、	周五17点30分之前的提现，一般将在下周1到账；
+3、	节假日期间的提现，将在正式上班后的第2天到账。
+</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>titleName</key>
+		<string>申购/赎回</string>
+		<key>countArr</key>
+		<array>
+			<dict>
+				<key>titName</key>
+				<string>新经版项目申购门槛</string>
+				<key>countStr</key>
+				<string>单笔申购额不低于2万元</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>何时可赎回</string>
+				<key>countStr</key>
+				<string>在1级市场持有3个月后，可在财猫app上进行买入卖出</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>买入卖出交易的时间和规则</string>
+				<key>countStr</key>
+				<string>1、	交易日9:30-12:00  13:30-16:30可以在交易系统买入卖出
+2、	周六、周日不可以交易
+3、	节假日不可以交易
+4、	资金T+1交易日可用
+</string>
+			</dict>
+			<dict>
+				<key>titName</key>
+				<string>交易手续费的收取规则</string>
+				<key>countStr</key>
+				<string>买入：交易费按买入金额的3‰收取，佣金同样按3‰收取（最低收取5元）。 下达买入委托，计算收取交易费，撤单交易费退回。未成交未撤单委托，盘后结算，交易费用自动退回。
+卖出：交易费按卖出金额的3‰收取，佣金同样按3‰收取（最低收取5元）。卖出成交时收取交易费。</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>titleName</key>
+		<string>新手交易指南</string>
+	</dict>
+	<dict>
+		<key>titleName</key>
+		<string>安全保障</string>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CMMarketTitleView">
+            <connections>
+                <outlet property="allBtn" destination="Rmu-pg-JzE" id="7DB-vh-Ldw"/>
+                <outlet property="artBtn" destination="BIh-LF-01P" id="U4l-4o-scv"/>
+                <outlet property="internetBtn" destination="E7s-1D-Usa" id="0f1-Oc-unK"/>
+                <outlet property="marketView" destination="FRe-er-2Ow" id="Uqm-mt-4lK"/>
+                <outlet property="threeBtn" destination="Qn0-0Z-hOu" id="n1j-RM-e97"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="idN-ti-xyX">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FRe-er-2Ow">
+                    <rect key="frame" x="0.0" y="38" width="70" height="2"/>
+                    <color key="backgroundColor" red="0.94509804248809814" green="0.29803922772407532" blue="0.039215687662363052" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <button opaque="NO" tag="802" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIh-LF-01P">
+                    <rect key="frame" x="160" y="0.0" width="80" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="典藏艺术"/>
+                    <connections>
+                        <action selector="marketTitleBtnClick:" destination="-1" eventType="touchUpInside" id="Uhg-rm-0nD"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="803" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7s-1D-Usa">
+                    <rect key="frame" x="240" y="0.0" width="80" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="互联网"/>
+                    <connections>
+                        <action selector="marketTitleBtnClick:" destination="-1" eventType="touchUpInside" id="F24-c5-gUJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="801" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qn0-0Z-hOu">
+                    <rect key="frame" x="80" y="0.0" width="80" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="新三板"/>
+                    <connections>
+                        <action selector="marketTitleBtnClick:" destination="-1" eventType="touchUpInside" id="Dr7-d7-Fey"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="800" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmu-pg-JzE">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="DKL-su-YzX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="全部"/>
+                    <connections>
+                        <action selector="marketTitleBtnClick:" destination="-1" eventType="touchUpInside" id="1QM-2o-y7v"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.11764705926179886" green="0.11764705926179886" blue="0.11764705926179886" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Qn0-0Z-hOu" firstAttribute="height" secondItem="Rmu-pg-JzE" secondAttribute="height" id="47t-Ar-rJE"/>
+                <constraint firstItem="Qn0-0Z-hOu" firstAttribute="leading" secondItem="Rmu-pg-JzE" secondAttribute="trailing" id="4VZ-fX-l8B"/>
+                <constraint firstItem="E7s-1D-Usa" firstAttribute="width" secondItem="BIh-LF-01P" secondAttribute="width" id="6a8-kk-RHC"/>
+                <constraint firstItem="Rmu-pg-JzE" firstAttribute="top" secondItem="idN-ti-xyX" secondAttribute="top" id="An7-Rl-xBN"/>
+                <constraint firstItem="Qn0-0Z-hOu" firstAttribute="top" secondItem="Rmu-pg-JzE" secondAttribute="top" id="Pr9-tR-2Yw"/>
+                <constraint firstItem="E7s-1D-Usa" firstAttribute="top" secondItem="BIh-LF-01P" secondAttribute="top" id="T9I-E8-gaS"/>
+                <constraint firstItem="Rmu-pg-JzE" firstAttribute="leading" secondItem="idN-ti-xyX" secondAttribute="leading" id="ZLQ-ZD-4cy"/>
+                <constraint firstItem="BIh-LF-01P" firstAttribute="top" secondItem="Qn0-0Z-hOu" secondAttribute="top" id="ZY2-3C-6au"/>
+                <constraint firstItem="Qn0-0Z-hOu" firstAttribute="width" secondItem="Rmu-pg-JzE" secondAttribute="width" id="aa4-AP-3wo"/>
+                <constraint firstItem="Rmu-pg-JzE" firstAttribute="width" secondItem="idN-ti-xyX" secondAttribute="width" multiplier="1:4" id="eaZ-kf-vGc"/>
+                <constraint firstItem="E7s-1D-Usa" firstAttribute="leading" secondItem="BIh-LF-01P" secondAttribute="trailing" id="f29-hb-KqV"/>
+                <constraint firstItem="BIh-LF-01P" firstAttribute="height" secondItem="Qn0-0Z-hOu" secondAttribute="height" id="rQe-Zt-cvH"/>
+                <constraint firstItem="E7s-1D-Usa" firstAttribute="height" secondItem="BIh-LF-01P" secondAttribute="height" id="swH-zT-in7"/>
+                <constraint firstItem="BIh-LF-01P" firstAttribute="width" secondItem="Qn0-0Z-hOu" secondAttribute="width" id="u4g-QJ-gLP"/>
+                <constraint firstItem="BIh-LF-01P" firstAttribute="leading" secondItem="Qn0-0Z-hOu" secondAttribute="trailing" id="uKq-S7-OVF"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="326" y="139"/>
+        </view>
+    </objects>
+</document>

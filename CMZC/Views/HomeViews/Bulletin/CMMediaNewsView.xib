@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CMMediaNewsView">
+            <connections>
+                <outlet property="curTableView" destination="RiV-73-KnY" id="6nV-y3-MAB"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="lTh-BY-aZl">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RiV-73-KnY">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ewy-aQ-AtX"/>
+                        <outlet property="delegate" destination="-1" id="dTq-Mo-sd8"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="RiV-73-KnY" secondAttribute="trailing" id="2MW-Gx-Ji7"/>
+                <constraint firstItem="RiV-73-KnY" firstAttribute="leading" secondItem="lTh-BY-aZl" secondAttribute="leading" id="QWT-1P-k3e"/>
+                <constraint firstItem="RiV-73-KnY" firstAttribute="top" secondItem="lTh-BY-aZl" secondAttribute="top" id="lQa-1d-bgY"/>
+                <constraint firstAttribute="bottom" secondItem="RiV-73-KnY" secondAttribute="bottom" id="thK-zc-PZF"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="265" y="309.5"/>
+        </view>
+    </objects>
+</document>
