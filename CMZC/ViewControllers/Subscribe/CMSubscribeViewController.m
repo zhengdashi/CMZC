@@ -148,8 +148,8 @@
             [weakSelef.navigationController pushViewController:moneyVC animated:YES];
         } else {
             CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[CMMoneyViewController initByStoryboard];
-            newGuideVC.titName = @"财猫实力";//strength_serve_home
-            [newGuideVC cm_moneyViewTitleName:@"财猫实力"
+            newGuideVC.titName = @"新经版实力";//strength_serve_home
+            [newGuideVC cm_moneyViewTitleName:@"新经版实力"
                               bgImageViewName:@"strength_serve_home"
                                   imageHeight:1400.0f - 400];
             [weakSelef.navigationController pushViewController:newGuideVC animated:YES];

@@ -1,6 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
-inhibit_all_warnings!
+
+target ‘CMZC’ do
 
 
 pod 'AFNetworking', '~> 3.0'
@@ -13,3 +14,5 @@ pod 'UMengSocial', '~> 5.0'
 pod 'NJKWebViewProgress'
 pod 'CYLTableViewPlaceHolder', '~> 1.0.8'
 pod 'SocketRocket', '~> 0.5.0'
+
+end

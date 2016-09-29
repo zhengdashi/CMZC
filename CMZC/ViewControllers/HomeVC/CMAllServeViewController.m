@@ -154,9 +154,9 @@
         case 0:
         {//财猫实力
             CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[CMMoneyViewController initByStoryboard];
-            newGuideVC.titName = @"财猫实力";//strength_serve_home
+            newGuideVC.titName = @"新经版实力";//strength_serve_home
             viewController = newGuideVC;
-            [newGuideVC cm_moneyViewTitleName:@"财猫实力"
+            [newGuideVC cm_moneyViewTitleName:@"新经版实力"
                               bgImageViewName:@"strength_serve_home"
                                   imageHeight:1400.0f - 400];
             [self.navigationController pushViewController:viewController animated:YES];
