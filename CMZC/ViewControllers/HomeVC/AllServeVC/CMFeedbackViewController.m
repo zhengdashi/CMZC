@@ -38,7 +38,7 @@
     if ([self checkDataValidity]) {
         //网络请求提交意见
         [self showDefaultProgressHUD];
-        [CMRequestAPI cm_homeFetchFeedbackAppName:@"新经版" userName:_nameTextField.text phoneNumber:_emailTextField.text content:_textView.text success:^(BOOL isSucceed) {
+        [CMRequestAPI cm_homeFetchFeedbackAppName:@"新经板" userName:_nameTextField.text phoneNumber:_emailTextField.text content:_textView.text success:^(BOOL isSucceed) {
             [self hiddenProgressHUD];
             
             UIAlertView *aler = [[UIAlertView alloc] initWithTitle:@"意见受理成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];

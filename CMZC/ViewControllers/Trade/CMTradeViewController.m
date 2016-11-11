@@ -156,7 +156,7 @@
 //                    commonalityVC = bankCardVC;
 //                } else {
                     //没有绑定过银行卡。现在还没有m站地址
-                    [self pushCommWebViewVCUrlStr:CMStringWithPickFormat(kCMMZWeb_url, @"BankCardCertification")];
+                    [self pushCommWebViewVCUrlStr:CMStringWithPickFormat(kCMMZWeb_url, @"/Account/BankCardCertification")];
 //                }
             }
                 break;

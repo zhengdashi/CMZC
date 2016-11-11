@@ -14,6 +14,9 @@
 #define iOS7  [[[UIDevice currentDevice] systemVersion] floatValue] <= 8.0
 #define iPhone5 ([UIScreen mainScreen].bounds.size.height < 568)
 #define iPhone6 ([UIScreen mainScreen].bounds.size.height > 568)
+
+
+
 //倒计时时间
 #define kMaxVerifyTime 120
 

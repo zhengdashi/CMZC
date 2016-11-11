@@ -11,13 +11,21 @@
 //#define kCM_URL @"http://192.168.1.15:8384/"
 #define kCM_URL @"http://zcapi.xinjingban.com:80/" //线上地址
 //#define kCM_URL @"http://192.168.1.34:9000/" //本地地址
-NSString *const kCMBase_URL = @"http://zcapi.xinjingban.com:80/";
+//#define kCM_URL @"http://192.168.1.49:9000/"
+//#define kCM_URL @"http://192.168.1.225:8886" //本地地址
+NSString *const kCMBase_URL = @"http://zcapi.xinjingban.com:80/"; //线上
+//NSString *const kCMBase_URL = @"http://192.168.1.49:9000/";
 //websocket
-NSString *const kWebSocket_url = @"ws://zcapi.xinjingban.com:80/";
+NSString *const kWebSocket_url = @"ws://zcapi.xinjingban.com:80/";//线上
+
+
+
 // m站地址
-NSString *const kCMMZWeb_url = @"http://mz.58cm.com/";
-
-
+//NSString *const kCMMZWeb_url = @"http://mz.58cm.com/";
+//新的地址
+NSString *const kCMMZWeb_url = @"http://m.xinjingban.com/";
+//NSString *const kCMMZWeb_url = @"http://192.168.1.49:7080/"; //吼
+//NSString *const kCMMZWeb_url = @"http://192.168.1.225:8886/";
 NSString *const kCMDefaultHeadPortrait = @"tupian.jpg";
 
 // 线上地址 http://zcapi.xinjingban.com
@@ -65,7 +73,8 @@ NSString *const kCMTrendsMediaCoverURL = @"/api/news/medianews";
 NSString *const kCMTrendsNoticeURL = @"/api/news/notices";
 #pragma mark - 申购
 NSString *const kCMApplyListURL = @"/api/product/list";
-
+//产品详情
+NSString *const kCMProductDetailsURL = @"/api/product";
 
 
 #pragma mark - 交易

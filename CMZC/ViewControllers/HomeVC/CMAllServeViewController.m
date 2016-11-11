@@ -154,9 +154,9 @@
         case 0:
         {//财猫实力
             CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[CMMoneyViewController initByStoryboard];
-            newGuideVC.titName = @"新经版实力";//strength_serve_home
+            newGuideVC.titName = @"新经板实力";//strength_serve_home
             viewController = newGuideVC;
-            [newGuideVC cm_moneyViewTitleName:@"新经版实力"
+            [newGuideVC cm_moneyViewTitleName:@"新经板实力"
                               bgImageViewName:@"strength_serve_home"
                                   imageHeight:1400.0f - 400];
             [self.navigationController pushViewController:viewController animated:YES];
@@ -168,7 +168,7 @@
             viewController = newGuideVC;
             [newGuideVC cm_moneyViewTitleName:@"安全保障"
                               bgImageViewName:@"insurance_serve_home"
-                                  imageHeight:2900.0f-400];
+                                  imageHeight:2900.0f - 400];
             [self.navigationController pushViewController:viewController animated:YES];
         }
             break;
@@ -295,8 +295,8 @@
             //新手指引
             CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMMoneyViewController"];
             [newGuideVC cm_moneyViewTitleName:@"新手指引"
-                              bgImageViewName:@"new_guide_serve"
-                                  imageHeight:1800.0f];
+                              bgImageViewName:@"new_shou_yindao"
+                                  imageHeight:2000.0f - 400];
             commonalityVC = newGuideVC;
         }
             break;

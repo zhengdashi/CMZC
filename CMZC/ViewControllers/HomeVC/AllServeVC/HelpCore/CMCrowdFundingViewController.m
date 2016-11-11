@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = _titleStr;
-    //_crowdHeaderTitDataArr = @[@"什么是新经版?",@"新经版的运营模式是什么?",@"新经版上的项目来源?",@"在新经版申购是否受法律保护?"];
+    //_crowdHeaderTitDataArr = @[@"什么是新经板?",@"新经板的运营模式是什么?",@"新经板上的项目来源?",@"在新经板申购是否受法律保护?"];
     _curTableView.tableFooterView = [[UIView alloc] init];
     
 }

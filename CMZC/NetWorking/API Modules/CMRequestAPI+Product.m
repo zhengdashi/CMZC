@@ -9,6 +9,8 @@
 #import "CMRequestAPI+Product.h"
 #import "CMProductList.h"
 #import "CMPurchaseProduct.h"
+#import "CMProductDetails.h"
+
 
 @implementation CMRequestAPI (Product)
 
@@ -36,4 +38,59 @@
     
 }
 
++ (void)cm_applyFetchProductDetailsListProductId:(NSInteger)productId success:(void (^)(CMProductDetails *))success fail:(void (^)(NSError *))fail {
+    
+    NSDictionary *dict = @{@"productId":CMNumberWithFormat(productId)};
+    
+    NSString *str = [NSString stringWithFormat:@"%@/%ld",kCMProductDetailsURL,productId];
+    [CMRequestAPI postDataFromURLScheme:str argumentsDictionary:dict success:^(id responseObject) {
+        CMProductDetails *details ;
+        if ([responseObject[@"errcode"] integerValue] == 0) {
+            NSDictionary *dict = responseObject[@"data"];
+            details = [CMProductDetails yy_modelWithJSON:dict];
+        }
+        success(details);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+    
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

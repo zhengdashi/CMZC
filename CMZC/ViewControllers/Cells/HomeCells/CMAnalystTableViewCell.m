@@ -35,7 +35,7 @@
 - (void)setAnalyst:(CMAnalystMode *)analyst {
     _analyst = analyst;
     //这个默认图片是因为没切图，所以先找一个代替。
-    [_titImage sd_setImageWithURL:[NSURL URLWithString:analyst.avatar] placeholderImage:[UIImage imageNamed:@"tupian.jpg"]];
+    [_titImage sd_setImageWithURL:[NSURL URLWithString:analyst.avatar] placeholderImage:[UIImage imageNamed:@"title_log"]];
     _nameLab.text = analyst.name;
     _introduceLab.text = analyst.shortdescription;
     _pointNumberLab.text = CMStringWithFormat(analyst.topiccount);

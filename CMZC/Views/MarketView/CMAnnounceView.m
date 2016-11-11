@@ -55,7 +55,11 @@
     if (height>34) {
         height = 34;
     }
-    return 64-17 + height+16;
+    CGFloat titHeight = 64;
+    if (notion.title.length > 1) {
+        titHeight = 80;
+    }
+    return titHeight-17 + height+16;
 }
 
 

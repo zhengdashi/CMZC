@@ -12,6 +12,7 @@
 @interface CMDiscussTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 @property (weak, nonatomic) IBOutlet UILabel *timeDateLab;
+@property (weak, nonatomic) IBOutlet UILabel *titleNameLab;
 
 @end
 
@@ -32,6 +33,7 @@
     _notion = notion;
     _titleLab.text = notion.content;
     _timeDateLab.text = notion.created;
+    _titleNameLab.text = notion.title;
 }
 
 

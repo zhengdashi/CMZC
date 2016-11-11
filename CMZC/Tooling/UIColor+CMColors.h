@@ -28,6 +28,11 @@
  */
 + (UIColor *)cmThemeOrange;
 /**
+ *  橙色
+ */
++ (UIColor *)cmThemeCheng;
+
+/**
  *  背景灰色
  */
 + (UIColor *)cmBackgroundGrey;

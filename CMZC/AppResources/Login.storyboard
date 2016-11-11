@@ -75,7 +75,7 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title_log" translatesAutoresizingMaskIntoConstraints="NO" id="69y-af-35X">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title_log_acc" translatesAutoresizingMaskIntoConstraints="NO" id="69y-af-35X">
                                         <rect key="frame" x="95" y="50" width="130" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="d6h-R4-xu5"/>
@@ -232,7 +232,7 @@
                                             <outlet property="delegate" destination="EwR-0y-exr" id="QXz-MH-MPx"/>
                                         </connections>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title_log" translatesAutoresizingMaskIntoConstraints="NO" id="VZe-yn-UO4">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title_log_acc" translatesAutoresizingMaskIntoConstraints="NO" id="VZe-yn-UO4">
                                         <rect key="frame" x="95" y="30" width="130" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="3CP-Gs-0nJ"/>
@@ -765,7 +765,7 @@
         <image name="nav_back_left" width="22" height="22"/>
         <image name="one_guidance.jpg" width="750" height="1334"/>
         <image name="three_guidance.jpg" width="1080" height="1920"/>
-        <image name="title_log" width="130" height="60"/>
+        <image name="title_log_acc" width="130" height="60"/>
         <image name="two_guidance.jpg" width="750" height="1334"/>
     </resources>
 </document>

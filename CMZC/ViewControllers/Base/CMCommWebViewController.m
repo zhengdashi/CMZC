@@ -6,7 +6,7 @@
 //  Copyright © 2016年 郑浩然. All rights reserved.
 //
 
-#define kCMExternalLinksURL @"http://mz.58cm.com/GrantAccess?targetUrl="
+#define kCMExternalLinksURL @"http://m.xinjingban.com/GrantAccess?targetUrl="
 
 #import "CMCommWebViewController.h"
 #import "NJKWebViewProgressView.h"
@@ -70,10 +70,16 @@
     
     
 }
+//http://m.xinjingban.com/Account/Recharge
 
 - (void)leftBarBtnClick {
     if ([self.webView canGoBack]) {
-        [self.webView goBack];
+        if ([self.nextURL containsString:@"/Account/RechargeSuccess"]|| [self.nextURL containsString:@"yintong.com.cn"]) {
+            [self.navigationController popViewControllerAnimated:YES];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        } else {
+            [_webView goBack];
+        }
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -99,18 +105,28 @@
 
 - (void)loadWebViewData
 {
-    NSString *external =[NSString stringWithFormat:@"%@%@",kCMExternalLinksURL,_urlStr];
-    NSString *name = GetDataFromNSUserDefaults(@"name");
-    NSString *value = GetDataFromNSUserDefaults(@"value");
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:external]];
-    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-    NSString *cookieValue = [NSString stringWithFormat:@"%@=%@",name,value];
-    [mutableRequest addValue:cookieValue forHTTPHeaderField:@"cookie"];
-    request = [mutableRequest copy];
-    //4.查看请求头
-    [_webView loadRequest:request];
-    _webView.scrollView.bounces = NO;
-    _webView.scalesPageToFit = YES;
+    
+    if (!CMIsLogin()) {
+        NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]];
+        //4.查看请求头
+        [_webView loadRequest:request];
+        _webView.scrollView.bounces = NO;
+        _webView.scalesPageToFit = YES;
+    } else {
+        NSString *external =[NSString stringWithFormat:@"%@%@",kCMExternalLinksURL,_urlStr];
+        NSString *name = GetDataFromNSUserDefaults(@"name");
+        NSString *value = GetDataFromNSUserDefaults(@"value");
+        NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:external]];
+        NSMutableURLRequest *mutableRequest = [request mutableCopy];
+        NSString *cookieValue = [NSString stringWithFormat:@"%@=%@",name,value];
+        [mutableRequest addValue:cookieValue forHTTPHeaderField:@"cookie"];
+        request = [mutableRequest copy];
+        //4.查看请求头
+        [_webView loadRequest:request];
+        _webView.scrollView.bounces = NO;
+        _webView.scalesPageToFit = YES;
+    }
+    
    
 }
 - (void)loadCookies{
@@ -132,15 +148,6 @@
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
     
-}
-- (void)backBtnClick
-{
-    if ([_webView canGoBack]) {
-        [_webView goBack];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }
 }
 
 - (void)refreshWebView

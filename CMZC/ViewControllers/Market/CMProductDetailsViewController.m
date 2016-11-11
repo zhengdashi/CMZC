@@ -250,9 +250,10 @@
 #pragma mark - CMCommentTableViewCellDelegate
 //跳转到M站 详情<<
 - (void)cm_commentCellSkipBoundary {
-#warning 这个先这样。到时候该
+//#warning 这个先这样。到时候该
     CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];
-    webVC.urlStr = [NSString stringWithFormat:@"%@%d",@"http://192.168.1.15:8384/Products/Detail?pcode=",2010];
+    webVC.urlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/Detail?pcode=",self.codeName));
+//    [NSString stringWithFormat:@"%@%d",@"http://192.168.1.15:8384/Products/Detail?pcode=",2010];
     [self.navigationController pushViewController:webVC animated:YES];
 }
 - (void)cm_commentViewControllProductNotion:(CMProductComment *)product {
@@ -265,8 +266,8 @@
 - (void)cm_commentNoticeViewNoticeId:(NSInteger)noticeId {
     //http://mz.58cm.com/Account/MessageDetail?nid=
     CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];
-    webVC.urlStr = 
-    [NSString stringWithFormat:@"http://mz.58cm.com/Account/MessageDetail?nid=%ld",(long)noticeId];
+    webVC.urlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Account/MessageDetail?nid=",CMStringWithFormat(noticeId)));
+   // [NSString stringWithFormat:@"http://mz.58cm.com/Account/MessageDetail?nid=%ld",(long)noticeId];
     [self.navigationController pushViewController:webVC animated:YES];
     
 }

@@ -189,7 +189,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 111;
+        if (self.proictArr.count == 0 || self.proictArr.count == 1) {
+            return 0;
+        } else {
+            return 111;
+        }
     } else if (indexPath.row == 1) {
         return 208;
     } else if (indexPath.row == 2) {
@@ -203,11 +207,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        //产品
-        CMEditionTableViewCell *editionCell = [tableView dequeueReusableCellWithIdentifier:@"CMEditionTableViewCell" forIndexPath:indexPath];
-        editionCell.prictArr = self.proictArr;
-        editionCell.delegate = self;
-        return editionCell;
+        if (self.proictArr.count == 0 || self.proictArr.count == 1) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            }
+            return cell;
+        } else {
+            //产品
+            CMEditionTableViewCell *editionCell = [tableView dequeueReusableCellWithIdentifier:@"CMEditionTableViewCell" forIndexPath:indexPath];
+            editionCell.prictArr = self.proictArr;
+            editionCell.delegate = self;
+            return editionCell;
+        }
     } else if (indexPath.row == 1) {
         //四个选项
         CMOptionTableViewCell *optionCell = [tableView dequeueReusableCellWithIdentifier:@"CMOptionTableViewCell" forIndexPath:indexPath];
@@ -375,11 +387,10 @@
 }
 //跳转到web站 
 - (void)cm_commWebViewURL:(NSString *)url {
-    //@"http://mz.58cm.com/About/Description"
     if ([url isEqualToString:CMStringWithPickFormat(kCMMZWeb_url, @"/About/Description")]) {
         CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[CMMoneyViewController initByStoryboard];
-        newGuideVC.titName = @"新经版实力";//strength_serve_home
-        [newGuideVC cm_moneyViewTitleName:@"新经版实力"
+        newGuideVC.titName = @"新经板实力";//strength_serve_home
+        [newGuideVC cm_moneyViewTitleName:@"新经板实力"
                           bgImageViewName:@"strength_serve_home"
                               imageHeight:1400.0f - 400];
         [self.navigationController pushViewController:newGuideVC animated:YES];

@@ -20,6 +20,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *upOrFallLab; //涨跌
 
 @property (weak, nonatomic) IBOutlet UILabel *worthLab; //净值
+@property (weak, nonatomic) IBOutlet UILabel *startingLab; //起价
+@property (weak, nonatomic) IBOutlet UILabel *earningsLab; //收益
+@property (weak, nonatomic) IBOutlet UILabel *decimalPointLab; //收益浮动
+@property (weak, nonatomic) IBOutlet UILabel *netWorthLab; //净值lab
 
 @end
 
@@ -38,16 +42,39 @@
 - (void)cm_newQualityCellClass:(CMNumberous *)number bgImageArr:(NSString *)bgImage {
     _descriptionLab.text = number.descri;
     _qualityNameLab.text = number.title;
-    _makeLab.text = [NSString stringWithFormat:@"%.0f",[number.income floatValue]];
-    _priceLab.text = [NSString stringWithFormat:@"%.0f元起",[number.floatingprofitloss floatValue]];
+    
+    
+    NSArray *priceArr = [number.price componentsSeparatedByString:@"."];
+    _priceLab.text = priceArr.firstObject;
+   // NSLog(@"---%@",priceArr.firstObject);
+    if (priceArr.count > 1) {
+        _netWorthLab.text = [NSString stringWithFormat:@".%.0f%%",[priceArr.lastObject floatValue]];
+    }
+    NSArray *lisArr = [number.floatingprofitloss componentsSeparatedByString:@"."];
+    _makeLab.text = lisArr.firstObject;
+    if (lisArr.count > 1) {
+        NSString *lastStr = lisArr.lastObject;
+        if (lastStr.length > 2) {
+            lastStr = [lastStr substringToIndex:2];
+            _decimalPointLab.text = [NSString stringWithFormat:@".%@",lastStr];
+        } else {
+            _decimalPointLab.text = [NSString stringWithFormat:@".%.0f%%",[lisArr.lastObject floatValue]];
+            
+        }
+    }
+    
+    
     _redeemLab.attributedText = [NSMutableAttributedString cm_mutableAttributedString:[NSString stringWithFormat:@"%@个月可赎回",number.redemptionperiod]
                                                                             valueFont:10
                                                                            valueColor:[UIColor cmThemeOrange]
                                                                              locRange:0
                                                                              lenRange:number.redemptionperiod.length];
+    _earningsLab.text = number.incometype; //收益类型
+    _startingLab.text = number.price;
     _bgImageView.image = [UIImage imageNamed:bgImage];
     _worthLab.text = [NSString stringWithFormat:@"%.0f",[number.price floatValue]];
-    _upOrFallLab.text = [NSString stringWithFormat:@"%.2f%%",[number.income floatValue]];
+    _upOrFallLab.text = [NSString stringWithFormat:@"%.2f%%",[number.floatingprofitloss floatValue]];
+   
     CGFloat fallFloat = [number.income floatValue];
     if (fallFloat == 0) {
         _upOrFallLab.textColor = [UIColor cmFontWiteColor];
@@ -57,8 +84,9 @@
     } else {
         _upOrFallLab.textColor = [UIColor cmFallColor];
     }
-    
 }
+
+
 
 @end
 

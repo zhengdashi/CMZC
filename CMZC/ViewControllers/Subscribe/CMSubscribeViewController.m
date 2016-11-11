@@ -13,6 +13,7 @@
 #import "CMPurchaseProduct.h"
 #import "CMCommWebViewController.h"
 #import "CMSubscribeHeaderView.h"
+#import "CMSubscribeDetailsViewController.h"
 
 
 @interface CMSubscribeViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -95,11 +96,12 @@
     subscribeCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return subscribeCell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     //http://192.168.1.225:8084/Products/Detail?pid=43011
    CMPurchaseProduct *product = _productDataArr[indexPath.row];
     
-   // if (product.isNextPage) {
+//    if (product.isNextPage) {
 //        if (!CMIsLogin()) {
 //            //位登录。显示登录
 //            UINavigationController *nav = [UIStoryboard loginStoryboard].instantiateInitialViewController;
@@ -107,10 +109,11 @@
 //        } else {
     
             CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];
-            webVC.urlStr = [NSString stringWithFormat:@"%@%ld",@"http://mz.58cm.com/Products/Detail?pid=",(long)product.productId];
+            webVC.urlStr = CMStringWithPickFormat(kCMMZWeb_url,CMStringWithPickFormat(@"/Products/Detail?pid=",CMStringWithFormat(product.productId)));
+    //[NSString stringWithFormat:@"%@%ld",@"http://mz.58cm.com/Products/Detail?pid=",(long)product.productId];
             [self.navigationController pushViewController:webVC animated:YES];
 //        }
-   // }
+//    }
 }
 
 
@@ -136,20 +139,20 @@
             //新手指引
             CMMoneyViewController *moneyVC = (CMMoneyViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMMoneyViewController"];
             [moneyVC cm_moneyViewTitleName:@"新手指引"
-                              bgImageViewName:@"new_guide_serve"
-                                  imageHeight:1980.0f];
+                              bgImageViewName:@"new_shou_yindao"
+                                  imageHeight:1980.0f - 400];
             [weakSelef.navigationController pushViewController:moneyVC animated:YES];
         } else if(index == 1001) {
             //新手指引
             CMMoneyViewController *moneyVC = (CMMoneyViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMMoneyViewController"];
             [moneyVC cm_moneyViewTitleName:@"赚钱秘籍"
                               bgImageViewName:@"make_money_serve"
-                                  imageHeight:850.0f];
+                                  imageHeight:850.0f - 400];
             [weakSelef.navigationController pushViewController:moneyVC animated:YES];
         } else {
             CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[CMMoneyViewController initByStoryboard];
-            newGuideVC.titName = @"新经版实力";//strength_serve_home
-            [newGuideVC cm_moneyViewTitleName:@"新经版实力"
+            newGuideVC.titName = @"新经板实力";//strength_serve_home
+            [newGuideVC cm_moneyViewTitleName:@"新经板实力"
                               bgImageViewName:@"strength_serve_home"
                                   imageHeight:1400.0f - 400];
             [weakSelef.navigationController pushViewController:newGuideVC animated:YES];
@@ -172,14 +175,38 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSIndexPath *indexPath = [_curTableView indexPathForCell:(CMSubscribeTableViewCell *)sender];
+    CMPurchaseProduct *product = _productDataArr[indexPath.row];
+    CMSubscribeDetailsViewController *subscribeVC = [segue destinationViewController];
+    subscribeVC.productId = product.productId;
 }
 */
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

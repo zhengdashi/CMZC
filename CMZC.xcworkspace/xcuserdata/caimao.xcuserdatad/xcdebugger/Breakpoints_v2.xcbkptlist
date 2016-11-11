@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+TradeInquire.m"
-            timestampString = "488683707.277741"
+            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+Login.m"
+            timestampString = "499579329.852956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "+cm_tradeFetchDrawProductPage:success:fail:"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "+cm_loginTransRegisterClientId:clientSecret:userName:password:success:fail:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+HomePage.m"
-            timestampString = "496664492.923128"
+            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+Login.m"
+            timestampString = "499579330.916985"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "+cm_homeFetchProductFundlistPageSize:success:fail:"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "+cm_loginTransRegisterClientId:clientSecret:userName:password:success:fail:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+HomePage.m"
-            timestampString = "496664608.167685"
+            filePath = "CMZC/ViewControllers/Cells/HomeCells/CMLatestTableViewCell.m"
+            timestampString = "500023031.408053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "+cm_homeFetchProductFundlistPageSize:success:fail:"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "-setNotice:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,13 +67,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CMZC/ViewControllers/HomeVC/CMHomeViewController.m"
-            timestampString = "496736068.007758"
+            filePath = "CMZC/ViewControllers/HomeVC/FourFunction/CMOptionalViewController.m"
+            timestampString = "500349638.283573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-requestTitleBannesData"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-viewDidDisappear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CMZC/ViewControllers/HomeVC/FourFunction/CMOptionalViewController.m"
+            timestampString = "500349652.030446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-viewWillDisappear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

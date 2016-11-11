@@ -127,14 +127,12 @@ static NSString *const inquireIdentifer = @"CMInquireCollectionViewCell";
             return saleCell;
         }
             break;
-            
         case 2:
         {
             //撤单
             CMRevokeCollectionViewCell  *saleCell = [collectionView dequeueReusableCellWithReuseIdentifier:revokeIdentifer forIndexPath:indexPath];
             _revokeSaleCell = saleCell;
             return saleCell;
-            
         }
             break;
         case 3:
@@ -169,21 +167,17 @@ static NSString *const inquireIdentifer = @"CMInquireCollectionViewCell";
 
 #pragma mark - CMInquireCollectionViewCellDelegate
 - (void)cm_inquireCollectionIndexPath:(NSIndexPath *)indexPath {
-   
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
             {
                 UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
                 CMTabBarViewController *tab = (CMTabBarViewController *)window.rootViewController;
-                
                 if (tab.selectedIndex == 2) {
                     tab.selectedIndex = 3;
                 } else {
                     [self.navigationController popViewControllerAnimated:YES];
                 }
-                
-                
             }
                 break;
             case 1:
@@ -243,10 +237,6 @@ static NSString *const inquireIdentifer = @"CMInquireCollectionViewCell";
                 break;
         }
     }
-    
-   
-    
-    
 }
 #pragma mark - CMBuyingCellDelegate
 - (void)cm_buyingCollectionView:(CMBuyingCollectionViewCell *)buyingVC {
@@ -266,8 +256,6 @@ static NSString *const inquireIdentifer = @"CMInquireCollectionViewCell";
     holdDetailsVC.inquire = inquire;
     [self.navigationController pushViewController:holdDetailsVC animated:YES];
 }
-
-
 #pragma mark - TitleView
 
 - (void)loadTitleView {

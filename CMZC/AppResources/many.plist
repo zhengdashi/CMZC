@@ -7,26 +7,26 @@
 		<array>
 			<dict>
 				<key>titName</key>
-				<string>什么是新经版?</string>
+				<string>什么是新经板?</string>
 				<key>countStr</key>
-				<string>新经版是立足新经济行业的3.5板交易所，为成长型的新经济行业企业提供挂牌宣推、投融资服务等全方位金融服务和支持。同时，平台精选优质项目，独创保底+浮动收益模式，满足投资者100%安全及高收益的双重投资喜好。</string>
+				<string>新经板是立足新经济行业的3.5板交易所，为成长型的新经济行业企业提供挂牌宣推、投融资服务等全方位金融服务和支持。同时，平台精选优质项目，独创保底+浮动收益模式，满足投资者100%安全及高收益的双重投资喜好。</string>
 			</dict>
 			<dict>
 				<key>titName</key>
-				<string>为什么选择新经版?</string>
+				<string>为什么选择新经板?</string>
 				<key>countStr</key>
 				<string>1、	每个产品都有专业的领投人领投，金牌保荐人提供保障，专业的分析师进行产品的分析研究和用户及时交流
-2、	产品来源各大机构的推荐和财猫平台的海选，经过多层专业的审核，保障项目的质量
-3、	为确保“0风险”投资安全保障，新经版拥有7层风险管控，确保100%投资安全
+2、	产品来源各大机构的推荐和新经板平台的海选，经过多层专业的审核，保障项目的质量
+3、	为确保“0风险”投资安全保障，新经板拥有7层风险管控，确保100%投资安全
 4、	唯一一家可实现流通性的众筹平台
 5、	资金第三方托管，专款专用100%保本保息（保底10%收益）
 6、	申购期满前可申请撤单
-7、	持有3个月后，可在新经版ＡＰＰ转让退出
+7、	持有3个月后，可在新经板ＡＰＰ转让退出
 </string>
 			</dict>
 			<dict>
 				<key>titName</key>
-				<string>新经版选择产品有什么标准？</string>
+				<string>新经板选择产品有什么标准？</string>
 				<key>countStr</key>
 				<string>(1)年回报率高于20%;
 (2)具有1年以上经营年限;
@@ -62,19 +62,19 @@
 			</dict>
 			<dict>
 				<key>titName</key>
-				<string>新经版公司是合法的吗? </string>
+				<string>新经板公司是合法的吗? </string>
 				<key>countStr</key>
-				<string>感谢您的关注!我公司是依法在北京市工商局注册登记成立的企业，拥有合法的营业执照等相关证件，营业执照号码：01584747，公司全称为财猫资产管理（北京）有限公司，公司位于北京市朝阳区朝阳门外大街丰联广场A座10层，欢迎您来访和参观。</string>
+				<string>感谢您的关注!我公司是依法在北京市工商局注册登记成立的企业，拥有合法的营业执照等相关证件，统一社会信用代码：911101053396969088，公司全称为钱通资本管理（北京）有限公司，公司位于北京市朝阳区朝阳门外大街18号10层</string>
 			</dict>
 			<dict>
 				<key>titName</key>
 				<string>投资人的钱是直接打到公司的账户吗? </string>
 				<key>countStr</key>
-				<string>感谢您的关注!新经版不设立资金池，所有投资资金均进入第三方监管账户。众筹成功后新经版按照协议约定条款分批次、按比例放款给产品，如果众筹失败，投资金额将解除冻结，退还给投资人。</string>
+				<string>感谢您的关注!新经板不设立资金池，所有投资资金均进入第三方监管账户。众筹成功后新经板按照协议约定条款分批次、按比例放款给产品，如果众筹失败，投资金额将解除冻结，退还给投资人。</string>
 			</dict>
 		</array>
 		<key>titleName</key>
-		<string>关于新经版</string>
+		<string>关于新经板</string>
 	</dict>
 	<dict>
 		<key>titleName</key>
@@ -83,10 +83,10 @@
 		<array>
 			<dict>
 				<key>titName</key>
-				<string>忘记新经版账号的密码怎么办?</string>
+				<string>忘记新经板账号的密码怎么办?</string>
 				<key>countStr</key>
 				<string>1、	ＡＰＰ用户通过首页－进入登录界面，点击“忘记密码”根据提示即可重置密码
-2、	您也可以在电脑端（zc.58cm.com）的登录界面，点击“忘记密码”通过手机号或邮箱两种方式找回密码
+2、	您也可以在电脑端（www.xinjingban.com）的登录界面，点击“忘记密码”通过手机号或邮箱两种方式找回密码
 </string>
 			</dict>
 			<dict>
@@ -124,7 +124,7 @@
 				<key>titName</key>
 				<string>手机端不支持大额投资怎么办?</string>
 				<key>countStr</key>
-				<string>登录新经版ｐｃ站（http://zc.58cm.com/），通过网上银行可进行大额充值支付</string>
+				<string>登录新经板ｐｃ站（http://www.xinjingban.com/），通过网上银行可进行大额充值支付</string>
 			</dict>
 			<dict>
 				<key>titName</key>
@@ -144,7 +144,7 @@
 		<array>
 			<dict>
 				<key>titName</key>
-				<string>新经版项目申购门槛</string>
+				<string>新经板项目申购门槛</string>
 				<key>countStr</key>
 				<string>单笔申购额不低于2万元</string>
 			</dict>
@@ -152,7 +152,7 @@
 				<key>titName</key>
 				<string>何时可赎回</string>
 				<key>countStr</key>
-				<string>在1级市场持有3个月后，可在财猫app上进行买入卖出</string>
+				<string>在1级市场持有3个月后，可在新经板app上进行买入卖出</string>
 			</dict>
 			<dict>
 				<key>titName</key>
@@ -168,8 +168,9 @@
 				<key>titName</key>
 				<string>交易手续费的收取规则</string>
 				<key>countStr</key>
-				<string>买入：交易费按买入金额的3‰收取，佣金同样按3‰收取（最低收取5元）。 下达买入委托，计算收取交易费，撤单交易费退回。未成交未撤单委托，盘后结算，交易费用自动退回。
-卖出：交易费按卖出金额的3‰收取，佣金同样按3‰收取（最低收取5元）。卖出成交时收取交易费。</string>
+				<string>投资者买卖众筹份额，应当按照规定向交易所交纳佣金，佣金向卖出方收取，买入方不收费。
+佣金按卖出金额的5‰收取，最低收取5元。
+</string>
 			</dict>
 		</array>
 	</dict>

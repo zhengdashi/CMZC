@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ProgressView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,21 @@
 			<true/>
 		</dict>
 		<key>38241AB51C853F77005E5134</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>38CCA22E1D9CFD9100DBFD1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>38CCA2461D9CFD9100DBFD1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>38CCA2511D9CFD9100DBFD1A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

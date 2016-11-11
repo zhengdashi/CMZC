@@ -44,15 +44,14 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([_imageName isEqualToString:@"new_guide_serve"]) {
+    if ([_imageName isEqualToString:@"new_shou_yindao"]) {
         CGFloat contentOf_y = scrollView.contentOffset.y;
-        if (contentOf_y > 2000) {
+        if (contentOf_y > 1400) {
             _btoomView.hidden = NO;
         } else {
             _btoomView.hidden = YES;
         }
     }
-    
 }
 //开启众筹
 - (IBAction)openClick:(UIButton *)sender {

@@ -87,7 +87,10 @@
 
 //主题橙色
 + (UIColor *)cmThemeOrange {
-    return [UIColor colorWithHex:0xFF6400];         //253-110-5
+    return [UIColor colorWithHex:0xFF6400];         //253-110-5 f1aa3f
+}
++ (UIColor *)cmThemeCheng {
+    return [UIColor colorWithHex:0xF1AA3F];
 }
 
 //背景灰色

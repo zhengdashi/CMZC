@@ -92,7 +92,7 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField == _numberTextField) {
-        if (textField.text.length>1) {
+        if (textField.text.length>=1) {
             BOOL isPure = [_numberTextField.text isPureInt:_numberTextField.text];
             if (!isPure) {
                 _numberTextField.text = @"";
@@ -115,7 +115,6 @@
     } else if (textField == _tradeTextField) {
         //加一个数据请求。算出价格。
         [self addRequestDataMeans];
-        
     } else if (textField == _priceTextField) {
         if (textField.text.length >0) {
             if ([textField.text floatValue]<_fallPrice) {

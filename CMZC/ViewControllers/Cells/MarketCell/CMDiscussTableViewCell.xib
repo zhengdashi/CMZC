@@ -1,56 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="81" id="KGk-i7-Jjw" customClass="CMDiscussTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="106" id="KGk-i7-Jjw" customClass="CMDiscussTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="就是个公告名字而已" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jly-MJ-fYo">
-                        <rect key="frame" x="10" y="18" width="126" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.89411765336990356" green="0.89411765336990356" blue="0.89411765336990356" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-02-10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USu-Mk-9ZH">
-                        <rect key="frame" x="223" y="43" width="82" height="18"/>
+                        <rect key="frame" x="223" y="68" width="82" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4b-zr-4p2">
-                        <rect key="frame" x="0.0" y="78" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="103" width="320" height="1"/>
                         <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="dsY-Xr-i2F"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NxL-w9-g9F">
+                        <rect key="frame" x="10" y="8" width="300" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.89411765340000005" green="0.89411765340000005" blue="0.89411765340000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="就是个公告名字而已" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jly-MJ-fYo">
+                        <rect key="frame" x="10" y="33" width="126" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.89411765336990356" green="0.89411765336990356" blue="0.89411765336990356" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.086274512112140656" green="0.086274512112140656" blue="0.086274512112140656" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="jly-MJ-fYo" firstAttribute="leading" secondItem="NxL-w9-g9F" secondAttribute="leading" id="8qC-jl-rzD"/>
+                    <constraint firstAttribute="trailing" secondItem="NxL-w9-g9F" secondAttribute="trailing" constant="10" id="EvM-Jm-PeK"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jly-MJ-fYo" secondAttribute="trailing" constant="10" id="G4f-I9-dLy"/>
+                    <constraint firstItem="NxL-w9-g9F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Jnz-3B-jdF"/>
                     <constraint firstAttribute="trailing" secondItem="r4b-zr-4p2" secondAttribute="trailing" id="NfO-tF-D95"/>
                     <constraint firstAttribute="bottom" secondItem="r4b-zr-4p2" secondAttribute="bottom" id="PGk-xc-YZl"/>
-                    <constraint firstItem="jly-MJ-fYo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Yoj-4W-NYN"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jly-MJ-fYo" secondAttribute="trailing" constant="15" id="fX0-YD-1u9"/>
+                    <constraint firstItem="NxL-w9-g9F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="nNt-em-vMC"/>
+                    <constraint firstItem="jly-MJ-fYo" firstAttribute="top" secondItem="NxL-w9-g9F" secondAttribute="bottom" constant="7" id="oxp-5O-LUi"/>
                     <constraint firstAttribute="bottom" secondItem="USu-Mk-9ZH" secondAttribute="bottom" constant="18" id="wn9-YA-npK"/>
                     <constraint firstAttribute="trailing" secondItem="USu-Mk-9ZH" secondAttribute="trailing" constant="15" id="wou-rN-cBM"/>
-                    <constraint firstItem="jly-MJ-fYo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="x1r-D2-TgM"/>
                     <constraint firstItem="r4b-zr-4p2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zx5-R2-Lla"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="timeDateLab" destination="USu-Mk-9ZH" id="7QX-5D-NkE"/>
                 <outlet property="titleLab" destination="jly-MJ-fYo" id="CaB-8e-onK"/>
+                <outlet property="titleNameLab" destination="NxL-w9-g9F" id="eC4-Zh-87e"/>
             </connections>
-            <point key="canvasLocation" x="304" y="69"/>
+            <point key="canvasLocation" x="304" y="81.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -52,9 +52,16 @@
     _applyLab.text = product.status;
    
     if (product.isNextPage) {
-        _applyView.backgroundColor = [UIColor cmThemeOrange];
+        //_applyLab.textColor = [UIColor whiteColor];
+        if ([product.status isEqualToString:@"立即申购"]) {
+            _applyView.backgroundColor = [UIColor cmThemeOrange];
+        } else {
+            _applyView.backgroundColor = [UIColor cmThemeCheng];
+        }
+        
     } else {
         _applyView.backgroundColor = [UIColor cmBackgroundGrey];
+       // _applyLab.textColor = [UIColor cmBlockColor];
     }
     
 }

@@ -21,8 +21,8 @@
 #define kCMWebHeader_Url @"http://mz.58cm.com/"
 
 //qq
-#define kUMSocial_QQAppId @"1105053055" //qq appid
-#define kUMSocail_QQAppKey @"EooPyAuT04ghSlZo"  //qq app key
+#define kUMSocial_QQAppId @"1105314915" //qq appid
+#define kUMSocail_QQAppKey @"dQhZB4PpJSNGNnJR"  //qq app key
 
 //wechat
 #define kUMSocial_WechatId @"wx54df45fc4b5da723"  //微信  appid

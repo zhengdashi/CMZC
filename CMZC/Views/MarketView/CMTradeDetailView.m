@@ -46,6 +46,7 @@
     _curTableView.delegate = self;
     _curTableView.dataSource = self;
     [self contrastIsPitch];
+//    _curTableView.
     _curTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeWebSocket) name:@"closeWebSocket" object:nil];
@@ -93,7 +94,7 @@
         } else {
             tradeCell.contDataArr = @[];
         }
-        
+        tradeCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return tradeCell;
     } else {
         CMFiveSpeedTableViewCell *speedCell = [tableView dequeueReusableCellWithIdentifier:@"CMFiveSpeedTableViewCell"];
@@ -101,6 +102,7 @@
             speedCell = [CMFiveSpeedTableViewCell cell];
         }
         [speedCell cm_fiveSpeedIndex:indexPath.row contentArr:_fiveDataArr];
+        speedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return speedCell;
     }
 }

@@ -20,6 +20,7 @@
     BOOL _isConvert;
     
     BOOL _isPushOptional;
+   // BOOL _isAddOptional; //知否是点击了添加自选
     
 }
 @property (weak, nonatomic) IBOutlet UITableView *curTableView;
@@ -285,8 +286,6 @@
     productVC.codeName = _codeTextField.text;
     [self.navigationController pushViewController:productVC animated:YES];
 }
-
-
 
 #pragma mark - getset
 - (NSMutableArray *)optionalArr {

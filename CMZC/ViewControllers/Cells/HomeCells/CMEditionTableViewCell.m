@@ -71,7 +71,7 @@
 - (void)setPrictArr:(NSArray *)prictArr {
     _prictArr = prictArr;
     //NSLog(@"--%@--",prictArr);
-    if (prictArr.count ==0) {
+    if (prictArr.count == 0 || prictArr.count == 1) {
         return;
     }
     //第一个产品

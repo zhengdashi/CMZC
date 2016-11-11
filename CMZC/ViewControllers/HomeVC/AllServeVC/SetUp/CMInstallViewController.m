@@ -37,7 +37,7 @@
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -81,13 +81,13 @@
             [self.navigationController pushViewController:statementVC animated:YES];
         }
             break;
-        case 3:
-        {//版本更新
-            [self upAppVersion];
-            
-            
-        }
-            break;
+//        case 3:
+//        {//版本更新
+//            [self upAppVersion];
+//            
+//            
+//        }
+//            break;
         default:
             break;
     }
@@ -126,7 +126,7 @@
     return @[@"关于",
              @"软件分享",
              @"免责声明",
-             @"版本更新"];
+             ];
 }
 
 #pragma mark -

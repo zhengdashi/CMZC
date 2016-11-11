@@ -122,6 +122,10 @@ extern NSString *const kCMTrendsNoticeURL;
  *  申购列表页
  */
 extern NSString *const kCMApplyListURL;
+/**
+ *  产品详情
+ */
+extern NSString *const kCMProductDetailsURL;
 
 
 #pragma mark - 交易

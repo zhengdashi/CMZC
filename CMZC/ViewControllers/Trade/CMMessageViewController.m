@@ -15,7 +15,9 @@
     NSArray     *_dataArr;
     
 }
+
 @property (weak, nonatomic) IBOutlet UITableView *curTableView;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
@@ -25,6 +27,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _dataArr = GetDataFromNSUserDefaults(@"alertArr");
+    if (_dataArr.count == 0) {
+        _bgView.hidden = NO;
+    } else {
+        _bgView.hidden = YES;
+    }
     _curTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
