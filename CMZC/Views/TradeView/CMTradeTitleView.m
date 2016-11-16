@@ -33,6 +33,7 @@
 */
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     if (!CMIsLogin()) {
         _loginView.hidden = NO;
     }

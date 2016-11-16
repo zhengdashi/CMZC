@@ -11,7 +11,7 @@
 @implementation CMServerCollectionViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
 }
 
 @end

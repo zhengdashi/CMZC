@@ -27,9 +27,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+         [super awakeFromNib];
         self.titleWidth = frame.size.width;
         self.titleHeight = frame.size.height;
+        NSLog(@"--------%f",self.titleHeight);
         self.hairline = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleHeight-kDefaultHairLineHeight, 0, kDefaultHairLineHeight)];
         //self.hairline.backgroundColor = [UIColor cmDividerColor];
         [self addSubview:self.hairline];
@@ -41,6 +42,7 @@
 
 -(void)awakeFromNib
 {
+     [super awakeFromNib];
     self.titleWidth = [UIScreen mainScreen].bounds.size.width;
     self.titleHeight = self.frame.size.height;
     self.hairline = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleHeight-kDefaultHairLineHeight, 0, kDefaultHairLineHeight)];

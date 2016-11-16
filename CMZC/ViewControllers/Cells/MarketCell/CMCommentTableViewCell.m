@@ -28,7 +28,8 @@
 @implementation CMCommentTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     
+     [super awakeFromNib];
     _announceView.delegate = self;
     _commentView.delegate = self;
     __weak typeof(self) weakSelef = self;

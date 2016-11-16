@@ -59,7 +59,7 @@
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
     
     //*****  为了测试先注销   ******//
     _tradeDetail = [CMTradeDetailView initByNibForClassName];

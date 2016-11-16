@@ -41,6 +41,7 @@
 }
 */
 - (void)awakeFromNib {
+    [super awakeFromNib];
     _isPitch = NO;
     _curTableView.scrollEnabled = NO;
     _curTableView.delegate = self;

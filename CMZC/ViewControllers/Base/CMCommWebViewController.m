@@ -83,13 +83,11 @@
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:_progressView];
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -105,7 +103,6 @@
 
 - (void)loadWebViewData
 {
-    
     if (!CMIsLogin()) {
         NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]];
         //4.查看请求头

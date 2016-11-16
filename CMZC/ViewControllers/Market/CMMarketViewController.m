@@ -74,6 +74,10 @@
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
     _curTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -207,8 +211,7 @@
     
 }
 
-- (void)keyboardWillShow:(NSNotification *)aNotification
-{
+- (void)keyboardWillShow:(NSNotification *)aNotification {
     //获取键盘的高度
     NSDictionary *userInfo = [aNotification userInfo];
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -218,6 +221,11 @@
         _botmViewbtomLayout.constant = height;
     }];
 
+}
+- (void)keyboardWillHide:(NSNotification *)aNotification {
+    _botmViewbtomLayout.constant = 0.0f;
+    _bottmView.hidden = YES;
+    _bgView.hidden = YES;
 }
 
 

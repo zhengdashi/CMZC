@@ -14,10 +14,11 @@
 
 
 @interface CMBulletinViewController ()<TitleViewDelegate,CMNoticeViewDeleagte,CMMediaNewsViewDelegate>
-@property (weak, nonatomic) IBOutlet TitleView *titleView;
+@property (strong, nonatomic) TitleView *titleView;
 @property (weak, nonatomic) IBOutlet UIScrollView *curScrollView;
 @property (weak, nonatomic) IBOutlet CMMediaNewsView *mediaView;//媒体报道
 @property (weak, nonatomic) IBOutlet CMNoticeView *noticeView;//公告
+@property (weak, nonatomic) IBOutlet TitleView *contTitleView; //标题
 
 @end
 
@@ -30,6 +31,8 @@
     _mediaView.delegate = self;
     _noticeView.delegate = self;
     
+    _titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, 0, kScreen_width, 40)];
+    [_contTitleView addSubview:_titleView];
     [self loadTitleView];
 }
 

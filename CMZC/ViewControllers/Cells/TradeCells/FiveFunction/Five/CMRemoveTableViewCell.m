@@ -25,7 +25,8 @@
 @implementation CMRemoveTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+     
 }
 
 - (void)setRemove:(CMMayRemove *)remove {

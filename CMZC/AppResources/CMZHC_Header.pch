@@ -15,7 +15,8 @@
 #define iPhone5 ([UIScreen mainScreen].bounds.size.height < 568)
 #define iPhone6 ([UIScreen mainScreen].bounds.size.height > 568)
 
-
+#define kScreen_width [UIScreen mainScreen].bounds.size.width
+#define kScreen_height [UIScreen mainScreen].bounds.size.height
 
 //倒计时时间
 #define kMaxVerifyTime 120

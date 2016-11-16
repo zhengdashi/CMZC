@@ -20,7 +20,7 @@
 @implementation CMAlerViewTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
 }
 
 - (void)cm_alerViewTableViewNameStr:(NSString *)nameStr numberStr:(NSString *)number style:(CMAlerViewTableStyle)style {

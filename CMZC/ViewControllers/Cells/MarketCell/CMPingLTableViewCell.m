@@ -20,7 +20,8 @@
 @implementation CMPingLTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     
+     [super awakeFromNib];
 }
 
 - (void)setCommDataArr:(NSArray *)commDataArr {

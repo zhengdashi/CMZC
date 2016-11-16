@@ -23,7 +23,7 @@
 @implementation CMCarryDetailsTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
 //    @property (nonatomic,copy) NSString *amount; //优惠券的金额
 //    @property (nonatomic,copy) NSString *validitydate; //优惠券失效时间
 }

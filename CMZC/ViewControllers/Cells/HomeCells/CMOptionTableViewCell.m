@@ -29,7 +29,8 @@
 @implementation CMOptionTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+     
    //注册
     _collectionflowLayout.itemSize = CGSizeMake(CMScreen_width()/3, 100);
     _curCollectionView.delegate = self;

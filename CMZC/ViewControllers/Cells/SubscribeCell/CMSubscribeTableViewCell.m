@@ -32,7 +32,8 @@
 @implementation CMSubscribeTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+    
     _applyView.layer.masksToBounds = YES;
     _applyView.layer.cornerRadius = 5.0f;
 }

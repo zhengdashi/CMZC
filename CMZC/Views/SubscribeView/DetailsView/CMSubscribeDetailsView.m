@@ -65,11 +65,11 @@
     self.progressView.centerLabel.text = product.progress;
     self.progressView.backgroundColor = [UIColor whiteColor];
     self.endTimeLab.text = product.status;
-    self.participateLab.text = [NSString stringWithFormat:@"参与人数%ld",product.soldcount];
-    self.startLab.text = [NSString stringWithFormat:@"%ld元起",product.price];
-    self.copiesLab.text = [NSString stringWithFormat:@"%ld",product.startquantity];
+    self.participateLab.text = [NSString stringWithFormat:@"参与人数%ld",(long)product.soldcount];
+    self.startLab.text = [NSString stringWithFormat:@"%ld元起",(long)product.price];
+    self.copiesLab.text = [NSString stringWithFormat:@"%ld",(long)product.startquantity];
     self.totalLab.text = [NSString stringWithFormat:@"%ld",product.startquantity * 100];
-    self.copiesText.text = [NSString stringWithFormat:@"%ld",product.startquantity];
+    self.copiesText.text = [NSString stringWithFormat:@"%ld",(long)product.startquantity];
     [self.purchaseStateBtn setTitle:product.status forState:UIControlStateNormal];
     if ([product.status isEqualToString:@"立即申购"]) {
         self.purchaseStateBtn.backgroundColor = [UIColor cmThemeOrange];
@@ -83,17 +83,17 @@
     if (_variableNumber < _copiesIndex) {
         return;
     } else {
-        self.copiesLab.text = [NSString stringWithFormat:@"%ld",_variableNumber];
+        self.copiesLab.text = [NSString stringWithFormat:@"%ld",(long)_variableNumber];
         self.totalLab.text = [NSString stringWithFormat:@"%ld",_variableNumber * 100];
-        self.copiesText.text = [NSString stringWithFormat:@"%ld",_variableNumber];
+        self.copiesText.text = [NSString stringWithFormat:@"%ld",(long)_variableNumber];
     }
 }
 //增加
 - (IBAction)increaseBtnClick:(UIButton *)sender {
     _variableNumber ++;
-    self.copiesLab.text = [NSString stringWithFormat:@"%ld",_variableNumber];
+    self.copiesLab.text = [NSString stringWithFormat:@"%ld",(long)_variableNumber];
     self.totalLab.text = [NSString stringWithFormat:@"%ld",_variableNumber * 100];
-    self.copiesText.text = [NSString stringWithFormat:@"%ld",_variableNumber];
+    self.copiesText.text = [NSString stringWithFormat:@"%ld",(long)_variableNumber];
 }
 //立即申购
 - (IBAction)purchaseDiatelyBtnClick:(UIButton *)sender {

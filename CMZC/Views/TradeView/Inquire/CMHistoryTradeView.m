@@ -42,6 +42,7 @@
     return self;
 }
 - (void)awakeFromNib {
+     [super awakeFromNib];
     _curTableView.tableFooterView = [[UIView alloc] init];
     [self addRequestDataMeans];
     [_curTableView beginHeaderRefreshing];
@@ -131,7 +132,7 @@
 //没有数据的view
 - (UIView *)notDataView {
     CLMNotDataView *dataView = [[CLMNotDataView alloc] initWithFrame:CGRectMake(0, 0, CMScreen_width(), 200)];
-    [dataView imageViewImageName:@"" markedWordsStr:@"历史暂无暂无成交" optionImageStr:@""];
+    [dataView imageViewImageName:@"" markedWordsStr:@"历史暂无成交" optionImageStr:@""];
     //dataView.delegate = self;
     if (![dataView superview]) {
         [self addSubview:dataView];

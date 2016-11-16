@@ -37,7 +37,8 @@
 @implementation CMSaleCollectionViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+     
     _numberTextField.delegate = self;
     _tradeTextField.delegate = self;
     _priceTextField.delegate = self;

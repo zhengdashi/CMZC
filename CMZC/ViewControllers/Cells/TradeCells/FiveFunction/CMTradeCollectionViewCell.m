@@ -19,7 +19,7 @@
 @implementation CMTradeCollectionViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
 }
 - (void)cm_tradeCollectionNameStr:(NSString *)name introduceStr:(NSString *)introduce titleImageName:(NSString *)titImage {
     _nameLab.text = name;

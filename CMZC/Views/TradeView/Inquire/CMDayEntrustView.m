@@ -42,6 +42,7 @@
 
 //请求数据
 - (void)awakeFromNib {
+    [super awakeFromNib];
     _curTableView.tableFooterView = [[UIView alloc] init];
     [self addRequestDataMeans];
    

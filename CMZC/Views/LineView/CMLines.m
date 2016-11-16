@@ -17,7 +17,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+         [super awakeFromNib];
         [self initSet];
     }
     return self;

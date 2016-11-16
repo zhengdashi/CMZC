@@ -27,8 +27,9 @@
 
 @interface CMTradeSonInterfaceController ()<UICollectionViewDataSource,UICollectionViewDelegate,TitleViewDelegate,CMInquireCollectionViewCellDelegate,CMBuyingCellDelegate,CMSaleCollectionDelegate,CMHoldCollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *curCollectionView;
-@property (weak, nonatomic) IBOutlet TitleView *titleView;
+@property (strong, nonatomic) TitleView *titleView;
 @property (strong, nonatomic) CMRevokeCollectionViewCell *revokeSaleCell;
+@property (weak, nonatomic) IBOutlet TitleView *titleContentView;
 
 
 @end
@@ -55,6 +56,9 @@ static NSString *const inquireIdentifer = @"CMInquireCollectionViewCell";
     
     self.title = @"交易";
     [self configureCollectionView];
+    
+    _titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, 0,kScreen_width , 40)];
+    [self.titleContentView addSubview:_titleView];
     [self loadTitleView];
     //这边因为刚进来vc的子界面布局还在继续，所以要runtime一下
     [self performSelector:@selector(performTime) withObject:self afterDelay:0.0];

@@ -25,7 +25,7 @@
 @implementation CMRevokeTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
     
     
     

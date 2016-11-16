@@ -64,7 +64,9 @@
             [self.analystListArr removeAllObjects];
         }
         [self.analystListArr addObjectsFromArray:analystArr];
-        [_curTableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_curTableView reloadData];
+        });
     } fail:^(NSError *error) {
         [self hiddenProgressHUD];
         [self showHUDWithMessage:error.message hiddenDelayTime:2];

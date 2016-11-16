@@ -17,7 +17,8 @@
 @implementation CMLatestTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+     
 }
 
 - (void)setNotice:(CMNoticeModel *)notice {

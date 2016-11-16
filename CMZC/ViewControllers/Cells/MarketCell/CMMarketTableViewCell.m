@@ -21,7 +21,7 @@
 @implementation CMMarketTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
     _layoutConstraintHeight.constant = 0.5;
 }
 

@@ -41,6 +41,7 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     _curTableView.delegate = self;
     [self addRequestDataMeans];
     [_curTableView beginHeaderRefreshing];

@@ -15,10 +15,12 @@
 #import "CMTurnoverList.h"
 
 @interface CMTurnoverViewController ()<TitleViewDelegate,CMDayTradeViewDelegate,CMHistoryTradeViewDelegate>
-@property (weak, nonatomic) IBOutlet TitleView *titleView;
+@property (strong, nonatomic) TitleView *titleView;
 @property (weak, nonatomic) IBOutlet UIScrollView *curScrollView;
 @property (weak, nonatomic) IBOutlet CMDayTradeView *dayTradeView;
 @property (weak, nonatomic) IBOutlet CMHistoryTradeView *historyTradeView;//history
+@property (weak, nonatomic) IBOutlet UIView *contTitleView;
+
 
 @end
 
@@ -28,6 +30,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //初始化titview
+    _titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, 0, kScreen_width, 40)];
+    [_contTitleView addSubview:_titleView];
     [self loadTitleView];
     _dayTradeView.delegate = self;
     _historyTradeView.delegate = self;

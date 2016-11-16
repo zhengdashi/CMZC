@@ -17,7 +17,7 @@
 @implementation CMMediaTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
 }
 - (void)setMediaNews:(CMMediaNews *)mediaNews {
     _mediaNews = mediaNews;

@@ -40,6 +40,7 @@
     return self;
 }
 - (void)awakeFromNib {
+     [super awakeFromNib];
     _curTableView.tableFooterView = [[UIView alloc] init];
     [self addRequestDataMeans];
 }

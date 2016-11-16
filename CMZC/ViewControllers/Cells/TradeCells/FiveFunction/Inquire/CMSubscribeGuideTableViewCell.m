@@ -18,7 +18,8 @@
 @implementation CMSubscribeGuideTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+     
 }
 - (void)cm_subscribeGuideTitleName:(NSString *)titleName detailsStr:(NSString *)details {
     _titleLab.text = titleName;

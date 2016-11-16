@@ -71,6 +71,10 @@
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
     _isFirst = NO; //这个是为了判断数据请求是否是第一次，同一个界面的数据，非得给两个不同的接口来需要。不懂~！
     [_curTableView addHeaderWithFinishBlock:^{
         [CMCommonTool executeRunloop:^{
@@ -218,6 +222,12 @@
     CGRect keyboardRect = [aValue CGRectValue];
     NSInteger height = keyboardRect.size.height;
      _bottomLayoutConstraint.constant = height;
+    
+}
+- (void)keyboardWillHide:(NSNotification *)aNotification {
+    _bottomLayoutConstraint.constant = 0.0f;
+    _btmView.hidden = YES;
+    _bgView.hidden = YES;
     
 }
 //刷新

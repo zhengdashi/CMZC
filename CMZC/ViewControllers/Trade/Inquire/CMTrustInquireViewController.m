@@ -14,10 +14,11 @@
 
 
 @interface CMTrustInquireViewController ()<TitleViewDelegate>
-@property (weak, nonatomic) IBOutlet TitleView *titleView;//titleView
+@property (strong, nonatomic) TitleView *titleView;//titleView
 @property (weak, nonatomic) IBOutlet UIScrollView *curScrollView;
 @property (weak, nonatomic) IBOutlet CMDayEntrustView *dayEntrustView;//当日委托
 @property (weak, nonatomic) IBOutlet CMHistoryEntrustView *historyEntrustView;//历史委托
+@property (weak, nonatomic) IBOutlet UIView *countTtitleView;
 
 @end
 
@@ -51,6 +52,8 @@
 }
 #pragma mark -
 - (void)loadTitleView {
+    _titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, 0, kScreen_width, 40)];
+    [_countTtitleView addSubview:_titleView];
     //媒体报道
     UIButton *sortNewButton = [UIButton cm_customBtnTitle:@"当日委托"];
     //公告

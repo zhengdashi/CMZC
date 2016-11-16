@@ -400,7 +400,6 @@
         webVC.urlStr = webUrl;
         [self.navigationController pushViewController:webVC animated:YES];
     }
-    
 }
 
 - (void)cm_allServerViewControllerPopHomeVCType:(CMAllServerViewType)type {
@@ -408,8 +407,6 @@
     CMTabBarViewController *tab = (CMTabBarViewController *)window.rootViewController;
     tab.selectedIndex = 1;
 }
-
-
 #pragma mark - btnClick
 //更多动态
 - (IBAction)moreBtnClick:(id)sender {

@@ -42,7 +42,7 @@
     
     NSDictionary *dict = @{@"productId":CMNumberWithFormat(productId)};
     
-    NSString *str = [NSString stringWithFormat:@"%@/%ld",kCMProductDetailsURL,productId];
+    NSString *str = [NSString stringWithFormat:@"%@/%ld",kCMProductDetailsURL,(long)productId];
     [CMRequestAPI postDataFromURLScheme:str argumentsDictionary:dict success:^(id responseObject) {
         CMProductDetails *details ;
         if ([responseObject[@"errcode"] integerValue] == 0) {

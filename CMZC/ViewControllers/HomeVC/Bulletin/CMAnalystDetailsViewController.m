@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *analystHeightLayout;//高度
 @property (weak, nonatomic) IBOutlet UIView *btmView;//下边的view
 //titleView
-@property (weak, nonatomic) IBOutlet TitleView *titleView;
+@property (strong, nonatomic) TitleView *titleView;
 @property (weak, nonatomic) IBOutlet UIScrollView *curScrollView;//scroll
 @property (weak, nonatomic) IBOutlet CMAnalystAnswerView *answerView;//回答
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLayoutConstraint;//标题头
@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btmViewLayoutConstraint;//btmView
 @property (weak, nonatomic) IBOutlet UIView *bgView;//用于点击
 @property (weak, nonatomic) IBOutlet UIButton *replyBtn; //回复按钮
+@property (weak, nonatomic) IBOutlet UIView *contTitleView;
+
 
 
 @property (nonatomic,assign) NSInteger topicId; //w问题id
@@ -48,6 +50,8 @@
     
     [self setAnalysthViewHeigthLayout];
     //titleView
+    _titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, 0, kScreen_width, 40)];
+    [_contTitleView addSubview:_titleView];
     [self loadTitleView];
     
     

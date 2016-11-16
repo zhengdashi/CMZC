@@ -46,7 +46,9 @@
 }
 
 - (void)awakeFromNib {
+     [super awakeFromNib];
     [self addRequestDataMeans];
+    
 }
 
 //添加上啦加载下拉刷新

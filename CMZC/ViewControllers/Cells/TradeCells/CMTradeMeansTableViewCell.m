@@ -25,7 +25,8 @@
 @implementation CMTradeMeansTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     
+     [super awakeFromNib];
     // 1.创建流水布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     // 2.设置每个格子的尺寸

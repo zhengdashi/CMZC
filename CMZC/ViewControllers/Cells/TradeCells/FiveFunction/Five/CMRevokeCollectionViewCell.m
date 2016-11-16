@@ -29,7 +29,8 @@
 @implementation CMRevokeCollectionViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+     
     _curTableView.delegate = self;
     _curTableView.dataSource = self;
     _curTableView.tableFooterView = [[UIView alloc] init];

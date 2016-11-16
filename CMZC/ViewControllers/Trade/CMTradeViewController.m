@@ -43,7 +43,7 @@
     _tradeTitleView.delegate = self;
     _curTableView.tableHeaderView = _tradeTitleView;
     
-    _titLabNameArr = @[@"银行卡认证",@"我的消息",@"新手交易指南",@"设置"];
+    _titLabNameArr = @[@"安全认证",@"我的消息",@"新手交易指南",@"设置"];
     _titImageArr = @[@"bankCard_trade",@"message_trade",@"new_trade",@"set_trade"];
     //判断一下是否登录
     //if (CMIsLogin()) {
@@ -156,7 +156,7 @@
 //                    commonalityVC = bankCardVC;
 //                } else {
                     //没有绑定过银行卡。现在还没有m站地址
-                    [self pushCommWebViewVCUrlStr:CMStringWithPickFormat(kCMMZWeb_url, @"/Account/BankCardCertification")];
+                    [self pushCommWebViewVCUrlStr:CMStringWithPickFormat(kCMMZWeb_url, @"/Account/SecurityCertification")];
 //                }
             }
                 break;
@@ -254,8 +254,6 @@
         
         [self.navigationController pushViewController:optionalVC animated:YES];
     }
-    
-    
 }
 
 #pragma mark - btn 
@@ -285,8 +283,6 @@
             tab.selectedIndex = 0;
         }
     }
-    
-    
 }
 
 

@@ -24,7 +24,8 @@
 
 
 - (void)awakeFromNib {
-    // Initialization code
+     [super awakeFromNib];
+    [self.contentView layoutIfNeeded];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,6 +35,8 @@
 }
 - (void)setAnalyst:(CMAnalystMode *)analyst {
     _analyst = analyst;
+    self.titImage.layer.masksToBounds = YES;
+    self.titImage.layer.cornerRadius = self.titImage.width /2;
     //这个默认图片是因为没切图，所以先找一个代替。
     [_titImage sd_setImageWithURL:[NSURL URLWithString:analyst.avatar] placeholderImage:[UIImage imageNamed:@"title_log"]];
     _nameLab.text = analyst.name;
