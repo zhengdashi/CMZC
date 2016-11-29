@@ -7,20 +7,12 @@
 //
 
 #import "CMCommentTableViewCell.h"
-#import "CMTitleView.h"
-#import "CMAnnounceView.h"
-#import "CMCommentView.h"
-#import "CMBusinessNewsView.h"
-#import "CMProductNotion.h"
-#import "CMProductComment.h"
+
 
 
 @interface CMCommentTableViewCell ()<TitleViewDelegate,CMCommentViewDelegate,CMCommentDelegate>
 @property (weak, nonatomic) IBOutlet CMTitleView *titleView;
 @property (weak, nonatomic) IBOutlet UIScrollView *curScrollView;
-@property (weak, nonatomic) IBOutlet CMAnnounceView *announceView;//公告
-@property (weak, nonatomic) IBOutlet CMCommentView *commentView; //评论
-@property (weak, nonatomic) IBOutlet CMBusinessNewsView *businessView;//企业信息
 
 
 @end

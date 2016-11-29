@@ -11,13 +11,13 @@
 #import "CMCommWebViewController.h"
 #import "NJKWebViewProgressView.h"
 #import "NJKWebViewProgress.h"
-
+#import "IMYWebView.h"
 
 @interface CMCommWebViewController ()<UIWebViewDelegate,NJKWebViewProgressDelegate> {
     NJKWebViewProgressView *_progressView;
     NJKWebViewProgress *_progressProxy;
 }
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet IMYWebView *webView;
 @property (strong,nonatomic)NSString *currentURL;
 @property (strong,nonatomic)NSString *currentTitle;
 @property (nonatomic,copy) NSString *nextURL;
@@ -92,6 +92,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [_webView stopLoading];
     [_progressView removeFromSuperview];
 }
 #pragma mark - NJKWebViewProgressDelegate

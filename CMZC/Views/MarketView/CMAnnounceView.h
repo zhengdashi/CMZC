@@ -18,5 +18,6 @@
 @interface CMAnnounceView : UIView
 
 @property (strong, nonatomic) NSArray   *anounDataArr;
+@property (weak, nonatomic) IBOutlet UITableView *curTableView;
 @property (nonatomic,assign)id<CMCommentViewDelegate>delegate;
 @end

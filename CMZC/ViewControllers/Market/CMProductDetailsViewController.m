@@ -140,7 +140,7 @@
     }];
     
 }
-
+//[_courseDetailCommentView.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 
@@ -153,7 +153,7 @@
     } else if (indexPath.row == 1) {
         return 259;
     } else {
-        return 311;
+        return 320;
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

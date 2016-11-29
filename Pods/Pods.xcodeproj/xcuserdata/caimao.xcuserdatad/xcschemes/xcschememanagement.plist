@@ -8,71 +8,56 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>APNumberPad.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>CYLTableViewPlaceHolder.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
+		</dict>
+		<key>IMYWebView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>NJKWebViewProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Pods-CMZC.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>SocketRocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 		<key>YYModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -82,12 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41D05422BCD0F780F18AC8ECB2D07EAF</key>
+		<key>2C76DE5C9762EE437873158F52A00F73</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>437F49840DF127CCC91E0272B1E11ED8</key>
+		<key>623561B1479CC121BAE609042C73E10C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7194E48E7A94AD5AEC38062F0BEFC3FC</key>
+		<key>71577E3381D50432B0B2BBF26C52AC48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,7 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2C6297A6933FAF8797834AF61DDE72A</key>
+		<key>C6B1EEB14E4345E209B5D8186598A1DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8853725201924FAF71089109F0365A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

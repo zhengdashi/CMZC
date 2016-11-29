@@ -7,6 +7,12 @@
 //  行情详情的 评论 公告 企业信息 详情 cell
 
 #import <UIKit/UIKit.h>
+#import "CMTitleView.h"
+#import "CMAnnounceView.h"
+#import "CMCommentView.h"
+#import "CMBusinessNewsView.h"
+#import "CMProductNotion.h"
+#import "CMProductComment.h"
 
 @class CMProductNotion;
 @class CMProductComment;
@@ -37,6 +43,9 @@
 
 @property (nonatomic,assign)id<CMCommentTableViewCellDelegate>delegate;
 
+@property (weak, nonatomic) IBOutlet CMAnnounceView *announceView;//公告
+@property (weak, nonatomic) IBOutlet CMCommentView *commentView; //评论
+@property (weak, nonatomic) IBOutlet CMBusinessNewsView *businessView;//企业信息
 @property (nonatomic,copy) NSString *code;
 
 @end

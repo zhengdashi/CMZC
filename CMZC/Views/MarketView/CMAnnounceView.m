@@ -14,7 +14,7 @@
 
 
 @interface CMAnnounceView ()<UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *curTableView;
+
 
 @end
 
