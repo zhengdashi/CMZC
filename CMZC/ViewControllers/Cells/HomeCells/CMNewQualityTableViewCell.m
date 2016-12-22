@@ -31,7 +31,7 @@
 #pragma mark - 数据请求
 
 - (void)awakeFromNib {
-   
+    [super awakeFromNib];
     _collectionFlowLayout.itemSize = CGSizeMake(CMScreen_width()/3*2, 149);
     _curCollectionView.delegate = self;
     _curCollectionView.dataSource = self;

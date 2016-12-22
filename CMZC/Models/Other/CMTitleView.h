@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^CMTitleViewBlock)(NSInteger index);
+typedef void(^CMTitleViewBlock)(NSInteger index,UIButton *selectBtn);
 
 @interface CMTitleView : UIView
 @property (weak, nonatomic) IBOutlet UIButton *oneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *twoBtn;
 @property (weak, nonatomic) IBOutlet UIButton *threeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fourBtn;
-
+@property (weak, nonatomic) IBOutlet UIView *markView;
 @property (nonatomic,copy) CMTitleViewBlock  block;
 
 @end

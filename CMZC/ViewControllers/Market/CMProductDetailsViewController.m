@@ -20,6 +20,10 @@
 #import "CMCommentViewController.h"
 #import "CMProductComment.h"
 
+#import "CMNewCommentTableViewCell.h"
+#import "CMTitleView.h"
+#import "TFHpple.h"
+#import "CMAnalystPoint.h"
 
 
 @interface CMProductDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,CMCommentTableViewCellDelegate,SRWebSocketDelegate,CMProductDetailsDelegate> {
@@ -43,6 +47,12 @@
 @property (weak, nonatomic) IBOutlet UIView *btmView; //存放输入框和确定按钮
 @property (weak, nonatomic) IBOutlet UITextField *numberTextField; //输入框
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLayoutConstraint;
+@property (strong, nonatomic) CMTitleView *sectionView;
+
+@property (strong, nonatomic) NSArray  *anounDataArr; //品论
+@property (strong, nonatomic) NSArray *commDataArr; //公告
+@property (nonatomic,copy) NSString *enterPrise; //企业信息
+@property (strong, nonatomic) UIButton *sectionViewSelectBtn; //选中的but
 
 
 @end
@@ -81,11 +91,18 @@
             [_curTableView endRefresh];
         }afterDelay:2];
     }];
+    [self requestComments]; //评论
 }
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     //打开定时器
     [self requestOpenTimer];
 }
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //关闭定时器
@@ -110,15 +127,30 @@
     [_curTableView addHeaderWithFinishBlock:^{
         [self requestListWithPageNo:1];
     }];
+    [_curTableView addFooterWithFinishBlock:^{
+        switch (self.type) {
+            case CMProductSelectTypeNounce: //公告
+            {
+                [self requestComments];
+            }
+                break;
+            case CMProductSelectTypeComments: //评论
+            {
+                
+            }
+                break;
+            default: //企业详情
+                
+                
+                break;
+        }
+    }];
     
 }
 //数据请求
 - (void)requestListWithPageNo:(NSInteger)page {
     [self requestMarketProduct];
 }
-
-
-
 //分时
 - (void)requestMarketProduct {
     [CMRequestAPI cm_marketTransferProductCode:_codeName success:^(NSArray *productArr) {
@@ -128,7 +160,7 @@
         [self.productArr addObjectsFromArray:productArr];
         [_curTableView beginUpdates];
         //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [_curTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
         [_curTableView endUpdates];
         if (!_isFirst) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"isFirstTime" object:self userInfo:@{@"earlyMorning":productArr[0][1]}];
@@ -140,58 +172,304 @@
     }];
     
 }
-//[_courseDetailCommentView.tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+
+//评论
+- (void)requestComments {
+    [CMRequestAPI cm_homeFetchAnswerPointAnalystId:0 pcode:[_codeName integerValue] pageIndex:1 success:^(NSArray *pointArr, BOOL isPage) {
+        _anounDataArr = pointArr;
+        [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+        [UIView animateWithDuration:0.3 animations:^{
+            _sectionView.markView.frame = CGRectMake(CGRectGetMinX(_sectionViewSelectBtn.frame), CGRectGetHeight(_sectionViewSelectBtn.frame)+3, CGRectGetWidth(_sectionViewSelectBtn.frame), 3);
+        }];
+    } fail:^(NSError *error) {
+        MyLog(@"行情评论信息请求是吧");
+    }];
+}
+//公告
+- (void)requestAnnouncement {
+    [CMRequestAPI cm_marketFetchProductNoticePCode:_codeName pageIndex:1 success:^(NSArray *noticeArr) {
+        _commDataArr = noticeArr;
+         [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+        [UIView animateWithDuration:0.3 animations:^{
+        _sectionView.markView.frame = CGRectMake(CGRectGetMinX(_sectionViewSelectBtn.frame), CGRectGetHeight(_sectionViewSelectBtn.frame)+3, CGRectGetWidth(_sectionViewSelectBtn.frame), 3);
+        }];
+    } fail:^(NSError *error) {
+        MyLog(@"行情公告信息请求失败");
+    }];
+}
+//企业信息
+- (void)requestEnterprise {
+    //_businessView.webStr = @"http://zcapi.58cm.com/api/product/context/800082";
+    NSString *urlScheme = [NSString stringWithFormat:@"%@%@",kMProductContextURL,CMNumberWithFormat([_codeName integerValue])];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",kCMBaseApiURL,urlScheme];
+    
+    NSString *dataString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlStr] encoding:NSUTF8StringEncoding error:nil];
+    NSData *htemlData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    TFHpple *temParser = [[TFHpple alloc] initWithHTMLData:htemlData];
+    NSArray *dataArray = [temParser searchWithXPathQuery:@"//span"];
+    NSString *contentStr = @"公司简介：\n";
+    for (TFHppleElement *hppleElement in dataArray) {
+        NSLog(@"-dataArray--%@",hppleElement.text);
+        NSString *str = hppleElement.text;
+        if ([str isEqual:@"\\n"]) {
+            str = @"\n";
+        }
+        
+        if (str.length >1) {//拼接字符串
+            contentStr = [contentStr stringByAppendingString:str];
+        }
+    }
+    _enterPrise = contentStr;
+    [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    [UIView animateWithDuration:0.3 animations:^{
+        _sectionView.markView.frame = CGRectMake(CGRectGetMinX(_sectionViewSelectBtn.frame), CGRectGetHeight(_sectionViewSelectBtn.frame)+3, CGRectGetWidth(_sectionViewSelectBtn.frame), 3);
+    }];
+    NSLog(@"--contentStr--%@",contentStr);
+}
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return 140;
-    } else if (indexPath.row == 1) {
-        return 259;
+//设置区头
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
     } else {
-        return 320;
+        return 40;
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 1) {
+        switch (self.type) {
+            case CMProductSelectTypeComments: //评论
+                return _anounDataArr.count > 0?0:40;
+                break;
+            case CMProductSelectTypeNounce: //公告
+                return _commDataArr.count > 0?0:40;
+                break;
+            case CMProductSelectTypeEnterprise:
+                return _enterPrise.length > 0?0:40;
+                break;
+            default: //企业信息
+                return 0;
+                break;
+        }
+    } else {
+        return 0;
+    }
+}
+
+//设置区的单元格
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 2;
+    } else {
+        switch (self.type) {
+            case CMProductSelectTypeComments: //评论
+                return _anounDataArr.count;
+                break;
+            case CMProductSelectTypeNounce: //公告
+                return _commDataArr.count;
+                break;
+            case CMProductSelectTypeEnterprise:
+                return 1;
+            default: //企业信息
+                return 0;
+                break;
+        }
+    }
+}
+//设置cell的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 140;
+        } else {
+            return 259;
+        }
+    } else {
+        switch (self.type) {
+            case CMProductSelectTypeComments: //评论
+            {
+                CMAnalystPoint *notion = _anounDataArr[indexPath.row];
+                CGFloat height = [notion.content getHeightIncomingWidth:CMScreen_width()-30 incomingFont:14];
+                if (height>34) {
+                    height = 34;
+                }
+                CGFloat titHeight = 64;
+                if (notion.title.length > 1) {
+                    titHeight = 80;
+                }
+                return titHeight-17 + height+16;
+            }
+                break;
+            case CMProductSelectTypeNounce: //公告
+            {
+                CMProductNotion *productCom = _commDataArr[indexPath.row];
+                CGFloat height = [productCom.title getHeightIncomingWidth:CMScreen_width()-30  incomingFont:14];
+                return 63-14 + height+10;
+            }
+                break;
+            case CMProductSelectTypeEnterprise:
+            {
+                CGFloat height = [_enterPrise getHeightIncomingWidth:CMScreen_width()-30  incomingFont:14];
+                return 63-14 + height+25;
+            }
+                break;
+            default: //企业信息
+            {
+                return 0;
+            }
+                break;
+        }
+    }
+}
+//设置区的cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.row) {
-        case 0:
-        {
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
             CMProductDetailsTableViewCell *productCell = [tableView dequeueReusableCellWithIdentifier:@"CMProductDetailsTableViewCell" forIndexPath:indexPath];
             productCell.selectionStyle = UITableViewCellSelectionStyleNone;
             productCell.productArr = self.productArr;
             productCell.delegate = self;
             return productCell;
-        }
-            break;
-        case 1:
-        {
+        } else {
             CMChartTableViewCell *chartCell = [tableView dequeueReusableCellWithIdentifier:@"CMChartTableViewCell" forIndexPath:indexPath];
             chartCell.selectionStyle = UITableViewCellSelectionStyleNone;
             chartCell.code = _codeName;
             return chartCell;
         }
-            break;
-        default:
-        {
-            CMCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CMCommentTableViewCell" forIndexPath:indexPath];
-            commentCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            commentCell.delegate = self;
-            commentCell.code = _codeName;
-            return commentCell;
+    } else {
+        CMNewCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CMNewCommentTableViewCell"];
+        if (!commentCell) {
+            commentCell = [[NSBundle mainBundle] loadNibNamed:@"CMNewCommentTableViewCell" owner:nil options:nil].firstObject;
         }
-            break;
+        
+        commentCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        switch (self.type) {
+            case CMProductSelectTypeComments: //评论
+            {
+                commentCell.analystPoint = _anounDataArr[indexPath.row];
+            }
+                break;
+            case CMProductSelectTypeNounce: //公告
+            {
+                commentCell.productNotion = _commDataArr[indexPath.row];
+            }
+                break;
+            case CMProductSelectTypeEnterprise:
+                commentCell.introduceStr = _enterPrise;
+                break;
+            default: //企业信息
+                break;
+        }
+        return commentCell;
     }
 }
+//设置区头
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        _sectionView = [[NSBundle mainBundle] loadNibNamed:@"CMTitleView" owner:nil options:nil].firstObject;
+        [self cm_titleViewBlock:_sectionView];
+        return _sectionView;
+    } else {
+        return nil;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == 1) {
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 40)];
+        //footerView.backgroundColor = [UIColor redColor];
+        UILabel *footTitleLab = [[UILabel alloc] init];
+        footTitleLab.center = footerView.center;
+        footTitleLab.frame = CGRectMake(0, 0, 120, 30);
+        footTitleLab.font = [UIFont systemFontOfSize:15];
+        footTitleLab.textColor = [UIColor cmDividerColor];
+        switch (self.type) {
+            case CMProductSelectTypeComments: //评论
+            {
+                footTitleLab.text = @"暂无评论！";
+            }
+                break;
+            case CMProductSelectTypeNounce: //公告
+            {
+                footTitleLab.text = @"暂无公告！";
+            }
+                break;
+            case CMProductSelectTypeEnterprise:
+            {
+                footTitleLab.text = @"暂无企业信息！";
+            }
+                break;
+            default: //企业信息
+                break;
+        }
+        [footerView addSubview:footTitleLab];
+        return footerView;
+    } else {
+        return nil;
+    }
+}
+
+
+//区头的方法
+- (void)cm_titleViewBlock:(CMTitleView *)titleView {
+    titleView.block = ^void(NSInteger index,UIButton *selectBtn) {
+        _sectionViewSelectBtn = selectBtn;
+        switch (index) {
+            case 0:
+                self.type = CMProductSelectTypeComments;
+                [self requestComments]; //评论
+                
+                break;
+            case 1:
+                self.type = CMProductSelectTypeNounce;
+                [self requestAnnouncement]; //公告
+                
+                break;
+            case 2:
+                self.type = CMProductSelectTypeEnterprise;
+                [self requestEnterprise];
+                break;
+            default:
+                self.type = CMProductSelectTypeDetails;
+                [self cm_commentCellSkipBoundary];
+                break;
+        }
+    };
+}
+
+
+//点击
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (self.type) {
+        case CMProductSelectTypeNounce: //公告
+        {
+            CMProductNotion *product = _commDataArr[indexPath.row];
+            [self cm_commentNoticeViewNoticeId:product.notionId];
+        }
+            break;
+        case CMProductSelectTypeComments://评论
+            [self cm_commentViewControllProductNotion:_anounDataArr[indexPath.row]];
+            break;
+        case CMProductSelectTypeDetails: //公司详情
+            [self cm_commentCellSkipBoundary];
+        default: //公司详情
+            break;
+    }
+    
+}
+
 
 #pragma mark - 买入卖出 btnclick
 //买入
 - (IBAction)buyingBtnClick:(UIButton *)sender {
     [self pushTradeSonInterVCItemIndex:0 codeName:_codeName];
-    
 }
 //卖出
 - (IBAction)saleBtnClick:(UIButton *)sender {
@@ -273,6 +551,7 @@
     
     [self.navigationController pushViewController:commentVC animated:YES];
 }
+//公告
 - (void)cm_commentNoticeViewNoticeId:(NSInteger)noticeId {
     //http://mz.58cm.com/Account/MessageDetail?nid=
     CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];

@@ -32,7 +32,7 @@
 
 - (void)setProductComment:(CMProductNotion *)productComment {
     _productComment = productComment;
-    _contentLab.text = _productComment.title;
+    _contentLab.text = _productComment.title; //
     _timeDateLab.text = _productComment.created;
     
 }

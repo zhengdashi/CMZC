@@ -77,5 +77,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+TradeInquire.m"
+            timestampString = "502161421.890229"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "+cm_tradeFetchProductContextPcode:success:fail:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+TradeInquire.m"
+            timestampString = "502161562.067127"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "+cm_tradeFetchProductContextPcode:success:fail:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[CMRequestAPI(TradeInquire) cm_tradeFetchProductContextPcode:success:fail:]"
+                  moduleName = "CMZC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caimao/Desktop/%E8%B4%A2%E7%8C%AB%E4%BC%97%E7%AD%B9/CMZC/CMZC/NetWorking/API%20Modules/CMRequestAPI+TradeInquire.m"
+                  timestampString = "504068589.741138"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "318"
+                  endingLineNumber = "318"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__76+[CMRequestAPI(TradeInquire) cm_tradeFetchProductContextPcode:success:fail:]_block_invoke"
+                  moduleName = "CMZC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caimao/Desktop/%E8%B4%A2%E7%8C%AB%E4%BC%97%E7%AD%B9/CMZC/CMZC/NetWorking/API%20Modules/CMRequestAPI+TradeInquire.m"
+                  timestampString = "504068589.743356"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "318"
+                  endingLineNumber = "318"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CMZC/NetWorking/API Modules/CMRequestAPI+ProductMark.m"
+            timestampString = "502251908.329924"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "+cm_marketFetchProductCommentPCode:pageIndex:success:fail:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

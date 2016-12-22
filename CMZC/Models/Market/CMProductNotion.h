@@ -10,9 +10,9 @@
 
 @interface CMProductNotion : NSObject
 
-@property (nonatomic,assign) NSInteger notionId;
-@property (strong, nonatomic) NSString *title;
+@property (nonatomic,assign) NSInteger notionId; //id
+@property (strong, nonatomic) NSString *title; //标题
 @property (strong, nonatomic) NSString *descri;
-@property (strong, nonatomic) NSString *created;
+@property (strong, nonatomic) NSString *created; //时间
 
 @end

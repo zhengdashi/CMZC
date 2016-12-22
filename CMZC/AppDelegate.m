@@ -31,7 +31,7 @@
     
     
     //由于分享要真机。不然会出现错误。所哟，先注销掉。测试时在借助
-    [self umsocialData];
+   // [self umsocialData];
     
     //显示引导页
     [self showWelcome];

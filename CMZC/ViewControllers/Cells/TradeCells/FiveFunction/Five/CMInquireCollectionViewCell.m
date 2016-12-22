@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
      [super awakeFromNib];
-    _tableTitleArr = @[@[@"资产",@"成交查询",@"委托查询"],@[@"新品申购查询",@"中签查询",@"申购记录查询",@"我的众筹宝",@"申购指南"]];
+    _tableTitleArr = @[@[@"资产",@"成交查询",@"委托查询"],@[@"新品申购查询",@"中签查询",@"申购记录查询",@"我的倍利宝",@"申购指南"]];
     _curTableView.delegate = self;
     _curTableView.dataSource = self;
     _curTableView.tableFooterView = [[UIView alloc] init];
