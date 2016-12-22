@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CMNewCommentTableViewCell" rowHeight="105" id="KGk-i7-Jjw" customClass="CMNewCommentTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="105"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tC3-fS-n6T">
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.7921568751335144" green="0.7921568751335144" blue="0.7921568751335144" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1p-Js-32Z">
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.7921568751335144" green="0.7921568751335144" blue="0.7921568751335144" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNN-EE-Dbm">
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.7921568751335144" green="0.7921568751335144" blue="0.7921568751335144" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jy-ZN-2qu">
+                        <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="DLi-D8-8Tk"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tC3-fS-n6T" secondAttribute="trailing" constant="10" id="3MY-hb-bXW"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h1p-Js-32Z" secondAttribute="trailing" constant="10" id="3pG-Bk-1j2"/>
+                    <constraint firstItem="h1p-Js-32Z" firstAttribute="leading" secondItem="tC3-fS-n6T" secondAttribute="leading" id="6em-hM-Zi5"/>
+                    <constraint firstItem="tC3-fS-n6T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="9mz-ad-0Kf"/>
+                    <constraint firstAttribute="trailing" secondItem="oNN-EE-Dbm" secondAttribute="trailing" constant="10" id="BBd-pD-yp6"/>
+                    <constraint firstItem="h1p-Js-32Z" firstAttribute="top" secondItem="tC3-fS-n6T" secondAttribute="bottom" constant="8" id="EyT-an-wce"/>
+                    <constraint firstAttribute="bottom" secondItem="6jy-ZN-2qu" secondAttribute="bottom" id="GKb-xD-6H7"/>
+                    <constraint firstItem="tC3-fS-n6T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="oKe-tL-z1S"/>
+                    <constraint firstItem="6jy-ZN-2qu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="raY-xR-pP5"/>
+                    <constraint firstAttribute="bottom" secondItem="oNN-EE-Dbm" secondAttribute="bottom" constant="10" id="tub-Bf-fg5"/>
+                    <constraint firstAttribute="trailing" secondItem="6jy-ZN-2qu" secondAttribute="trailing" id="ykO-bw-XJ9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.086274512112140656" green="0.086274512112140656" blue="0.086274512112140656" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="contentLab" destination="h1p-Js-32Z" id="FVo-8D-ezD"/>
+                <outlet property="contentTopLayoutConstranint" destination="EyT-an-wce" id="aF0-0L-fH1"/>
+                <outlet property="timeDataLab" destination="oNN-EE-Dbm" id="vra-aE-8El"/>
+                <outlet property="titleNameLab" destination="tC3-fS-n6T" id="iXW-s8-2EE"/>
+            </connections>
+            <point key="canvasLocation" x="5" y="-127.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -295,6 +295,8 @@
 		3896ECFA1D17D246003F8B4D /* animation_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3896ECE81D17D246003F8B4D /* animation_7@2x.png */; };
 		3896ECFB1D17D246003F8B4D /* animation_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3896ECE91D17D246003F8B4D /* animation_8@2x.png */; };
 		3896ECFC1D17D246003F8B4D /* animation_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3896ECEA1D17D246003F8B4D /* animation_9@2x.png */; };
+		38AD61361DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD61341DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m */; };
+		38AD61371DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD61351DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib */; };
 		38CCA2241D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CCA2231D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.m */; };
 		38CCA2281D9CEEB900DBFD1A /* CMSubscribeDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CCA2271D9CEEB900DBFD1A /* CMSubscribeDetailsView.m */; };
 		38CCA22A1D9CEF5F00DBFD1A /* CMSubscribeDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CCA2291D9CEF5F00DBFD1A /* CMSubscribeDetailsView.xib */; };
@@ -831,6 +833,9 @@
 		3896ECE81D17D246003F8B4D /* animation_7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "animation_7@2x.png"; sourceTree = "<group>"; };
 		3896ECE91D17D246003F8B4D /* animation_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "animation_8@2x.png"; sourceTree = "<group>"; };
 		3896ECEA1D17D246003F8B4D /* animation_9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "animation_9@2x.png"; sourceTree = "<group>"; };
+		38AD61331DEEAD9500A2DD72 /* CMNewCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNewCommentTableViewCell.h; sourceTree = "<group>"; };
+		38AD61341DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMNewCommentTableViewCell.m; sourceTree = "<group>"; };
+		38AD61351DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMNewCommentTableViewCell.xib; sourceTree = "<group>"; };
 		38CCA2221D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSubscribeDetailsViewController.h; sourceTree = "<group>"; };
 		38CCA2231D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMSubscribeDetailsViewController.m; sourceTree = "<group>"; };
 		38CCA2261D9CEEB900DBFD1A /* CMSubscribeDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSubscribeDetailsView.h; sourceTree = "<group>"; };
@@ -1542,6 +1547,9 @@
 				38499B841C96B155000C5763 /* CMProductDetailsTableViewCell.m */,
 				38D010861C9802D2007268B5 /* CMChartTableViewCell.h */,
 				38D010871C9802D2007268B5 /* CMChartTableViewCell.m */,
+				38AD61331DEEAD9500A2DD72 /* CMNewCommentTableViewCell.h */,
+				38AD61341DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m */,
+				38AD61351DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib */,
 				3859C6211C9A5A0700A358CF /* CMCommentTableViewCell.h */,
 				3859C6221C9A5A0700A358CF /* CMCommentTableViewCell.m */,
 				3859C62C1C9A5ECA00A358CF /* CMDiscussTableViewCell.h */,
@@ -2309,6 +2317,7 @@
 				38704AEC1D99220400BE4702 /* logo_anim_026@2x.png in Resources */,
 				38704ADB1D99220400BE4702 /* logo_anim_010@2x.png in Resources */,
 				384241921D02673C00C0FFB5 /* CMRemoveTableViewCell.xib in Resources */,
+				38AD61371DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib in Resources */,
 				3896ECF61D17D246003F8B4D /* animation_3@2x.png in Resources */,
 				382FB3601C9BF44400F13C0D /* area.plist in Resources */,
 				38704AE31D99220400BE4702 /* logo_anim_018@2x.png in Resources */,
@@ -2563,6 +2572,7 @@
 				38FC90211C92CEA700A347EE /* CMMixNumberViewController.m in Sources */,
 				3867BBBE1C9FA5540004507D /* CMAccountTool.m in Sources */,
 				38DFE2261C8683DC00FE6736 /* CMEditionTableViewCell.m in Sources */,
+				38AD61361DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m in Sources */,
 				38499B741C96623D000C5763 /* CMMarketViewController.m in Sources */,
 				38DB1BDA1C8592600069D289 /* CMRequestAPI.m in Sources */,
 				382B5EAE1C8A884B00D2C79B /* CMAllServeViewController.m in Sources */,
@@ -2876,6 +2886,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = N57ZCUC299;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CMZC/AppResources/CMZHC_Header.pch";
 				INFOPLIST_FILE = CMZC/Info.plist;
@@ -2902,6 +2913,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = N57ZCUC299;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CMZC/AppResources/CMZHC_Header.pch";
 				INFOPLIST_FILE = CMZC/Info.plist;

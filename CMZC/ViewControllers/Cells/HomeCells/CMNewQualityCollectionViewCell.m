@@ -44,12 +44,17 @@
     _qualityNameLab.text = number.title;
     
     
-    NSArray *priceArr = [number.price componentsSeparatedByString:@"."];
-    _priceLab.text = priceArr.firstObject;
-   // NSLog(@"---%@",priceArr.firstObject);
-    if (priceArr.count > 1) {
-        _netWorthLab.text = [NSString stringWithFormat:@".%.0f%%",[priceArr.lastObject floatValue]];
+    //NSArray *priceArr = [number.price componentsSeparatedByString:@"."];
+    _priceLab.text = number.price;
+    if ([number.price isEqualToString:@"100"]) {
+        _netWorthLab.hidden = YES;
+    } else {
+        _netWorthLab.hidden = NO;
     }
+   // NSLog(@"---%@",priceArr.firstObject);
+//    if (priceArr.count > 1) {
+//        _netWorthLab.text = [NSString stringWithFormat:@".%.0f%%",[priceArr.lastObject floatValue]];
+//    }
     NSArray *lisArr = [number.floatingprofitloss componentsSeparatedByString:@"."];
     _makeLab.text = lisArr.firstObject;
     if (lisArr.count > 1) {

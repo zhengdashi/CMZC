@@ -7,7 +7,7 @@
 //
 
 #import "CMCommentTableViewCell.h"
-
+#import "TFHpple.h"
 
 
 @interface CMCommentTableViewCell ()<TitleViewDelegate,CMCommentViewDelegate,CMCommentDelegate>
@@ -25,7 +25,7 @@
     _announceView.delegate = self;
     _commentView.delegate = self;
     __weak typeof(self) weakSelef = self;
-    _titleView.block = ^void(NSInteger index) {
+    _titleView.block = ^void(NSInteger index,UIButton *selectBtn) {
         if (index == 3) {
             //点击详情
             if ([weakSelef.delegate respondsToSelector:@selector(cm_commentCellSkipBoundary)]) {
@@ -100,11 +100,24 @@
 //企业信息
 - (void)requestEnterprise {
     //_businessView.webStr = @"http://zcapi.58cm.com/api/product/context/800082";
-    [CMRequestAPI cm_tradeFetchProductContextPcode:[_code integerValue] success:^(NSString *dataStr) {
-        _businessView.webStr = dataStr;
-    } fail:^(NSError *error) {
+    NSString *urlScheme = [NSString stringWithFormat:@"%@%@",kMProductContextURL,CMNumberWithFormat([_code integerValue])];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",kCMBaseApiURL,urlScheme];
+    
+    NSString *dataString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlStr] encoding:NSUTF8StringEncoding error:nil];
+    NSData *htemlData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    TFHpple *temParser = [[TFHpple alloc] initWithHTMLData:htemlData];
+    NSArray *dataArray = [temParser searchWithXPathQuery:@"//span"];
+    NSString *contentStr = @"";
+    for (TFHppleElement *hppleElement in dataArray) {
+        NSLog(@"-dataArray--%@",hppleElement.text);
+        NSString *str = hppleElement.text;
+        if (str.length >1) {
+            contentStr = [contentStr stringByAppendingString:hppleElement.text];
+        }
         
-    }];
+    }
+    
+    NSLog(@"--contentStr--%@",contentStr);
 }
 
 
@@ -115,3 +128,27 @@
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
