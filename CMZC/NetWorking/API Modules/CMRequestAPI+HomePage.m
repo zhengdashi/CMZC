@@ -225,7 +225,11 @@
         fail(error);
     }];
 }
-
+//服务申请
++ (void)cm_serviceApplicationProjectName:(NSString *)project realName:(NSString *)real contactPhone:(NSString *)contact success:(void (^)(BOOL))success fail:(void (^)(NSError *))fail {
+    
+    
+}
 
 @end
 

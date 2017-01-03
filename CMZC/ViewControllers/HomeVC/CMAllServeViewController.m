@@ -23,6 +23,9 @@
 
 #import "CMTabBarViewController.h"
 #import "CMSortwareShareViewController.h" //分享
+#import "CMRegisterViewController.h"
+#import "CMServerPromptView.h" //提示框
+#import "CMServiceApplicationViewController.h" //服务申请
 
 
 @interface CMAllServeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -71,7 +74,7 @@
     // 1.创建流水布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     // 2.设置每个格子的尺寸
-    layout.itemSize = CGSizeMake(self.view.width/4,82);
+    layout.itemSize = CGSizeMake(self.view.width/3,100);
     layout.headerReferenceSize = CGSizeMake(0, 40);
     // 3.设置整个collectionView的内边距
     //    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -140,6 +143,8 @@
         [self brandIntroduceIndexPath:indexPath];
     } else if (indexPath.section == 1) {
         [self tradeServeIndexPath:indexPath];
+    } else if (indexPath.section == 2) {
+        [self financingServeIndexPath:indexPath];
     } else {
         [self moreSeveIndexPath:indexPath];
     }
@@ -181,19 +186,68 @@
         }
             
             break;
-        case 3://赚钱秘籍
-        {
-            CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[CMMoneyViewController initByStoryboard];
-            [newGuideVC cm_moneyViewTitleName:@"赚钱秘籍"
-                              bgImageViewName:@"make_money_serve"
-                                  imageHeight:750-400];
-            viewController = newGuideVC;
-            [self.navigationController pushViewController:viewController animated:YES];
-        }
-            break;
+//        case 3://赚钱秘籍
+//        {
+//            CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[CMMoneyViewController initByStoryboard];
+//            [newGuideVC cm_moneyViewTitleName:@"赚钱秘籍"
+//                              bgImageViewName:@"make_money_serve"
+//                                  imageHeight:750-400];
+//            viewController = newGuideVC;
+//            [self.navigationController pushViewController:viewController animated:YES];
+//        }
+//            break;
         default:
             break;
     }
+    
+}
+//融资服务
+- (void)financingServeIndexPath:(NSIndexPath *)indexPath {
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    CMServerPromptView *serverView = [[NSBundle mainBundle] loadNibNamed:@"CMServerPromptView" owner:nil options:nil].firstObject;
+    serverView.center = window.center;
+    serverView.frame = CGRectMake(0, 0, CGRectGetWidth(window.frame), CGRectGetHeight(window.frame));
+    switch (indexPath.row) {
+        case 0:
+            serverView.imageNameStr = @"prompt_serve_listed";
+            [window addSubview:serverView];
+            break;
+        case 1:
+            serverView.imageNameStr = @"prompt_serve_ziben";
+            [window addSubview:serverView];
+            break;
+        case 2:
+            serverView.imageNameStr = @"prompt_serve_xinjingji";
+            [window addSubview:serverView];
+            break;
+        case 3:
+            serverView.imageNameStr = @"prompt_serve_luyan";
+            [window addSubview:serverView];
+            break;
+        case 4:
+        {
+            CMServiceApplicationViewController *serviceVC = (CMServiceApplicationViewController *)[CMServiceApplicationViewController initByStoryboard];
+            [self.navigationController pushViewController:serviceVC animated:YES];
+        }
+            break;
+        case 5:
+        {
+            return;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    if (indexPath.row <5) {
+        __weak typeof(self) weakSelef = self;
+        serverView.typeBlock = ^() {
+            CMServiceApplicationViewController *serviceVC = (CMServiceApplicationViewController *)[CMServiceApplicationViewController initByStoryboard];
+            [weakSelef.navigationController pushViewController:serviceVC animated:YES];
+        };
+    }
+    
+    
     
 }
 
@@ -202,7 +256,7 @@
 
     UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
     switch (indexPath.row) {
-        case 0:
+        case 1:
             //申购新品
         {
             self.allType = CMAllServerViewTypeSubscribe;
@@ -211,7 +265,7 @@
             
         }
             break;
-        case 1:
+        case 2:
             //行情
         {
             self.allType = CMAllServerViewTypeMarket;
@@ -219,7 +273,7 @@
             tab.selectedIndex = 2;
         }
             break;
-        case 2://自选
+        case 3://倍利宝
         {
             if (!CMIsLogin()) {
                 [self isLoginVC];
@@ -230,7 +284,7 @@
             }
         }
             break;
-        case 3:
+        case 5:
         {
             //公告
             CMBulletinViewController *bulletinVC = (CMBulletinViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMBulletinViewController"];
@@ -245,9 +299,14 @@
             [self.navigationController pushViewController:analystVC animated:YES];
         }
             break;
-        case 5:
-            //交易
+        case 0:
+            //开户注册
         {
+            
+            CMRegisterViewController *registerVC = (CMRegisterViewController *)[CMRegisterViewController initByStoryboard];
+            [self.navigationController pushViewController:registerVC animated:YES];
+            
+            /*
             if (!CMIsLogin()) {
                 [self isLoginVC];
             } else {
@@ -255,6 +314,7 @@
                 CMTradeSonInterfaceController *tradeSonVC = (CMTradeSonInterfaceController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMTradeSonInterfaceController"];
                 [self.navigationController pushViewController:tradeSonVC animated:YES];
             }
+             */
             
         }
             break;
@@ -341,13 +401,15 @@
 - (NSArray *)headerTitArr {
     return @[@"品牌介绍",
              @"交易服务",
+             @"融资服务",
              @"更多服务"];
 }
 //cell data
 - (NSArray *)sourceDataArr {
-    return @[@[@"strength_brand_home",@"safety_brand_home",@"media_brand_home",@"make_brand_home",],
-             @[@"ask_trade_home",@"price_trade_home",@"option_trade_home",@"notice_trade_home",@"analyst_trade_home",@"trade_trade_home",@"",@""],
-             @[@"accout_serve_home",@"help_serve_home",@"newHand_serve_home",@"couple_serve_home",@"server_serve_home",@"shear_serve_home",@"set_serve_home",@""]];
+    return @[@[@"strength_brand_home",@"safety_brand_home",@"media_brand_home"],
+             @[@"ask_trade_home",@"price_trade_home",@"option_trade_home",@"notice_trade_home",@"analyst_trade_home",@"trade_trade_home"],
+             @[@"finan_listed_serve",@"finan_capital_serve",@"finan_economy_serve",@"finan_roadshow_serve",@"finan_apply_serve",@""],
+             @[@"accout_serve_home",@"help_serve_home",@"newHand_serve_home",@"couple_serve_home",@"server_serve_home",@"shear_serve_home",]];
 }
 - (void)isLoginVC {
     UINavigationController *nav = [UIStoryboard loginStoryboard].instantiateInitialViewController;

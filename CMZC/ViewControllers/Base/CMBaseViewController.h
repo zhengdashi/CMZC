@@ -12,5 +12,7 @@
 
 + (UIViewController *)initByStoryboard;
 
+- (void)showTabBarViewControllerType:(NSInteger)tabIndex;
+
 
 @end

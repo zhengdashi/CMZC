@@ -17,7 +17,7 @@
     NJKWebViewProgressView *_progressView;
     NJKWebViewProgress *_progressProxy;
 }
-@property (weak, nonatomic) IBOutlet IMYWebView *webView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong,nonatomic)NSString *currentURL;
 @property (strong,nonatomic)NSString *currentTitle;
 @property (nonatomic,copy) NSString *nextURL;

@@ -28,6 +28,7 @@
 
 @interface CMProductDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,CMCommentTableViewCellDelegate,SRWebSocketDelegate,CMProductDetailsDelegate> {
     BOOL _isFirst;
+    BOOL _isShow; //展示全部
 }
 @property (weak, nonatomic) IBOutlet UIView *titleBgView;
 @property (weak, nonatomic) IBOutlet UIView *btomView;
@@ -70,6 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _isShow = YES;
     [self.titleView addSubview:self.numberLab];
     [self.titleView addSubview:self.titleLab];
     self.navigationItem.titleView = self.titleView;
@@ -285,7 +287,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return 140;
+            if (_isShow) {
+                return 140;
+            } else {
+                return 256;
+            }
         } else {
             return 259;
         }
@@ -714,6 +720,13 @@
                 [self hiddenProgressHUD];
                 [self showHUDWithMessage:error.message hiddenDelayTime:2];
             }];
+        }
+            break;
+        case CMProductOptionTypeShow:
+        {
+            _isShow =! _isShow;
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [_curTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }
             break;
         default:

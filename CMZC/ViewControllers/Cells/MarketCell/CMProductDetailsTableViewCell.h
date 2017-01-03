@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSInteger,CMProductOptionType){
     CMProductOptionTypeAddOption, //添加自选
-    CMProductOptionTypeDeleteOption //删除自选
+    CMProductOptionTypeDeleteOption, //删除自选
+    CMProductOptionTypeShow //点击了展示按钮
 };
 
 

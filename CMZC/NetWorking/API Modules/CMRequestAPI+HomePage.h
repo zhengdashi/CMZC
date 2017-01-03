@@ -121,6 +121,18 @@
                                fail:(void(^)(NSError *error))fail;
 
 
+
+/**
+ *   服务申请
+ */
+
++ (void)cm_serviceApplicationProjectName:(NSString *)project
+                                realName:(NSString *)real
+                            contactPhone:(NSString *)contact
+                                 success:(void(^)(BOOL isSuccess))success
+                                    fail:(void(^)(NSError *error))fail;
+
+
 @end
 
 

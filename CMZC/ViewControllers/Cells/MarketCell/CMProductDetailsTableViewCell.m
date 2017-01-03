@@ -134,13 +134,7 @@
 }
 
 - (void)detailsLabTextColor:(UIColor *)color {
-    
-    //_earlyLab.textColor = color;
-   // _dataLab.textColor = color;
-    //_droopLab.textColor = color;
     _scopeLab.textColor = color;
-    //_heighlyLab.textColor = color;
-    
 }
 
 - (IBAction)optionalBtnClick:(UIButton *)sender {
@@ -160,11 +154,15 @@
             }
         }
     }
-    
-    
-    
-    
 }
+
+//点击展开
+- (IBAction)shrinkageBtnClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(cm_productOptionType:)]) {
+        [self.delegate cm_productOptionType:CMProductOptionTypeShow];//删除自选
+    }
+}
+
 /**
  *  格式化float，显示单位，保留2位小数
  *
@@ -173,10 +171,10 @@
 - (NSString *)roundFloatDisplay:(CGFloat)value{
     
     NSString *unit = @"";
-    if (value > 10000) {
+    if (value >= 10000) {
         value /= 10000.0;
         unit = @"万";
-    } else if (value > 1000000) {
+    } else if (value >= 1000000) {
         value /= 1000000.0;
         unit = @"百万";
     }

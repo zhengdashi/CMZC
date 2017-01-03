@@ -51,7 +51,7 @@
 @property (nonatomic, readonly) NSURL *URL;
 
 @property (nonatomic, readonly, getter=isLoading) BOOL loading;
-@property (nonatomic, readonly) BOOL canGoBack;
+@property (nonatomic, readonly) BOOL canGoBack1;
 @property (nonatomic, readonly) BOOL canGoForward;
 
 - (id)goBack;

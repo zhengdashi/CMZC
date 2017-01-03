@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="puN-a8-MNA" customClass="CMServerPromptView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uC-Cj-Dvk">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.086274512112140656" green="0.086274512112140656" blue="0.086274512112140656" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prompt_serve_listed" translatesAutoresizingMaskIntoConstraints="NO" id="NMQ-nH-VZo">
+                    <rect key="frame" x="30" y="130" width="260" height="315"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="315" id="gBl-8U-ef9"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZw-pu-Qxc">
+                    <rect key="frame" x="250" y="130" width="40" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="52" id="9Fo-4q-xug"/>
+                        <constraint firstAttribute="width" constant="40" id="m75-x1-vt6"/>
+                    </constraints>
+                    <connections>
+                        <action selector="exitBtnClick:" destination="puN-a8-MNA" eventType="touchUpInside" id="34L-Vs-mLf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bk-Yw-g9C">
+                    <rect key="frame" x="90" y="411" width="140" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="NqY-HD-VVG"/>
+                        <constraint firstAttribute="width" constant="140" id="ScL-cn-UPG"/>
+                    </constraints>
+                    <connections>
+                        <action selector="makePhoneBtnClick:" destination="puN-a8-MNA" eventType="touchUpInside" id="1kS-6e-wi4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIq-uw-Lnz">
+                    <rect key="frame" x="90" y="369" width="140" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="gch-PQ-IIi"/>
+                    </constraints>
+                    <connections>
+                        <action selector="listedBtnClick:" destination="puN-a8-MNA" eventType="touchUpInside" id="58H-MO-HkO"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7Bk-Yw-g9C" firstAttribute="centerX" secondItem="NMQ-nH-VZo" secondAttribute="centerX" id="3Xp-AD-Ibn"/>
+                <constraint firstAttribute="bottom" secondItem="2uC-Cj-Dvk" secondAttribute="bottom" id="5Pv-AX-sAw"/>
+                <constraint firstItem="2uC-Cj-Dvk" firstAttribute="top" secondItem="puN-a8-MNA" secondAttribute="top" id="BDS-2e-s79"/>
+                <constraint firstItem="7Bk-Yw-g9C" firstAttribute="bottom" secondItem="NMQ-nH-VZo" secondAttribute="bottom" id="BVm-iD-oLJ"/>
+                <constraint firstAttribute="trailing" secondItem="2uC-Cj-Dvk" secondAttribute="trailing" id="Bs2-Kd-wcA"/>
+                <constraint firstItem="7Bk-Yw-g9C" firstAttribute="top" secondItem="cIq-uw-Lnz" secondAttribute="bottom" constant="8" id="Ety-Vb-PP9"/>
+                <constraint firstItem="eZw-pu-Qxc" firstAttribute="trailing" secondItem="NMQ-nH-VZo" secondAttribute="trailing" id="Kwx-Dp-mHj"/>
+                <constraint firstAttribute="trailing" secondItem="NMQ-nH-VZo" secondAttribute="trailing" constant="30" id="PKk-FJ-hZI"/>
+                <constraint firstItem="NMQ-nH-VZo" firstAttribute="leading" secondItem="puN-a8-MNA" secondAttribute="leading" constant="30" id="fcp-bh-C5G"/>
+                <constraint firstItem="eZw-pu-Qxc" firstAttribute="top" secondItem="NMQ-nH-VZo" secondAttribute="top" id="fyC-Lm-mSv"/>
+                <constraint firstItem="NMQ-nH-VZo" firstAttribute="top" secondItem="puN-a8-MNA" secondAttribute="top" constant="130" id="h4T-uP-cGB"/>
+                <constraint firstItem="cIq-uw-Lnz" firstAttribute="centerX" secondItem="NMQ-nH-VZo" secondAttribute="centerX" id="qvX-lS-Bte"/>
+                <constraint firstItem="2uC-Cj-Dvk" firstAttribute="leading" secondItem="puN-a8-MNA" secondAttribute="leading" id="tGX-IT-HFI"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="derImageView" destination="NMQ-nH-VZo" id="JXJ-Sg-6En"/>
+                <outlet property="devImageHeightLayout" destination="gBl-8U-ef9" id="I0T-A3-8ey"/>
+            </connections>
+            <point key="canvasLocation" x="6" y="-1"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="prompt_serve_listed" width="275" height="315"/>
+    </resources>
+</document>

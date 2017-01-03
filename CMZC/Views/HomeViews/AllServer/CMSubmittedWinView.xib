@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="cRX-Ec-Nnu" customClass="CMSubmittedWinView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHb-bs-4cp">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.086274512112140656" green="0.086274512112140656" blue="0.086274512112140656" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UwN-Sy-8OI">
+                    <rect key="frame" x="30" y="100" width="260" height="210"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="submit_server" translatesAutoresizingMaskIntoConstraints="NO" id="gtP-gE-gW7">
+                            <rect key="frame" x="102" y="29" width="56" height="56"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="MXO-pj-WLI"/>
+                                <constraint firstAttribute="width" constant="56" id="f9Z-zF-RSe"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWE-BH-Lmc">
+                            <rect key="frame" x="89" y="97" width="82" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeR-BU-1uZ" customClass="CMFilletButton">
+                            <rect key="frame" x="20" y="141" width="220" height="35"/>
+                            <color key="backgroundColor" red="0.94509803921568625" green="0.29803921568627451" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="220" id="vXb-RC-SCv"/>
+                                <constraint firstAttribute="height" constant="35" id="vc1-e8-vqj"/>
+                            </constraints>
+                            <state key="normal" title="确定"/>
+                            <connections>
+                                <action selector="isOkBtnClick:" destination="cRX-Ec-Nnu" eventType="touchUpInside" id="aFc-5a-sB2"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="210" id="0hj-Q8-SUH"/>
+                        <constraint firstItem="VeR-BU-1uZ" firstAttribute="centerX" secondItem="ZWE-BH-Lmc" secondAttribute="centerX" id="4dK-2Y-4eG"/>
+                        <constraint firstItem="VeR-BU-1uZ" firstAttribute="top" secondItem="ZWE-BH-Lmc" secondAttribute="bottom" constant="20" id="8Wb-yL-CsM"/>
+                        <constraint firstItem="ZWE-BH-Lmc" firstAttribute="centerX" secondItem="gtP-gE-gW7" secondAttribute="centerX" id="SvH-rU-Ieb"/>
+                        <constraint firstItem="ZWE-BH-Lmc" firstAttribute="top" secondItem="gtP-gE-gW7" secondAttribute="bottom" constant="12" id="dNt-Gi-ayP"/>
+                        <constraint firstItem="gtP-gE-gW7" firstAttribute="centerX" secondItem="UwN-Sy-8OI" secondAttribute="centerX" id="tbE-MA-2pm"/>
+                        <constraint firstItem="gtP-gE-gW7" firstAttribute="top" secondItem="UwN-Sy-8OI" secondAttribute="top" constant="29" id="uPq-Q2-FGa"/>
+                        <constraint firstAttribute="width" constant="260" id="vcH-ij-pPd"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="UwN-Sy-8OI" firstAttribute="centerX" secondItem="cRX-Ec-Nnu" secondAttribute="centerX" id="Aep-0t-n9v"/>
+                <constraint firstAttribute="trailing" secondItem="ZHb-bs-4cp" secondAttribute="trailing" id="Kcv-qn-WGK"/>
+                <constraint firstAttribute="bottom" secondItem="ZHb-bs-4cp" secondAttribute="bottom" id="TwS-vH-YWu"/>
+                <constraint firstItem="ZHb-bs-4cp" firstAttribute="top" secondItem="cRX-Ec-Nnu" secondAttribute="top" id="csq-hx-0Un"/>
+                <constraint firstItem="ZHb-bs-4cp" firstAttribute="leading" secondItem="cRX-Ec-Nnu" secondAttribute="leading" id="okn-5W-rgT"/>
+                <constraint firstItem="UwN-Sy-8OI" firstAttribute="top" secondItem="cRX-Ec-Nnu" secondAttribute="top" constant="100" id="wmg-FS-hy9"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <connections>
+                <outlet property="bgView" destination="UwN-Sy-8OI" id="APi-TB-JQS"/>
+            </connections>
+            <point key="canvasLocation" x="18" y="-16"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="submit_server" width="56" height="56"/>
+    </resources>
+</document>

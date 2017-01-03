@@ -28,6 +28,9 @@
 
 #import "CMMediaNews.h"
 #import "CMNoticeModel.h"
+#import "CMSubscribeTableViewCell.h"
+#import "CMGoldMedalTableViewCell.h"
+
 
 @interface CMHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CMEditionTableViewCellDelegate,CMOptionTableViewCellDelegate,CMNewQualityCellDelegate,CMWebSocketDelegate,CMAllServerViewControllerDelegate>
 
@@ -45,6 +48,7 @@
 
 @property (strong, nonatomic) CMWebSocket *webSocket; //webSocket
 
+@property (strong, nonatomic) NSArray *purchaseArr; //申购数据arr
 
 @end
 
@@ -184,7 +188,7 @@
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 9+self.purchaseArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -196,9 +200,15 @@
         }
     } else if (indexPath.row == 1) {
         return 208;
-    } else if (indexPath.row == 2) {
+    } else if (indexPath.row == 2) { //倍利宝
         return 231;
     } else if (indexPath.row == 3) {
+        return 39;
+    } else if (indexPath.row > 3 && indexPath.row <= self.purchaseArr.count + 3) { //申购
+        return 375;
+    } else if (indexPath.row == 4 + self.purchaseArr.count) { //金牌服务
+        return 240;
+    } else if (indexPath.row == 5 + self.purchaseArr.count) { //最新动态
         return 181;
     } else {
         return 36;
@@ -226,7 +236,7 @@
         optionCell.delegate = self;
         return optionCell;
     } else if (indexPath.row == 2) {
-        //众筹宝
+        //倍利宝
         CMNewQualityTableViewCell *qualityCell = [tableView dequeueReusableCellWithIdentifier:@"CMNewQualityTableViewCell" forIndexPath:indexPath];
         if (self.manyFulfilArr.count > 0) {
             qualityCell.munyArr = self.manyFulfilArr;
@@ -235,6 +245,28 @@
         qualityCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return qualityCell;
     } else if (indexPath.row == 3) {
+        UITableViewCell *goldCell = [tableView dequeueReusableCellWithIdentifier:@"goldCell"];
+        if (!goldCell) {
+            goldCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goldCell"];
+        }
+        goldCell.textLabel.text = @"申购";
+        goldCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return goldCell;
+    } else if (indexPath.row > 3 && indexPath.row <= self.purchaseArr.count + 3) { //申购
+        CMSubscribeTableViewCell *subscribeCell = [tableView dequeueReusableCellWithIdentifier:@"CMSubscribeTableViewCell"];
+        
+        if (!subscribeCell) {
+            subscribeCell = [[NSBundle mainBundle] loadNibNamed:@"CMSubscribeTableViewCell" owner:nil options:nil].firstObject;
+        }
+        return subscribeCell;
+    } else if (indexPath.row == 4 + self.purchaseArr.count) {
+        CMGoldMedalTableViewCell *goldCell = [tableView dequeueReusableCellWithIdentifier:@"CMGoldMedalTableViewCell"];
+        if (!goldCell) {
+            goldCell = [[NSBundle mainBundle] loadNibNamed:@"CMGoldMedalTableViewCell" owner:nil options:nil].firstObject;
+        }
+        return goldCell;
+        
+    } else if (indexPath.row == 5 + self.purchaseArr.count) {
         //最新动态
         CMLatestTableViewCell *latestCell = [tableView dequeueReusableCellWithIdentifier:@"CMLatestTableViewCell" forIndexPath:indexPath];
         latestCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -248,7 +280,7 @@
             tableCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
         if (_trendsArr.count !=0) {
-            CMNoticeModel *media = self.trendsArr[indexPath.row-3];
+            CMNoticeModel *media = self.trendsArr[indexPath.row - 5 - self.purchaseArr.count];
             tableCell.textLabel.text = media.title;
         }
         tableCell.textLabel.font = [UIFont systemFontOfSize:14];
@@ -262,15 +294,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row >= 3) {
-        CMNoticeModel *media = self.trendsArr[indexPath.row-3];
+    if (indexPath.row == 3) { //申购更多
+        [self showTabBarViewControllerType:1];
+    } else if (indexPath.row > 3 && indexPath.row <=self.purchaseArr.count +3) { //申购详情
+        
+    } else if (indexPath.row >= 5+self.purchaseArr.count) { // 最新动态
+        CMNoticeModel *media = self.trendsArr[indexPath.row- 5 - self.purchaseArr.count];
         CMCommWebViewController *commWebVC = (CMCommWebViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMCommWebViewController"];
         NSString *strUrl = CMStringWithPickFormat(kCMMZWeb_url,[NSString stringWithFormat:@"Account/MessageDetail?nid=%ld",(long)media.noticId])
         ;
         commWebVC.urlStr = strUrl;
         [self.navigationController pushViewController:commWebVC animated:YES];
     }
-    
 }
 
 
@@ -441,7 +476,10 @@
     }
     return _manyFulfilArr;
 }
-
+//
+- (NSArray *)purchaseArr {
+    return @[@"123"];
+}
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"loginWin"];
 }
@@ -472,6 +510,10 @@
     [_curTableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
     [_curTableView endUpdates];
 }
+
+
+
+
 
 #pragma mark -
 - (void)didReceiveMemoryWarning {

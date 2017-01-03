@@ -91,7 +91,14 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CMSubscribeTableViewCell *subscribeCell = [tableView dequeueReusableCellWithIdentifier:@"CMSubscribeTableViewCell" forIndexPath:indexPath];
+    //CMSubscribeTableViewCell *subscribeCell = [tableView dequeueReusableCellWithIdentifier:@"CMSubscribeTableViewCell" forIndexPath:indexPath];
+    
+    CMSubscribeTableViewCell *subscribeCell = [tableView dequeueReusableCellWithIdentifier:@"CMSubscribeTableViewCell"];
+    
+    if (!subscribeCell) {
+        subscribeCell = [[NSBundle mainBundle] loadNibNamed:@"CMSubscribeTableViewCell" owner:nil options:nil].firstObject;
+    }
+    
     subscribeCell.product = _productDataArr[indexPath.row];
     subscribeCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return subscribeCell;

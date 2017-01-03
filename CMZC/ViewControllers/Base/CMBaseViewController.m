@@ -7,6 +7,8 @@
 //
 
 #import "CMBaseViewController.h"
+#import "CMTabBarViewController.h"
+
 
 @interface CMBaseViewController ()<UINavigationControllerDelegate>
 
@@ -72,6 +74,12 @@
 + (UIViewController *)initByStoryboard {
     NSString *nibName = NSStringFromClass([self class]);
     return [[UIStoryboard mainStoryboard] viewControllerWithId:nibName];
+}
+
+- (void)showTabBarViewControllerType:(NSInteger)tabIndex {
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    CMTabBarViewController *tab = (CMTabBarViewController *)window.rootViewController;
+    tab.selectedIndex = tabIndex;
 }
 
 /*

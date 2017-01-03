@@ -287,7 +287,7 @@
 {
     return [self.realWebView isLoading];
 }
--(BOOL)canGoBack
+-(BOOL)canGoBack1
 {
     return [self.realWebView canGoBack];
 }
@@ -296,7 +296,7 @@
     return [self.realWebView canGoForward];
 }
 
-- (id)goBack
+- (id)goBack1
 {
     if(_usingUIWebView)
     {
@@ -472,7 +472,7 @@
 }
 -(void)gobackWithStep:(NSInteger)step
 {
-    if(self.canGoBack == NO)
+    if(self.canGoBack1 == NO)
         return;
     
     if(step > 0)
