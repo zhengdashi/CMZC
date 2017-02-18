@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		380004021D01899A00D79F3A /* CMMayRemove.m in Sources */ = {isa = PBXBuildFile; fileRef = 380004011D01899A00D79F3A /* CMMayRemove.m */; };
+		38081AB61E2089B000EA4E13 /* CMWebHtmlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38081AB41E2089B000EA4E13 /* CMWebHtmlTableViewCell.m */; };
+		38081AB71E2089B000EA4E13 /* CMWebHtmlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38081AB51E2089B000EA4E13 /* CMWebHtmlTableViewCell.xib */; };
+		38081ABC1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38081ABA1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.m */; };
+		38081ABD1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38081ABB1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.xib */; };
+		38081AC11E20DBD000EA4E13 /* CMReplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38081ABF1E20DBD000EA4E13 /* CMReplyTableViewCell.m */; };
+		38081AC21E20DBD000EA4E13 /* CMReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38081AC01E20DBD000EA4E13 /* CMReplyTableViewCell.xib */; };
+		3819BF2E1E1CE2FB00053009 /* CMAdministrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3819BF2D1E1CE2FB00053009 /* CMAdministrator.m */; };
 		381C1FA51E12172700974AD1 /* CMServerPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C1FA41E12172700974AD1 /* CMServerPromptView.m */; };
 		381C1FA71E12174100974AD1 /* CMServerPromptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381C1FA61E12174100974AD1 /* CMServerPromptView.xib */; };
 		381C1FAA1E125E1E00974AD1 /* CMServiceApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C1FA91E125E1E00974AD1 /* CMServiceApplicationViewController.m */; };
@@ -35,7 +42,6 @@
 		382B5EB31C8A8B3600D2C79B /* CMServerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382B5EB11C8A8B3600D2C79B /* CMServerCollectionViewCell.xib */; };
 		382B5EBD1C8AB24100D2C79B /* CMServeReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 382B5EBC1C8AB24100D2C79B /* CMServeReusableView.m */; };
 		382B5EC21C8ABD6600D2C79B /* CMClientServeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382B5EC01C8ABD6600D2C79B /* CMClientServeViewController.m */; };
-		382B5EC31C8ABD6600D2C79B /* CMClientServeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382B5EC11C8ABD6600D2C79B /* CMClientServeViewController.xib */; };
 		382B5EC71C8ACC4600D2C79B /* CMFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382B5EC51C8ACC4600D2C79B /* CMFeedbackViewController.m */; };
 		382B5EC81C8ACC4600D2C79B /* CMFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 382B5EC61C8ACC4600D2C79B /* CMFeedbackViewController.xib */; };
 		382B5ECE1C8AD0A700D2C79B /* JSQMessagesComposerTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 382B5ECD1C8AD0A700D2C79B /* JSQMessagesComposerTextView.m */; };
@@ -305,6 +311,8 @@
 		3896ECFC1D17D246003F8B4D /* animation_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3896ECEA1D17D246003F8B4D /* animation_9@2x.png */; };
 		38AD61361DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD61341DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m */; };
 		38AD61371DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AD61351DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib */; };
+		38C401DD1E24CDAC000A9301 /* CMShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C401DC1E24CDAC000A9301 /* CMShareView.m */; };
+		38C401DF1E24CDBE000A9301 /* CMShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C401DE1E24CDBE000A9301 /* CMShareView.xib */; };
 		38CCA2241D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CCA2231D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.m */; };
 		38CCA2281D9CEEB900DBFD1A /* CMSubscribeDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CCA2271D9CEEB900DBFD1A /* CMSubscribeDetailsView.m */; };
 		38CCA22A1D9CEF5F00DBFD1A /* CMSubscribeDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CCA2291D9CEF5F00DBFD1A /* CMSubscribeDetailsView.xib */; };
@@ -354,6 +362,9 @@
 		38FC901B1C92C9EF00A347EE /* CMJackpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC901A1C92C9EF00A347EE /* CMJackpotViewController.m */; };
 		38FC901E1C92CB0A00A347EE /* CMJackpotTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC901D1C92CB0A00A347EE /* CMJackpotTableViewCell.m */; };
 		38FC90211C92CEA700A347EE /* CMMixNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FC90201C92CEA700A347EE /* CMMixNumberViewController.m */; };
+		38FF3D3F1E2612D7007A81C5 /* CMTopicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FF3D3E1E2612D7007A81C5 /* CMTopicList.m */; };
+		38FF3D421E2615A2007A81C5 /* CMTopicReplies.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FF3D411E2615A2007A81C5 /* CMTopicReplies.m */; };
+		38FF3D451E262CFD007A81C5 /* CMTopicReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FF3D441E262CFD007A81C5 /* CMTopicReplyViewController.m */; };
 		8FBFC6CEF39ED3A8BE47E80A /* libPods-CMZC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D88A9833A24E70854957B10F /* libPods-CMZC.a */; };
 /* End PBXBuildFile section */
 
@@ -391,6 +402,17 @@
 /* Begin PBXFileReference section */
 		380004001D01899A00D79F3A /* CMMayRemove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMayRemove.h; sourceTree = "<group>"; };
 		380004011D01899A00D79F3A /* CMMayRemove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMayRemove.m; sourceTree = "<group>"; };
+		38081AB31E2089B000EA4E13 /* CMWebHtmlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMWebHtmlTableViewCell.h; sourceTree = "<group>"; };
+		38081AB41E2089B000EA4E13 /* CMWebHtmlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMWebHtmlTableViewCell.m; sourceTree = "<group>"; };
+		38081AB51E2089B000EA4E13 /* CMWebHtmlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMWebHtmlTableViewCell.xib; sourceTree = "<group>"; };
+		38081AB91E20D48700EA4E13 /* CMoptionReleaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMoptionReleaseTableViewCell.h; sourceTree = "<group>"; };
+		38081ABA1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMoptionReleaseTableViewCell.m; sourceTree = "<group>"; };
+		38081ABB1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMoptionReleaseTableViewCell.xib; sourceTree = "<group>"; };
+		38081ABE1E20DBD000EA4E13 /* CMReplyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMReplyTableViewCell.h; sourceTree = "<group>"; };
+		38081ABF1E20DBD000EA4E13 /* CMReplyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMReplyTableViewCell.m; sourceTree = "<group>"; };
+		38081AC01E20DBD000EA4E13 /* CMReplyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMReplyTableViewCell.xib; sourceTree = "<group>"; };
+		3819BF2C1E1CE2FB00053009 /* CMAdministrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAdministrator.h; sourceTree = "<group>"; };
+		3819BF2D1E1CE2FB00053009 /* CMAdministrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAdministrator.m; sourceTree = "<group>"; };
 		381C1FA31E12172700974AD1 /* CMServerPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMServerPromptView.h; sourceTree = "<group>"; };
 		381C1FA41E12172700974AD1 /* CMServerPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMServerPromptView.m; sourceTree = "<group>"; };
 		381C1FA61E12174100974AD1 /* CMServerPromptView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMServerPromptView.xib; sourceTree = "<group>"; };
@@ -435,7 +457,6 @@
 		382B5EBC1C8AB24100D2C79B /* CMServeReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMServeReusableView.m; sourceTree = "<group>"; };
 		382B5EBF1C8ABD6600D2C79B /* CMClientServeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMClientServeViewController.h; sourceTree = "<group>"; };
 		382B5EC01C8ABD6600D2C79B /* CMClientServeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMClientServeViewController.m; sourceTree = "<group>"; };
-		382B5EC11C8ABD6600D2C79B /* CMClientServeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMClientServeViewController.xib; sourceTree = "<group>"; };
 		382B5EC41C8ACC4600D2C79B /* CMFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMFeedbackViewController.h; sourceTree = "<group>"; };
 		382B5EC51C8ACC4600D2C79B /* CMFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMFeedbackViewController.m; sourceTree = "<group>"; };
 		382B5EC61C8ACC4600D2C79B /* CMFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMFeedbackViewController.xib; sourceTree = "<group>"; };
@@ -858,6 +879,9 @@
 		38AD61331DEEAD9500A2DD72 /* CMNewCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNewCommentTableViewCell.h; sourceTree = "<group>"; };
 		38AD61341DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMNewCommentTableViewCell.m; sourceTree = "<group>"; };
 		38AD61351DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMNewCommentTableViewCell.xib; sourceTree = "<group>"; };
+		38C401DB1E24CDAC000A9301 /* CMShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMShareView.h; sourceTree = "<group>"; };
+		38C401DC1E24CDAC000A9301 /* CMShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMShareView.m; sourceTree = "<group>"; };
+		38C401DE1E24CDBE000A9301 /* CMShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMShareView.xib; sourceTree = "<group>"; };
 		38CCA2221D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSubscribeDetailsViewController.h; sourceTree = "<group>"; };
 		38CCA2231D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMSubscribeDetailsViewController.m; sourceTree = "<group>"; };
 		38CCA2261D9CEEB900DBFD1A /* CMSubscribeDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSubscribeDetailsView.h; sourceTree = "<group>"; };
@@ -950,6 +974,12 @@
 		38FC901D1C92CB0A00A347EE /* CMJackpotTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMJackpotTableViewCell.m; sourceTree = "<group>"; };
 		38FC901F1C92CEA700A347EE /* CMMixNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMixNumberViewController.h; sourceTree = "<group>"; };
 		38FC90201C92CEA700A347EE /* CMMixNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMixNumberViewController.m; sourceTree = "<group>"; };
+		38FF3D3D1E2612D7007A81C5 /* CMTopicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTopicList.h; sourceTree = "<group>"; };
+		38FF3D3E1E2612D7007A81C5 /* CMTopicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTopicList.m; sourceTree = "<group>"; };
+		38FF3D401E2615A2007A81C5 /* CMTopicReplies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTopicReplies.h; sourceTree = "<group>"; };
+		38FF3D411E2615A2007A81C5 /* CMTopicReplies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTopicReplies.m; sourceTree = "<group>"; };
+		38FF3D431E262CFD007A81C5 /* CMTopicReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTopicReplyViewController.h; sourceTree = "<group>"; };
+		38FF3D441E262CFD007A81C5 /* CMTopicReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTopicReplyViewController.m; sourceTree = "<group>"; };
 		6B3B4874F8FE50CCE2944700 /* Pods-CMZC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMZC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CMZC/Pods-CMZC.debug.xcconfig"; sourceTree = "<group>"; };
 		D88A9833A24E70854957B10F /* libPods-CMZC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CMZC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F899D42D5E6A7CEAC85CEFB2 /* Pods-CMZC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMZC.release.xcconfig"; path = "Pods/Target Support Files/Pods-CMZC/Pods-CMZC.release.xcconfig"; sourceTree = "<group>"; };
@@ -1012,6 +1042,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38081AB81E20D46300EA4E13 /* optionCell */ = {
+			isa = PBXGroup;
+			children = (
+				38081AB91E20D48700EA4E13 /* CMoptionReleaseTableViewCell.h */,
+				38081ABA1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.m */,
+				38081ABB1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.xib */,
+				38081ABE1E20DBD000EA4E13 /* CMReplyTableViewCell.h */,
+				38081ABF1E20DBD000EA4E13 /* CMReplyTableViewCell.m */,
+				38081AC01E20DBD000EA4E13 /* CMReplyTableViewCell.xib */,
+			);
+			path = optionCell;
+			sourceTree = "<group>";
+		};
 		381C1FA21E1216C700974AD1 /* AllServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1107,6 +1150,7 @@
 				383AE5951C9D38D3005CB2C3 /* CMFilletButton.m */,
 				383AE5911C9D374C005CB2C3 /* CMRoundImage.h */,
 				383AE5921C9D374C005CB2C3 /* CMRoundImage.m */,
+				38C401DA1E24CD77000A9301 /* ShareView */,
 				387216641CDDD50100A8622E /* LineView */,
 				384EEF271CB79BE3000078F9 /* ToolView */,
 				3859C6161C9A35E100A358CF /* MarketView */,
@@ -1317,7 +1361,6 @@
 			children = (
 				382B5EBF1C8ABD6600D2C79B /* CMClientServeViewController.h */,
 				382B5EC01C8ABD6600D2C79B /* CMClientServeViewController.m */,
-				382B5EC11C8ABD6600D2C79B /* CMClientServeViewController.xib */,
 				382B5EC41C8ACC4600D2C79B /* CMFeedbackViewController.h */,
 				382B5EC51C8ACC4600D2C79B /* CMFeedbackViewController.m */,
 				382B5EC61C8ACC4600D2C79B /* CMFeedbackViewController.xib */,
@@ -1526,6 +1569,10 @@
 				384279EA1CFEDB29008730AC /* CMProductComment.m */,
 				384279EC1CFEDDCD008730AC /* CMProductNotion.h */,
 				384279ED1CFEDDCD008730AC /* CMProductNotion.m */,
+				38FF3D3D1E2612D7007A81C5 /* CMTopicList.h */,
+				38FF3D3E1E2612D7007A81C5 /* CMTopicList.m */,
+				38FF3D401E2615A2007A81C5 /* CMTopicReplies.h */,
+				38FF3D411E2615A2007A81C5 /* CMTopicReplies.m */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -1564,6 +1611,8 @@
 				38499B811C96B124000C5763 /* CMProductDetailsViewController.m */,
 				38474EBF1D10004B00E9117E /* CMCommentViewController.h */,
 				38474EC01D10004B00E9117E /* CMCommentViewController.m */,
+				38FF3D431E262CFD007A81C5 /* CMTopicReplyViewController.h */,
+				38FF3D441E262CFD007A81C5 /* CMTopicReplyViewController.m */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -1594,6 +1643,9 @@
 				38AD61331DEEAD9500A2DD72 /* CMNewCommentTableViewCell.h */,
 				38AD61341DEEAD9500A2DD72 /* CMNewCommentTableViewCell.m */,
 				38AD61351DEEAD9500A2DD72 /* CMNewCommentTableViewCell.xib */,
+				38081AB31E2089B000EA4E13 /* CMWebHtmlTableViewCell.h */,
+				38081AB41E2089B000EA4E13 /* CMWebHtmlTableViewCell.m */,
+				38081AB51E2089B000EA4E13 /* CMWebHtmlTableViewCell.xib */,
 				3859C6211C9A5A0700A358CF /* CMCommentTableViewCell.h */,
 				3859C6221C9A5A0700A358CF /* CMCommentTableViewCell.m */,
 				3859C62C1C9A5ECA00A358CF /* CMDiscussTableViewCell.h */,
@@ -1608,6 +1660,7 @@
 				384C40EF1CC62CEC007733BE /* CMFiveSpeedTableViewCell.h */,
 				384C40F01CC62CEC007733BE /* CMFiveSpeedTableViewCell.m */,
 				384C40F11CC62CEC007733BE /* CMFiveSpeedTableViewCell.xib */,
+				38081AB81E20D46300EA4E13 /* optionCell */,
 			);
 			path = MarketCell;
 			sourceTree = "<group>";
@@ -1812,6 +1865,8 @@
 				38529F021CCB23F3002300AE /* CMNumberous.m */,
 				3840C9E01CE48D4B0079D65B /* CMAppVersion.h */,
 				3840C9E11CE48D4B0079D65B /* CMAppVersion.m */,
+				3819BF2C1E1CE2FB00053009 /* CMAdministrator.h */,
+				3819BF2D1E1CE2FB00053009 /* CMAdministrator.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1905,6 +1960,16 @@
 				3896ECEA1D17D246003F8B4D /* animation_9@2x.png */,
 			);
 			path = animation;
+			sourceTree = "<group>";
+		};
+		38C401DA1E24CD77000A9301 /* ShareView */ = {
+			isa = PBXGroup;
+			children = (
+				38C401DB1E24CDAC000A9301 /* CMShareView.h */,
+				38C401DC1E24CDAC000A9301 /* CMShareView.m */,
+				38C401DE1E24CDBE000A9301 /* CMShareView.xib */,
+			);
+			path = ShareView;
 			sourceTree = "<group>";
 		};
 		38CCA2251D9CEE6C00DBFD1A /* DetailsView */ = {
@@ -2351,6 +2416,7 @@
 				383A54001CEBF8DF00E64604 /* Info.plist in Resources */,
 				38FC8FFD1C929DD400A347EE /* ModelsFile in Resources */,
 				38704AF71D99220400BE4702 /* logo_anim_07@2x.png in Resources */,
+				38081AC21E20DBD000EA4E13 /* CMReplyTableViewCell.xib in Resources */,
 				3859C63F1C9A9F3100A358CF /* CMPingLTableViewCell.xib in Resources */,
 				382B5ED81C8AE45A00D2C79B /* CMSettingsView.xib in Resources */,
 				384EB0531C8E5B6A001D311F /* CMMediaNewsView.xib in Resources */,
@@ -2378,13 +2444,13 @@
 				382A3DE61C9010C20020FA7F /* CMTradeTitleView.xib in Resources */,
 				3896ECF31D17D246003F8B4D /* animation_18@2x.png in Resources */,
 				3896ECF81D17D246003F8B4D /* animation_5@2x.png in Resources */,
-				382B5EC31C8ABD6600D2C79B /* CMClientServeViewController.xib in Resources */,
 				385F0AB71C910CFF0035CE22 /* CMBuyingTitleView.xib in Resources */,
 				38364FDB1C883B3C001A2992 /* Login.storyboard in Resources */,
 				38704AED1D99220400BE4702 /* logo_anim_027@2x.png in Resources */,
 				383A53FE1CEBF7F700E64604 /* many.plist in Resources */,
 				38704AEB1D99220400BE4702 /* logo_anim_025@2x.png in Resources */,
 				38704AF81D99220400BE4702 /* logo_anim_08@2x.png in Resources */,
+				38C401DF1E24CDBE000A9301 /* CMShareView.xib in Resources */,
 				384EB08B1C8EBEFE001D311F /* CMAnalystAnswerView.xib in Resources */,
 				3896ECFB1D17D246003F8B4D /* animation_8@2x.png in Resources */,
 				3896ECF51D17D246003F8B4D /* animation_2@2x.png in Resources */,
@@ -2412,8 +2478,10 @@
 				38704ADD1D99220400BE4702 /* logo_anim_012@2x.png in Resources */,
 				385F0AE31C9158140035CE22 /* CMTradeCollectionViewCell.xib in Resources */,
 				383C48511C8D1FB100CD9E2D /* CMCrowdFundingViewController.xib in Resources */,
+				38081AB71E2089B000EA4E13 /* CMWebHtmlTableViewCell.xib in Resources */,
 				3859C6351C9A8E6400A358CF /* CMTitleView.xib in Resources */,
 				38FC90181C92C26200A347EE /* CMHistoryEntrustView.xib in Resources */,
+				38081ABD1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.xib in Resources */,
 				38704AE21D99220400BE4702 /* logo_anim_017@2x.png in Resources */,
 				383C1D1C1CA11C690045220C /* CMAnswerHeaderView.xib in Resources */,
 				38704AF21D99220400BE4702 /* logo_anim_031@2x.png in Resources */,
@@ -2559,8 +2627,10 @@
 				38364FD71C88383E001A2992 /* CMHomeTableFootView.m in Sources */,
 				384EB0911C8ECF1B001D311F /* CMMoneyViewController.m in Sources */,
 				3859C6261C9A5AA400A358CF /* CMCommentView.m in Sources */,
+				38FF3D3F1E2612D7007A81C5 /* CMTopicList.m in Sources */,
 				38CCA2241D9CE8AA00DBFD1A /* CMSubscribeDetailsViewController.m in Sources */,
 				384EB0611C8E6758001D311F /* CMRequestAPI+Trends.m in Sources */,
+				38081ABC1E20D48700EA4E13 /* CMoptionReleaseTableViewCell.m in Sources */,
 				38241B0B1C858630005E5134 /* UIColor+CMColors.m in Sources */,
 				384591831CC0E05E008A519E /* CMMarketList.m in Sources */,
 				3859C6191C9A364D00A358CF /* CMTradeDetailView.m in Sources */,
@@ -2594,6 +2664,7 @@
 				384EB0891C8EBEE3001D311F /* CMAnalystPointView.m in Sources */,
 				38499B781C969413000C5763 /* CMSubscribeTableViewCell.m in Sources */,
 				38DFE2291C86840900FE6736 /* CMOptionTableViewCell.m in Sources */,
+				38081AC11E20DBD000EA4E13 /* CMReplyTableViewCell.m in Sources */,
 				383FA93E1C93F65A00DD4ABD /* CMRevokeCollectionViewCell.m in Sources */,
 				383C1D1A1CA11C5E0045220C /* CMAnswerHeaderView.m in Sources */,
 				383C485F1C8D7FF200CD9E2D /* CMBulletinViewController.m in Sources */,
@@ -2619,6 +2690,7 @@
 				38DFE2341C86940D00FE6736 /* UIView+Plus.m in Sources */,
 				3859C6471C9AA7D100A358CF /* CMBusinessNewsView.m in Sources */,
 				381C1FA51E12172700974AD1 /* CMServerPromptView.m in Sources */,
+				38081AB61E2089B000EA4E13 /* CMWebHtmlTableViewCell.m in Sources */,
 				3861F5211CB348CD00224261 /* CMNoticeViewController.m in Sources */,
 				3859C6231C9A5A0700A358CF /* CMCommentTableViewCell.m in Sources */,
 				386C3B2D1CACCD2B000B7B16 /* CMAnalystAnswer.m in Sources */,
@@ -2661,6 +2733,7 @@
 				3854EA8A1C893BC30036DFB6 /* CMLoginViewController.m in Sources */,
 				385AF8DB1CE9547500EA439B /* CMErrorView.m in Sources */,
 				382B5ECE1C8AD0A700D2C79B /* JSQMessagesComposerTextView.m in Sources */,
+				38FF3D421E2615A2007A81C5 /* CMTopicReplies.m in Sources */,
 				38FC90111C92BC9A00A347EE /* CMDayEntrustView.m in Sources */,
 				383C1CEF1DA8C73200C8C61B /* CMReferencesTableViewCell.m in Sources */,
 				381C1FAA1E125E1E00974AD1 /* CMServiceApplicationViewController.m in Sources */,
@@ -2682,6 +2755,7 @@
 				38FC90161C92C25600A347EE /* CMHistoryEntrustView.m in Sources */,
 				383C48431C8D109C00CD9E2D /* CMInstallViewController.m in Sources */,
 				382B5EC71C8ACC4600D2C79B /* CMFeedbackViewController.m in Sources */,
+				3819BF2E1E1CE2FB00053009 /* CMAdministrator.m in Sources */,
 				38DB1BE41C859C460069D289 /* CMBaseViewController+HUD.m in Sources */,
 				384680131D1243390075028F /* CMCarryDetailsTableViewCell.m in Sources */,
 				3842419A1D02B0A800C0FFB5 /* CMHoldDetailsCMViewController.m in Sources */,
@@ -2729,12 +2803,14 @@
 				38D0109B1C980B5C007268B5 /* EverColumnModel.m in Sources */,
 				3854EA8D1C893D080036DFB6 /* CMResetViewController.m in Sources */,
 				3861F5241CB35BDB00224261 /* CMTurnoverList.m in Sources */,
+				38FF3D451E262CFD007A81C5 /* CMTopicReplyViewController.m in Sources */,
 				383018301CA27FF400A50F59 /* CMMyBankCardViewController.m in Sources */,
 				3840C9DF1CE4655D0079D65B /* CMTimer.m in Sources */,
 				384EB0511C8E5B53001D311F /* CMMediaNewsView.m in Sources */,
 				386AFA8D1CB64ACF00B678A9 /* CMProductList.m in Sources */,
 				3832B6EF1CA68E6D000F274C /* CMPickCardTableViewCell.m in Sources */,
 				3854EA891C893BC30036DFB6 /* CMHomeViewController.m in Sources */,
+				38C401DD1E24CDAC000A9301 /* CMShareView.m in Sources */,
 				385492311D0674B8009B8176 /* CMRefreshHeader.m in Sources */,
 				383FA9381C93F65A00DD4ABD /* CMBuyingCollectionViewCell.m in Sources */,
 				38DFE21D1C86734600FE6736 /* CMTabBarViewController.m in Sources */,

@@ -27,9 +27,62 @@
 @property (nonatomic,copy) NSString *status; //产品的状态
 @property (nonatomic,assign) BOOL cansubscribe; //产品是否可以申购
 
+@property (nonatomic,copy) NSString *littleTime; //剩余天数
+@property (nonatomic,copy) NSString *jyCode; //产品编码
+@property (nonatomic,assign) NSInteger liveVideoID; //路演直播是否显示 大于0显示
+@property (nonatomic,copy) NSString *liveVideoUrl; //路演地址
+
+
 - (NSMutableAttributedString *)attributed;
 
 - (BOOL)isNextPage;
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

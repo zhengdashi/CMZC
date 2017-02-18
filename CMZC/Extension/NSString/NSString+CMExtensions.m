@@ -22,21 +22,21 @@
 
 - (BOOL)checkPhoneNumInput {
     
-    NSString * MOBILE = @"^1([0-9][0-9]|5[0-35-9]|8[025-9])\\d{8}$";
-    NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}$";
-    NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
-    NSString * CT = @"^1((33|53|8[09])[0-9]|349)\\d{7}$";
+    //NSString * MOBILE = @"^1([0-9][0-9]|5[0-35-9]|8[025-9])\\d{8}$";
+    NSString *CM_NUM = @"^((13[4-9])|(147)|(15[0-2,7-9])|(178)|(18[2-4,7-8]))\\d{8}|(1705)\\d{7}$"; //移动
+    NSString *CU_NUM = @"^((13[0-2])|(145)|(15[5-6])|(176)|(18[5,6]))\\d{8}|(1709)\\d{7}$"; //联通
+    NSString *CT_NUM = @"^((133)|(153)|(177)|(18[0,1,9]))\\d{8}$"; //电信
     // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
     
-    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
-    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
-    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
-    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
-    BOOL res1 = [regextestmobile evaluateWithObject:self];
+    //NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM_NUM];
+    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU_NUM];
+    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT_NUM];
+    //BOOL res1 = [regextestmobile evaluateWithObject:self];
     BOOL res2 = [regextestcm evaluateWithObject:self];
     BOOL res3 = [regextestcu evaluateWithObject:self];
     BOOL res4 = [regextestct evaluateWithObject:self];
-    if (res1 || res2 || res3 || res4 )
+    if (res2 || res3 || res4 )
     {
         return YES;
     }
@@ -189,6 +189,9 @@
             break;
         case 20109:
             msg = @"更新持有产品异常";
+            break;
+        case 10403:
+            msg = @"内容不能为空";
             break;
         default:
             msg = @"网络异常，请重试";

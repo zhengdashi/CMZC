@@ -48,6 +48,8 @@
     //动态改变titview的高度
     self.title = @"分析师详情";
     
+    _curScrollView.scrollEnabled = NO;
+    [self requestAnalystsDetails];
     [self setAnalysthViewHeigthLayout];
     //titleView
     _titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, 0, kScreen_width, 40)];
@@ -68,8 +70,8 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     //赋值页面id
-    _answerView.analystId = _analyst.analystId;
-    _pointView.analystId = _analyst.analystId;
+    _answerView.analystId = _analystsId;
+    _pointView.analystId = _analystsId;
 }
 //团出键盘
 - (void)keyboardWillShow:(NSNotification *)aNotification {
@@ -89,6 +91,17 @@
     [self showExpand];//下落
 }
 
+- (void)requestAnalystsDetails {
+    [self showDefaultProgressHUD];
+    [CMRequestAPI cm_homeAnalystDetailsAnalystsId:_analystsId success:^(CMAnalystMode *analysts) {
+        [self hiddenProgressHUD];
+        _analystDetailsView.analyst = analysts;
+    } fail:^(NSError *error) {
+        [self hiddenProgressHUD];
+    }];
+}
+
+
 #pragma mark - TitleViewDelegate
 - (void)clickTitleViewAtIndex:(NSInteger)index andTab:(UIButton *)tab {
     if (index == 0) {
@@ -97,7 +110,7 @@
         _btmView.hidden = YES;
     }
     
-    CGRect rect = CGRectMake(index *CGRectGetWidth(_curScrollView.frame), 0, CGRectGetWidth(_curScrollView.frame), CGRectGetHeight(_curScrollView.frame));
+    CGRect rect = CGRectMake(index *kScreen_width, 0, kScreen_width, CGRectGetHeight(_curScrollView.frame));
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
         [_curScrollView scrollRectToVisible:rect animated:NO];
     } completion:^(BOOL finished) {
@@ -107,7 +120,7 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    //_btmViewLayoutConstraint.constant = 256.0f;
+    //_btmViewLayoutConstraint.constant = 256.0f; consultingBlock
     
     
 }
@@ -149,7 +162,7 @@
 }
 //发布话题
 - (void)publishTopic {
-    [CMRequestAPI cm_homePublishCreateAnalystId:_analyst.analystId content:_inputBoxTextField.text success:^(BOOL isWin) {
+    [CMRequestAPI cm_homePublishCreateAnalystId:_analystsId content:_inputBoxTextField.text success:^(BOOL isWin) {
         [self hiddenProgressHUD];
         [self showHUDWithMessage:@"发布成功" hiddenDelayTime:2];
     } fail:^(NSError *error) {
@@ -172,7 +185,9 @@
 //titleViewDelegate
 - (void)setAnalysthViewHeigthLayout {
     
-    _analystDetailsView.analyst = _analyst;
+    _analystDetailsView.consultingBlock = ^(){
+        [_inputBoxTextField becomeFirstResponder];
+    };
     
     _analystDetailsView.analystBlock = ^(BOOL isPot,CGFloat height){
         if (isPot) {

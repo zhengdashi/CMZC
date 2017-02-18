@@ -89,6 +89,7 @@
     CMAnalystMode *analyst = _analystListArr[indexPath.row];
     CMAnalystDetailsViewController  *analystVC = (CMAnalystDetailsViewController *)[CMAnalystDetailsViewController initByStoryboard];
     analystVC.analyst = analyst;
+    analystVC.analystsId = analyst.analystId;
     [self.navigationController pushViewController:analystVC animated:YES];
 }
 

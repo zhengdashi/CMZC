@@ -98,6 +98,18 @@
                                      fail:(void(^)(NSError *error))fail;
 
 /**
+ 产品明细
+
+ @param pCode 产品编码
+ @param success
+ @param fail
+ */
++ (void)cm_marketFetchProductinfoPcode:(NSString *)pCode
+                               success:(void(^)(NSArray *productArr))success
+                                  fail:(void(^)(NSError *error))fail;
+
+
+/**
  *  评论信息
  *
  *  @param pCode   pCode
@@ -116,6 +128,61 @@
 + (void)cm_marketFetchProductNoticePCode:(NSString *)pCode
                                pageIndex:(NSInteger)page
                                  success:(void(^)(NSArray *noticeArr))success
+                                    fail:(void(^)(NSError *error))fail;
+
+
+
+/**
+ 获取话题列表
+
+ @param pcode 产品code
+ @param success
+ @param fail
+ */
++ (void)cm_marketFetchTopicPcode:(NSString *)pcode
+                       pageIndex:(NSInteger)page
+                         success:(void(^)(NSArray *topicArr))success
+                            fail:(void(^)(NSError *error))fail;
+
+
+/**
+ 回复话题列表
+
+ @param topicId 话题id
+ @param page 页码
+ @param success
+ @param fail
+ */
++ (void)cm_marketFetchReplyTopicid:(NSString *)topicId
+                         pageIndex:(NSInteger)page
+                           success:(void(^)(NSArray *topicArr))success
+                              fail:(void(^)(NSError *error))fail;
+
+/**
+ 发布话题
+
+ @param topicId 产品id
+ @param content 内容
+ @param success
+ @param fail
+ */
++ (void)cm_marketFetchCreateProductPcode:(NSString *)pcode
+                                   content:(NSString *)content
+                                   success:(void(^)(BOOL isWin))success
+                                      fail:(void(^)(NSError *error))fail;
+
+
+/**
+ 回复接口
+
+ @param topicId 话题id
+ @param content 回复内容
+ @param success
+ @param fail
+ */
++ (void)cm_marketFetchReplyCreateTopicId:(NSString *)topicId
+                                 content:(NSString *)content
+                                 success:(void(^)(BOOL isWin))success
                                     fail:(void(^)(NSError *error))fail;
 
 

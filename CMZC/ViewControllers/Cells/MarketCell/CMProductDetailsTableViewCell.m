@@ -23,6 +23,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *optionalLab; //自选but
 @property (weak, nonatomic) IBOutlet UIButton *optionalBtn; //自选lab
 
+@property (weak, nonatomic) IBOutlet UILabel *makeLab; //成交额
+@property (weak, nonatomic) IBOutlet UILabel *hardenLab; //涨停
+@property (weak, nonatomic) IBOutlet UILabel *limitDownLab; //跌停
+@property (weak, nonatomic) IBOutlet UILabel *pastLab; //昨收
+@property (weak, nonatomic) IBOutlet UILabel *tradeLab; //换手率
+@property (weak, nonatomic) IBOutlet UILabel *municipLab; //市营率
+@property (weak, nonatomic) IBOutlet UILabel *portionLab; //份额
+@property (weak, nonatomic) IBOutlet UILabel *marketLab; //市值
+
 
 @end
 
@@ -69,7 +78,7 @@
     
     CGFloat turnoverFloat = [dataProductArr[8] floatValue];
     
-    _turnoverLimitLab.text = [self roundFloatDisplay:turnoverFloat]; //成交额
+    _makeLab.text = [self roundFloatDisplay:turnoverFloat]; //成交额
     CGFloat upFloat = [dataProductArr[3] floatValue];
     if (upFloat>earlyFloat) { //大于开盘价
         _dataLab.textColor = [UIColor cmUpColor];
@@ -86,12 +95,15 @@
     CGFloat upOrFall = [dataProductArr[6] floatValue];
     if (upOrFall == 0) { //不涨不跌
         [self detailsLabTextColor:[UIColor cmFontWiteColor]];
+        _scopeLab.text = [NSString stringWithFormat:@"%.2f%%",upOrFall];//涨跌幅
     } else if (upOrFall >0) { //涨
         [self detailsLabTextColor:[UIColor cmUpColor]];
+        _scopeLab.text = CMStringWithPickFormat(@"+ ", [NSString stringWithFormat:@"%.2f%%",upOrFall]);//涨跌幅
     } else { //跌
+        _scopeLab.text = CMStringWithPickFormat(@"- ", [NSString stringWithFormat:@"%.2f%%",upOrFall]);
         [self detailsLabTextColor:[UIColor cmFallColor]];
     }
-    _scopeLab.text = [NSString stringWithFormat:@"%.2f%%",upOrFall];//涨跌幅
+    
     
     _optionIndex = [dataProductArr[10] integerValue];
     if (_optionIndex == 0) {
@@ -125,6 +137,40 @@
         _heighlyLab.textColor = [UIColor whiteColor];
     } else {
         _heighlyLab.textColor = [UIColor cmUpColor];
+    }
+    
+    
+    CGFloat hardenLoat = [dataProductArr[11] floatValue];
+    if (hardenLoat > 0) {
+        _hardenLab.text = CMFloatStringWithFormat(hardenLoat);//涨停
+        _hardenLab.textColor = [UIColor cmUpColor];
+    }
+    
+    CGFloat limitFloat = [dataProductArr[12] floatValue];
+    if (limitFloat > 0) {
+        _limitDownLab.text = CMFloatStringWithFormat(limitFloat); //跌停
+        _limitDownLab.textColor = [UIColor cmFallColor];
+    }
+    CGFloat pastFloat = [dataProductArr[3] floatValue];
+    if (pastFloat > 0) {
+        _pastLab.text = CMFloatStringWithFormat(pastFloat); //昨收
+    }
+    CGFloat tradeFloat = [dataProductArr[13] floatValue];
+    if (tradeFloat > 0) {
+        _tradeLab.text = [NSString stringWithFormat:@"%.2f%%",tradeFloat]; //换手率
+    }
+    CGFloat municipFloat = [dataProductArr[14] floatValue];
+    if (municipFloat >0) {
+        _municipLab.text = [NSString stringWithFormat:@"%.2f%%",municipFloat]; //市营率
+    }
+    NSInteger portionFloat = [dataProductArr[15] integerValue];
+    if (portionFloat > 0) {
+        _portionLab.text = CMStringWithFormat(portionFloat); //总份额
+    }
+    CGFloat maketFloat = [dataProductArr[16] floatValue];
+    NSString *maketStr =[self roundFloatDisplay:maketFloat];
+    if (maketFloat > 0) {
+        _marketLab.text = maketStr;   //市值
     }
     
 }

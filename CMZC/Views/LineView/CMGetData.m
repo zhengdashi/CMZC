@@ -37,7 +37,7 @@
             [self changeData:lines];
         }else{
             //请求数据
-            [CMRequestAPI cm_marketFetchProductKlineDayCode:@"2001" productUrl:url success:^(NSArray *klineDayArr) {
+            [CMRequestAPI cm_marketFetchProductKlineDayCode:@"" productUrl:url success:^(NSArray *klineDayArr) {
                 self.status.text = @"";
                 if ([self.req_type isEqualToString:@"d"]) {
                     self.dayDatas = lines;

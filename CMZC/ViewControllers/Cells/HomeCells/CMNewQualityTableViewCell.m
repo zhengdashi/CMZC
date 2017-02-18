@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *upOrFallLab; //涨跌
 @property (weak, nonatomic) IBOutlet UILabel *dataLab; //日期
 @property (weak, nonatomic) IBOutlet UILabel *startLab; //起步
+@property (weak, nonatomic) IBOutlet UILabel *buyNumberLab; //参与人数
 
 
 @end
@@ -32,7 +33,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _collectionFlowLayout.itemSize = CGSizeMake(CMScreen_width()/3*2, 149);
+    _collectionFlowLayout.itemSize = CGSizeMake(CMScreen_width()/3*2.3, 149);
     _curCollectionView.delegate = self;
     _curCollectionView.dataSource = self;
     
@@ -42,7 +43,9 @@
     _munyArr = munyArr;
     [_curCollectionView reloadData];
 }
-
+- (void)setBuyNumber:(NSString *)buyNumber {
+    _buyNumberLab.text = CMStringWithPickFormat(buyNumber, @"人");
+}
 
 #pragma mark - UICollectionViewDataSource && UICollectionViewDelegate
 

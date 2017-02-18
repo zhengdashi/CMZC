@@ -45,11 +45,15 @@
     }
     return self;
 }
+//咨询
+- (IBAction)consultingBtnClick:(UIButton *)sender {
+    self.consultingBlock();
+}
 
 - (void)setAnalyst:(CMAnalystMode *)analyst {
     _analyst = analyst;
     _nameLab.text = analyst.name;
-    [_titImageView sd_setImageWithURL:[NSURL URLWithString:analyst.avatar] placeholderImage:[UIImage imageNamed:kCMDefaultHeadPortrait]];
+    [_titImageView sd_setImageWithURL:[NSURL URLWithString:analyst.avatar] placeholderImage:kCMDefault_imageName];
     _answerTimeLab.text = [NSString stringWithFormat:@"最近回答时间:%@",analyst.lastpublished];
     _introduceLab.text = analyst.fulldescription;
 }

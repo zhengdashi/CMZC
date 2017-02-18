@@ -11,11 +11,19 @@
 @class CMProductList;
 @class CMPurchaseProduct;
 
+@protocol CMSubscribeTableViewCellDelegate <NSObject>
+
+- (void)cm_checkRoadshowLiveUrl:(NSString *)liveUrl;
+
+@end
+
 
 @interface CMSubscribeTableViewCell : UITableViewCell
 
 //@property (strong, nonatomic) CMProductList *product;
 
 @property (strong, nonatomic) CMPurchaseProduct *product;
+
+@property (weak, nonatomic) id<CMSubscribeTableViewCellDelegate>delegate;
 
 @end

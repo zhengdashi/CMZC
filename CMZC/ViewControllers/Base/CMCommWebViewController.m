@@ -138,7 +138,7 @@
                            name,NSHTTPCookieName,
                            value,NSHTTPCookieValue,
                            @"/",NSHTTPCookiePath,
-                           [NSURL URLWithString:kCMBase_URL],NSHTTPCookieOriginURL,
+                           [NSURL URLWithString:kWebSocket_url],NSHTTPCookieOriginURL,
                            [NSDate dateWithTimeIntervalSinceNow:60],NSHTTPCookieExpires,
                            nil];
     

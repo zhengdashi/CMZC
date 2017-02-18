@@ -39,6 +39,9 @@ BOOL CMIsLogin() {
 NSString *CMStringWithFormat(NSInteger index) {
     return [NSString stringWithFormat:@"%ld",(long)index];
 }
+NSString *CMFloatStringWithFormat(CGFloat index) {
+    return [NSString stringWithFormat:@"%.2f",index];
+}
 //拼接字符串
 NSString *CMStringWithPickFormat(NSString *keyStr, NSString *keyValue) {
     return [NSString stringWithFormat:@"%@%@",keyStr,keyValue];

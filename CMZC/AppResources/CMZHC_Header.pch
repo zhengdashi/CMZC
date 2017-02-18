@@ -54,7 +54,8 @@
 #import "MJRefresh.h"
 #import "YYModel.h"
 #import "CYLTableViewPlaceHolder.h"
-
+#define kCMScreen_width [UIScreen mainScreen].bounds.size.width
+#define kCMScreen_height [UIScreen mainScreen].bounds.size.height
 //***************先放到这里。测试用。到时候再改地址。如果忘记了。后来人请改位置
 //格式化打印
 #ifdef DEBUG // 调试
@@ -73,7 +74,7 @@ fprintf(stderr, "-------\n");                                               \
 
 
 //默认图片名字
-#define kCMDefault_imageName @"title_log"
+#define kCMDefault_imageName [UIImage imageNamed:@"title_log"]
 
 #define kVerifyStarDateKey @"kVerifyStarDateKey"
 

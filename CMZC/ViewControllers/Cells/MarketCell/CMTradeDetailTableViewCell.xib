@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,20 +15,23 @@
             <rect key="frame" x="0.0" y="0.0" width="100" height="18"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="100" height="17"/>
+                <rect key="frame" x="0.0" y="0.0" width="100" height="17.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r13-xK-zyE">
+                        <rect key="frame" x="0.0" y="3" width="31" height="12.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-yi-ApP">
+                        <rect key="frame" x="35" y="2" width="30" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRg-XD-ve6">
+                        <rect key="frame" x="75.5" y="4" width="16.5" height="11"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <color key="textColor" red="0.31444118989999997" green="1" blue="0.035955953780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,7 +41,7 @@
                 <constraints>
                     <constraint firstItem="r13-xK-zyE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="BX2-g4-fVw"/>
                     <constraint firstItem="4s0-yi-ApP" firstAttribute="leading" secondItem="r13-xK-zyE" secondAttribute="trailing" constant="4" id="FrW-JG-2wh"/>
-                    <constraint firstAttribute="trailing" secondItem="FRg-XD-ve6" secondAttribute="trailing" constant="4" id="Pjj-ej-cfJ"/>
+                    <constraint firstAttribute="trailing" secondItem="FRg-XD-ve6" secondAttribute="trailing" constant="8" id="Pjj-ej-cfJ"/>
                     <constraint firstAttribute="bottom" secondItem="r13-xK-zyE" secondAttribute="bottom" constant="2" id="Rk1-QG-FaI"/>
                     <constraint firstItem="r13-xK-zyE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="eFV-36-JYk"/>
                     <constraint firstItem="FRg-XD-ve6" firstAttribute="centerY" secondItem="4s0-yi-ApP" secondAttribute="centerY" id="fSS-tv-hd4"/>
@@ -49,7 +55,7 @@
                 <outlet property="leftLab" destination="r13-xK-zyE" id="JTM-fV-w7P"/>
                 <outlet property="rightLab" destination="FRg-XD-ve6" id="Zqw-8C-WiY"/>
             </connections>
-            <point key="canvasLocation" x="279" y="217"/>
+            <point key="canvasLocation" x="-65" y="-241"/>
         </tableViewCell>
     </objects>
 </document>

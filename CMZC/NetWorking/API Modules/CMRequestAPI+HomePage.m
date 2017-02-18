@@ -227,9 +227,62 @@
 }
 //服务申请
 + (void)cm_serviceApplicationProjectName:(NSString *)project realName:(NSString *)real contactPhone:(NSString *)contact success:(void (^)(BOOL))success fail:(void (^)(NSError *))fail {
+    NSDictionary *dict = @{
+                         @"TrueName":project,
+                         @"ProjectName":real,
+                         @"Tel":contact
+                         };
+    [CMRequestAPI postDataFromURLScheme:kCMHomeCreateroubleinfoURL argumentsDictionary:dict success:^(id responseObject) {
+        BOOL isSucess = NO;
+        if ([responseObject[@"errcode"] integerValue] == 0) {
+            isSucess = YES;
+        }
+        success(isSucess);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+}
+
++ (void)cm_homeDefaultPageGlodServiceSuccess:(void (^)(NSArray *))success fail:(void (^)(NSError *))fail {
+    [CMRequestAPI postDataFromURLScheme:kCMHomeAnalystDefaultURL argumentsDictionary:nil success:^(id responseObject) {
+        NSMutableArray *adminArr = [NSMutableArray array];
+        NSArray *dataRow = responseObject[@"data"][@"row"];
+        for (NSDictionary *dict in dataRow) {
+            CMAdministrator *admin = [CMAdministrator yy_modelWithDictionary:dict];
+            [adminArr addObject:admin];
+        }
+        success(adminArr);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+}
+//理财师详情
++ (void)cm_homeAnalystDetailsAnalystsId:(NSInteger)analystsId success:(void (^)(CMAnalystMode *))success fail:(void (^)(NSError *))fail {
+    
+   
+    
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",KCMAnalystsDetailsURL,CMStringWithFormat(analystsId)];
+    
+    [CMRequestAPI postOrdinaryFromURLScheme:urlStr argumentsDictionary:nil success:^(id responseObject) {
+        CMAnalystMode *analyst = [CMAnalystMode yy_modelWithJSON:responseObject[@"data"]];
+        success(analyst);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
     
     
 }
+
++ (void)cm_homeProductPurchaseNumberSuccess:(void (^)(NSString *))success fail:(void (^)(NSError *))fail {
+    [CMRequestAPI getDataFromURLScheme:kCMHomePurchaseNumberURL argumentsDictionary:nil success:^(id responseObject) {
+        success(responseObject[@"data"]);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+}
+
+
 
 @end
 

@@ -14,8 +14,11 @@
 
 @implementation CMRequestAPI (Product)
 
-+ (void)cm_applyFetchProductListOnPageIndex:(NSInteger)page success:(void (^)(NSArray *, BOOL))success fail:(void (^)(NSError *))fail {
-    NSDictionary *dict = @{@"pageindex":CMNumberWithFormat(page)};
++ (void)cm_applyFetchProductListOnPageIndex:(NSInteger)page pageSize:(NSInteger)size success:(void (^)(NSArray *, BOOL))success fail:(void (^)(NSError *))fail {
+    NSDictionary *dict = @{
+                           @"pageindex":CMNumberWithFormat(page),
+                           @"pagesize":CMNumberWithFormat(size)
+                           };
     
     [CMRequestAPI postDataFromURLScheme:kCMApplyListURL argumentsDictionary:dict success:^(id responseObject) {
         

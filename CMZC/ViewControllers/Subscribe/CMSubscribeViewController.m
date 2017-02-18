@@ -16,7 +16,7 @@
 #import "CMSubscribeDetailsViewController.h"
 
 
-@interface CMSubscribeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CMSubscribeViewController ()<UITableViewDelegate,UITableViewDataSource,CMSubscribeTableViewCellDelegate>
 
 @property (strong, nonatomic) CMSubscribeTitleView *subscribeView;//头view
 
@@ -62,7 +62,7 @@
 //数据请求
 - (void)requestListWithPageNo:(NSInteger)page {
     
-    [CMRequestAPI cm_applyFetchProductListOnPageIndex:page success:^(NSArray *productArr, BOOL isPage) {
+    [CMRequestAPI cm_applyFetchProductListOnPageIndex:page pageSize:10 success:^(NSArray *productArr, BOOL isPage) {
         [self hiddenProgressHUD];
         [_curTableView endRefresh];//结束刷新
         _curTableView.hidden = NO;
@@ -98,7 +98,7 @@
     if (!subscribeCell) {
         subscribeCell = [[NSBundle mainBundle] loadNibNamed:@"CMSubscribeTableViewCell" owner:nil options:nil].firstObject;
     }
-    
+    subscribeCell.delegate = self;
     subscribeCell.product = _productDataArr[indexPath.row];
     subscribeCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return subscribeCell;
@@ -132,6 +132,13 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CMSubscribeHeaderView *headerView = [CMSubscribeHeaderView initByNibForClassName];
     return headerView;
+}
+
+#pragma mark - CMSubscribeTableViewCellDelegate
+- (void)cm_checkRoadshowLiveUrl:(NSString *)liveUrl {
+    CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];
+    webVC.urlStr = liveUrl;
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 

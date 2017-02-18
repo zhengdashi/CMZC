@@ -17,7 +17,10 @@
 @interface CMChartTableViewCell () {
     BOOL _isFirst;
     NSString *_earlyMorning;
+    
 }
+
+@property (strong, nonatomic)UILabel *errorLab;
 
 @property (weak, nonatomic) IBOutlet UIView *fiveSpeedView;//五档明细
 @property (strong, nonatomic) EverChart *fenshiChart;
@@ -47,7 +50,11 @@
 @property (weak, nonatomic) IBOutlet UIView *fourBtomView; //下方指示条view
 @property (weak, nonatomic) IBOutlet UIView *lineGraphView; //日k
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLab; //名字lab
+@property (weak, nonatomic) IBOutlet UILabel *growthLab; //成长值
+@property (weak, nonatomic) IBOutlet UILabel *lingTouLab; //领头人
 
+@property (weak, nonatomic) IBOutlet UILabel *twoGrowthLab;
 
 @end
 
@@ -57,6 +64,52 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+- (void)setProductArr:(NSArray *)productArr {
+    NSString  *index = GetDataFromNSUserDefaults(@"keyIndex");
+    if ([index isEqualToString:@"0"]) {
+        [self timeSharing];
+    } else if ([index isEqualToString:@"1"]) {
+        [self dayKChart];
+    } else if ([index isEqualToString:@"2"]) {
+        [self weekKChart];
+    } else if ([index isEqualToString:@"3"]){
+        [self monthKChart];
+    } else {
+        [self timeSharing];
+    }
+    
+    
+    if (productArr.count > 0) {
+        _nameLab.text = productArr[0];
+       // _growthLab.text = productArr[2];
+        _lingTouLab.text = productArr[3];
+        [self requestGrowth:productArr[2]];
+    }
+    
+}
+
+- (void)requestGrowth:(NSString *)growth {
+    if (growth.length == 0) {
+        _twoGrowthLab.text = @"AAAAA";
+    } else if (growth.length == 1) {
+        _growthLab.text = growth;
+        _twoGrowthLab.text = @"AAAA";
+    } else if (growth.length == 2) {
+        _growthLab.text = growth;
+        _twoGrowthLab.text = @"AAA";
+    } else if (growth.length == 3) {
+        _growthLab.text = growth;
+        _twoGrowthLab.text = @"A";
+    } else if (growth.length == 4) {
+        _growthLab.text = growth;
+        _twoGrowthLab.text = @"A";
+    } else {
+        _growthLab.text =growth;
+        _twoGrowthLab.text = @"";
+    }
+}
+
 
 - (void)awakeFromNib {
      [super awakeFromNib];
@@ -70,6 +123,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeTimer) name:@"closeWebSocket" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isRequest:) name:@"isFirstTime" object:nil];
+//    NSInteger keyIndex = (NSInteger)GetDataFromNSUserDefaults(@"keyIndex");
+//    CGRect visibleRect = CGRectMake(CGRectGetWidth(_curScrollView.frame) * keyIndex , 0, CGRectGetWidth(_curScrollView.frame), CGRectGetHeight(_curScrollView.frame));
+//    [_curScrollView scrollRectToVisible:visibleRect animated:NO];
 }
 - (void)isRequest:(NSNotification *)sender {
     
@@ -152,7 +208,9 @@
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"detailButton" object:self];
 }
 - (void)sixBtomViewSenderIndex:(NSInteger)index {
-    [UIView animateWithDuration:0.3 animations:^{
+    DeleteDataFromNSUserDefaults(@"keyIndex");
+    SaveDataToNSUserDefaults(CMStringWithFormat(index), @"keyIndex");
+    [UIView animateWithDuration:0.01 animations:^{
         _fourBtomView.frame = CGRectMake(CMScreen_width()/4*index, 38, CMScreen_width()/4, 2);
     }];
 }
@@ -166,13 +224,13 @@
             [self fourTimeSharing];
             break;
         case 401://日K
-            [self fourDayKChart];
+            [self dayKChart];
             break;
         case 402: //周K
-            [self fourWeekKChart];
+            [self weekKChart];
             break;
         case 403: //月K
-            [self fourMonthKChart];
+            [self monthKChart];
             break;
         default:
             break;
@@ -182,6 +240,8 @@
 //分时
 - (void)fourTimeSharing {
     _fourBtnView.hidden = YES;
+    DeleteDataFromNSUserDefaults(@"keyIndex");
+    SaveDataToNSUserDefaults(CMStringWithFormat(0), @"keyIndex");
     [self scrollRectToViseIndex:0];
 }
 //日K
@@ -204,6 +264,7 @@
     [self initLineViewBtnTag:2103];
 }
 - (void)scrollRectToViseIndex:(NSInteger)index {
+    
     CGRect visibleRect = CGRectMake(CGRectGetWidth(_curScrollView.frame) * index , 0, CGRectGetWidth(_curScrollView.frame), CGRectGetHeight(_curScrollView.frame));
     [_curScrollView scrollRectToVisible:visibleRect animated:NO];
     
@@ -211,7 +272,7 @@
 //k线图
 - (void)initLineViewBtnTag:(NSInteger)tag {
     
-    [_lineGraphView addSubview:self.lineView];
+    [_lineGraphView addSubview:self.errorLab];
     
     switch (tag) {
         case 2101:
@@ -418,7 +479,9 @@
         default:
         {
             visibleRect = CGRectMake(CGRectGetWidth(_scrollView.frame), 0, CGRectGetWidth(_scrollView.frame), CGRectGetHeight(_scrollView.frame));
-            [_lineGraphView addSubview:self.lineView];
+            
+            
+            [_lineGraphView addSubview:self.errorLab];
             
             switch (index) {
                 case 2101:
@@ -461,7 +524,16 @@
     }
     return _lineView;
 }
-
+- (UILabel *)errorLab {
+    if (!_errorLab) {
+        _errorLab = [[UILabel alloc] init];
+        _errorLab.frame = CGRectMake(30, 30, 100, 30);
+        //_errorLab.center = _lineGraphView.center;
+        _errorLab.text = @"暂无内容";
+        _errorLab.textColor = [UIColor clmHex:0x999999];
+    }
+    return _errorLab;
+}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

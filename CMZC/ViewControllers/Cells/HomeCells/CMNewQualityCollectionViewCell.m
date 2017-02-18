@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *earningsLab; //收益
 @property (weak, nonatomic) IBOutlet UILabel *decimalPointLab; //收益浮动
 @property (weak, nonatomic) IBOutlet UILabel *netWorthLab; //净值lab
+@property (weak, nonatomic) IBOutlet UILabel *attendPersionLab; //参与人数
 
 @end
 
@@ -42,7 +43,7 @@
 - (void)cm_newQualityCellClass:(CMNumberous *)number bgImageArr:(NSString *)bgImage {
     _descriptionLab.text = number.descri;
     _qualityNameLab.text = number.title;
-    
+    _attendPersionLab.text = CMStringWithPickFormat(number.attendPersionCount, @"人");
     
     //NSArray *priceArr = [number.price componentsSeparatedByString:@"."];
     _priceLab.text = number.price;

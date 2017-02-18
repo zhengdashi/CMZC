@@ -33,8 +33,6 @@
     } else {
         return [self mutableAttributeLenRange:5];
     }
-    
-    
 }
 
 - (BOOL)isNextPage {

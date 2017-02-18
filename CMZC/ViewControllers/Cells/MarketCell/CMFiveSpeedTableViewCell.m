@@ -39,8 +39,6 @@
         _twoLab.textColor = [UIColor cmUpColor];
         [self buyTitleStr:arr index:index];
     }
-    
-    
 }
 //改变颜色color
 - (void)changeColor:(UIColor *)color {

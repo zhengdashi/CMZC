@@ -32,6 +32,7 @@
 }
 */
 - (IBAction)isOkBtnClick:(CMFilletButton *)sender {
+    self.block();
     [self removeFromSuperview];
 }
 

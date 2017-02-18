@@ -24,12 +24,30 @@
 #import "CMTitleView.h"
 #import "TFHpple.h"
 #import "CMAnalystPoint.h"
+#import "CMWebHtmlTableViewCell.h"
+
+#import "CMShareView.h"
+#import "CMAnalystViewController.h"
+#import "CMTopicList.h"
+#import "CMoptionReleaseTableViewCell.h" //发布话题
+#import "CMReplyTableViewCell.h" //评论
+#import "CMTopicReplyViewController.h"
+#import "CMTopicReplyViewController.h"
 
 
-@interface CMProductDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,CMCommentTableViewCellDelegate,SRWebSocketDelegate,CMProductDetailsDelegate> {
+@interface CMProductDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,CMCommentTableViewCellDelegate,SRWebSocketDelegate,CMProductDetailsDelegate,CMoptionReleaseTableViewCellDelegate,CMReplyTableViewCellDelegate> {
     BOOL _isFirst;
     BOOL _isShow; //展示全部
+    NSString *_htmlStr; //html数据
+    BOOL _isSearchOrReply; //标记内容
+    NSString *_topicId; //话题id
+    
+    NSString *_versionPatch; //版块儿
+    NSString *_earnings; //预期收益
+    NSString *_guaranteed; //保底收益
+    
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topTabeViewLayout;
 @property (weak, nonatomic) IBOutlet UIView *titleBgView;
 @property (weak, nonatomic) IBOutlet UIView *btomView;
 @property (weak, nonatomic) IBOutlet UITableView *curTableView;
@@ -49,11 +67,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *numberTextField; //输入框
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLayoutConstraint;
 @property (strong, nonatomic) CMTitleView *sectionView;
-
-@property (strong, nonatomic) NSArray  *anounDataArr; //品论
+@property (strong, nonatomic) CMTitleView *titleSectionView;
+@property (strong, nonatomic) NSMutableArray  *anounDataArr; //品论
 @property (strong, nonatomic) NSArray *commDataArr; //公告
 @property (nonatomic,copy) NSString *enterPrise; //企业信息
 @property (strong, nonatomic) UIButton *sectionViewSelectBtn; //选中的but
+@property (strong, nonatomic) NSArray *topicListArr;
+@property (strong, nonatomic) NSArray *productinfoArr; //明细arr
 
 
 @end
@@ -71,7 +91,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self showDefaultProgressHUD];
+    [CMCommonTool executeRunloop:^{
+        [self hiddenAllProgressHUD];
+    }afterDelay:3];
     _isShow = YES;
+    _isSearchOrReply = YES;
+    _anounDataArr = [NSMutableArray array];
     [self.titleView addSubview:self.numberLab];
     [self.titleView addSubview:self.titleLab];
     self.navigationItem.titleView = self.titleView;
@@ -93,7 +120,18 @@
             [_curTableView endRefresh];
         }afterDelay:2];
     }];
-    [self requestComments]; //评论
+    
+    
+    
+    _titleSectionView = [[NSBundle mainBundle] loadNibNamed:@"CMTitleView" owner:nil options:nil].firstObject;
+    _titleSectionView.hidden = YES;
+    _titleSectionView.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), 40);
+    [self.view addSubview:_titleSectionView];
+    
+    [self requestProductInfo];
+    
+    //_codeName = @"000124";
+    _htmlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/Investment.aspx?pcode=", self.codeName));
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -102,12 +140,13 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //打开定时器
-    [self requestOpenTimer];
+    [self requestOpenTimer];  //先注释了
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //关闭定时器
+    DeleteDataFromNSUserDefaults(@"keyIndex");
     if (_timer) {
         [_timer close];
     }
@@ -129,24 +168,6 @@
     [_curTableView addHeaderWithFinishBlock:^{
         [self requestListWithPageNo:1];
     }];
-    [_curTableView addFooterWithFinishBlock:^{
-        switch (self.type) {
-            case CMProductSelectTypeNounce: //公告
-            {
-                [self requestComments];
-            }
-                break;
-            case CMProductSelectTypeComments: //评论
-            {
-                
-            }
-                break;
-            default: //企业详情
-                
-                
-                break;
-        }
-    }];
     
 }
 //数据请求
@@ -155,21 +176,26 @@
 }
 //分时
 - (void)requestMarketProduct {
+   // [self showDefaultProgressHUD];
+    
     [CMRequestAPI cm_marketTransferProductCode:_codeName success:^(NSArray *productArr) {
+        
         [_curTableView endRefresh];
         self.titleLab.text = productArr[0][0];
+        //[_curTableView beginUpdates];
         [self.productArr removeAllObjects];
         [self.productArr addObjectsFromArray:productArr];
-        [_curTableView beginUpdates];
+        
         //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-        [_curTableView endUpdates];
+        //[_curTableView endUpdates];
         if (!_isFirst) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"isFirstTime" object:self userInfo:@{@"earlyMorning":productArr[0][1]}];
             _isFirst = YES;
         }
-        
+        [self hiddenProgressHUD];
     } fail:^(NSError *error) {
+        [self hiddenProgressHUD];
         MyLog(@"请求产品行情详情接口失败");
     }];
     
@@ -178,11 +204,9 @@
 //评论
 - (void)requestComments {
     [CMRequestAPI cm_homeFetchAnswerPointAnalystId:0 pcode:[_codeName integerValue] pageIndex:1 success:^(NSArray *pointArr, BOOL isPage) {
-        _anounDataArr = pointArr;
+        [_anounDataArr addObjectsFromArray:pointArr];
         [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
-        [UIView animateWithDuration:0.3 animations:^{
-            _sectionView.markView.frame = CGRectMake(CGRectGetMinX(_sectionViewSelectBtn.frame), CGRectGetHeight(_sectionViewSelectBtn.frame)+3, CGRectGetWidth(_sectionViewSelectBtn.frame), 3);
-        }];
+        
     } fail:^(NSError *error) {
         MyLog(@"行情评论信息请求是吧");
     }];
@@ -192,42 +216,68 @@
     [CMRequestAPI cm_marketFetchProductNoticePCode:_codeName pageIndex:1 success:^(NSArray *noticeArr) {
         _commDataArr = noticeArr;
          [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
-        [UIView animateWithDuration:0.3 animations:^{
-        _sectionView.markView.frame = CGRectMake(CGRectGetMinX(_sectionViewSelectBtn.frame), CGRectGetHeight(_sectionViewSelectBtn.frame)+3, CGRectGetWidth(_sectionViewSelectBtn.frame), 3);
-        }];
     } fail:^(NSError *error) {
         MyLog(@"行情公告信息请求失败");
     }];
 }
 //企业信息
 - (void)requestEnterprise {
-    //_businessView.webStr = @"http://zcapi.58cm.com/api/product/context/800082";
-    NSString *urlScheme = [NSString stringWithFormat:@"%@%@",kMProductContextURL,CMNumberWithFormat([_codeName integerValue])];
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",kCMBaseApiURL,urlScheme];
+    [CMRequestAPI cm_tradeFetchProductContextPcode:_codeName success:^(NSString *dataStr) {
+        _htmlStr = dataStr;
+        [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    } fail:^(NSError *error) {
+        
+    }];
+}
+//行情吧
+- (void)requestTopicData {
     
-    NSString *dataString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlStr] encoding:NSUTF8StringEncoding error:nil];
-    NSData *htemlData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
-    TFHpple *temParser = [[TFHpple alloc] initWithHTMLData:htemlData];
-    NSArray *dataArray = [temParser searchWithXPathQuery:@"//span"];
-    NSString *contentStr = @"公司简介：\n";
-    for (TFHppleElement *hppleElement in dataArray) {
-        NSLog(@"-dataArray--%@",hppleElement.text);
-        NSString *str = hppleElement.text;
-        if ([str isEqual:@"\\n"]) {
-            str = @"\n";
+    [self requestTopicPageIndex:1];
+    
+    [_curTableView addFooterWithFinishBlock:^{
+        NSInteger page = self.topicListArr.count /10 +1;
+        [self requestTopicPageIndex:page];
+    }];
+}
+- (void)requestTopicPageIndex:(NSInteger)page {
+    [CMRequestAPI cm_marketFetchTopicPcode:_codeName pageIndex:page success:^(NSArray *topicArr) {
+        [self.anounDataArr removeAllObjects];
+        [self.anounDataArr addObjectsFromArray:topicArr];
+        [_curTableView endRefresh];
+        if (topicArr.count >= 5) {
+            [_curTableView resetNoMoreData];
+        } else {
+            [_curTableView noMoreData];
+        }
+        [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    } fail:^(NSError *error) {
+        //[self showHUDWithMessage:error.message hiddenDelayTime:2];
+    }];
+}
+
+//产品明细
+- (void)requestProductInfo {
+    //[self showDefaultProgressHUD];
+    [CMRequestAPI cm_marketFetchProductinfoPcode:_codeName success:^(NSArray *productArr) {
+       // [self hiddenProgressHUD];
+        [_curTableView endUpdates];
+        self.productinfoArr = productArr;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        [_curTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [_curTableView beginUpdates];
+        if (productArr.count > 0) {
+            _versionPatch = productArr[1]; //版块儿名称
+            _earnings = productArr[4]; //预期收益
+            _guaranteed = productArr[5]; //保底收益
         }
         
-        if (str.length >1) {//拼接字符串
-            contentStr = [contentStr stringByAppendingString:str];
-        }
-    }
-    _enterPrise = contentStr;
-    [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
-    [UIView animateWithDuration:0.3 animations:^{
-        _sectionView.markView.frame = CGRectMake(CGRectGetMinX(_sectionViewSelectBtn.frame), CGRectGetHeight(_sectionViewSelectBtn.frame)+3, CGRectGetWidth(_sectionViewSelectBtn.frame), 3);
+        
+    } fail:^(NSError *error) {
+        //[self hiddenProgressHUD];
+        [self showHUDWithMessage:error.message hiddenDelayTime:2];
     }];
-    NSLog(@"--contentStr--%@",contentStr);
 }
+
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 
@@ -236,98 +286,125 @@
 }
 //设置区头
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0;
-    } else {
+    if (section == 1) {
         return 40;
+    } else {
+        return 0;
     }
 }
+//设置区的单元格
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 2;
+    } else if (section == 1){
+        switch (self.type) {
+            case CMProductSelecttypeAnalystsDiagnosis://分析师诊断
+                return 1;
+                break;
+            case CMProductSelectTypeComments: //行情吧
+                return _anounDataArr.count+1;
+                break;
+            case CMProductSelectTypeNounce: //信息披露
+                return _commDataArr.count;
+                break;
+            case CMProductSelectTypeEnterprise: //公司概况
+                return 1;
+                break;
+            case CMProductSelectTypeProductAndMarket: //产品与市场
+                return 1;
+                break;
+            case CMProductSelectTypeFinancialIndicators: //财务指标
+                return 1;
+                break;
+            case CMProductSelectTypeTeamEquity: //团队与股权
+                return 1;
+                break;
+            case CMProductSelectTypeDetails: //产品详情
+                return 1;
+                break;
+            default:
+                break;
+        }
+    } else {
+        return 0;
+    }
+}
+//
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section == 1) {
-        switch (self.type) {
-            case CMProductSelectTypeComments: //评论
-                return _anounDataArr.count > 0?0:40;
-                break;
-            case CMProductSelectTypeNounce: //公告
-                return _commDataArr.count > 0?0:40;
-                break;
-            case CMProductSelectTypeEnterprise:
-                return _enterPrise.length > 0?0:40;
-                break;
-            default: //企业信息
+        if (self.type == CMProductSelectTypeNounce) {
+            if (_commDataArr.count == 0) {
+                return 100;
+            } else {
                 return 0;
-                break;
+            }
+        } else {
+            return 0;
         }
     } else {
         return 0;
     }
 }
 
-//设置区的单元格
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 2;
-    } else {
-        switch (self.type) {
-            case CMProductSelectTypeComments: //评论
-                return _anounDataArr.count;
-                break;
-            case CMProductSelectTypeNounce: //公告
-                return _commDataArr.count;
-                break;
-            case CMProductSelectTypeEnterprise:
-                return 1;
-            default: //企业信息
-                return 0;
-                break;
-        }
-    }
-}
 //设置cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             if (_isShow) {
-                return 140;
+                return 136;
             } else {
                 return 256;
             }
         } else {
-            return 259;
+            return 282;
         }
     } else {
         switch (self.type) {
-            case CMProductSelectTypeComments: //评论
+            case CMProductSelecttypeAnalystsDiagnosis://分析师诊断
+                return kScreen_height - 64 - 40 - 45;
+                break;
+            case CMProductSelectTypeComments: //行情吧
             {
-                CMAnalystPoint *notion = _anounDataArr[indexPath.row];
-                CGFloat height = [notion.content getHeightIncomingWidth:CMScreen_width()-30 incomingFont:14];
-                if (height>34) {
-                    height = 34;
+                if (indexPath.row == 0) {
+                    return 100;
+                } else {
+                    CMTopicList *topicList = _anounDataArr[indexPath.row -1];
+                    CGFloat height = 100;
+                    if (topicList.repliesArr.count == 1) {
+                        height = height + 80;
+                    } else if (topicList.repliesArr.count == 2) {
+                        height = height + 160;
+                    } else {
+                        height = 100;
+                    }
+                    return height;
                 }
-                CGFloat titHeight = 64;
-                if (notion.title.length > 1) {
-                    titHeight = 80;
-                }
-                return titHeight-17 + height+16;
+                
             }
                 break;
-            case CMProductSelectTypeNounce: //公告
+            case CMProductSelectTypeNounce: //信息披露
             {
                 CMProductNotion *productCom = _commDataArr[indexPath.row];
                 CGFloat height = [productCom.title getHeightIncomingWidth:CMScreen_width()-30  incomingFont:14];
                 return 63-14 + height+10;
             }
                 break;
-            case CMProductSelectTypeEnterprise:
-            {
-                CGFloat height = [_enterPrise getHeightIncomingWidth:CMScreen_width()-30  incomingFont:14];
-                return 63-14 + height+25;
-            }
+            case CMProductSelectTypeEnterprise: //公司概况
+                return kScreen_height - 64 - 40 - 45;
                 break;
-            default: //企业信息
-            {
-                return 0;
-            }
+            case CMProductSelectTypeProductAndMarket: //产品与市场
+                return kScreen_height - 64 - 40 - 45;
+                break;
+            case CMProductSelectTypeFinancialIndicators: //财务指标
+                return kScreen_height - 64 - 40 - 45;
+                break;
+            case CMProductSelectTypeTeamEquity: //团队与股权
+                return 470;
+                break;
+            case CMProductSelectTypeDetails: //产品详情
+                return kScreen_height - 64 - 40 - 45;
+                break;
+            default:
                 break;
         }
     }
@@ -338,6 +415,9 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             CMProductDetailsTableViewCell *productCell = [tableView dequeueReusableCellWithIdentifier:@"CMProductDetailsTableViewCell" forIndexPath:indexPath];
+            if (!productCell) {
+                
+            }
             productCell.selectionStyle = UITableViewCellSelectionStyleNone;
             productCell.productArr = self.productArr;
             productCell.delegate = self;
@@ -346,41 +426,48 @@
             CMChartTableViewCell *chartCell = [tableView dequeueReusableCellWithIdentifier:@"CMChartTableViewCell" forIndexPath:indexPath];
             chartCell.selectionStyle = UITableViewCellSelectionStyleNone;
             chartCell.code = _codeName;
+            chartCell.productArr = self.productinfoArr;
             return chartCell;
         }
     } else {
-        CMNewCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CMNewCommentTableViewCell"];
-        if (!commentCell) {
-            commentCell = [[NSBundle mainBundle] loadNibNamed:@"CMNewCommentTableViewCell" owner:nil options:nil].firstObject;
-        }
-        
-        commentCell.selectionStyle = UITableViewCellSelectionStyleNone;
         switch (self.type) {
-            case CMProductSelectTypeComments: //评论
-            {
-                commentCell.analystPoint = _anounDataArr[indexPath.row];
-            }
+            case CMProductSelecttypeAnalystsDiagnosis://分析师诊断
+                return [self productSelectTyoeHtmlTableView:tableView indexPath:indexPath];
                 break;
-            case CMProductSelectTypeNounce: //公告
-            {
-                commentCell.productNotion = _commDataArr[indexPath.row];
-            }
+            case CMProductSelectTypeComments: //行情吧
+                if (indexPath.row == 0) {
+                    return [self productSelectTopicTableView:tableView indexPath:indexPath];
+                } else {
+                    return [self productSelectTopicContentTableView:tableView indexPath:indexPath];
+                }
                 break;
-            case CMProductSelectTypeEnterprise:
-                commentCell.introduceStr = _enterPrise;
+            case CMProductSelectTypeNounce: //信息披露
+                return [self productSelectTypeNounceTableView:tableView indexPath:indexPath];
                 break;
-            default: //企业信息
+            case CMProductSelectTypeEnterprise: //公司概况
+                return [self productSelectTyoeHtmlTableView:tableView indexPath:indexPath];
+                break;
+            case CMProductSelectTypeProductAndMarket: //产品与市场
+                return [self productSelectTyoeHtmlTableView:tableView indexPath:indexPath];
+                break;
+            case CMProductSelectTypeFinancialIndicators: //财务指标
+                return [self productSelectTyoeHtmlTableView:tableView indexPath:indexPath];
+                break;
+            case CMProductSelectTypeTeamEquity: //团队与股权
+                return [self productSelectTyoeHtmlTableView:tableView indexPath:indexPath];
+                break;
+            case CMProductSelectTypeDetails: //产品详情
+                return nil;
+                break;
+            default:
                 break;
         }
-        return commentCell;
     }
 }
 //设置区头
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        _sectionView = [[NSBundle mainBundle] loadNibNamed:@"CMTitleView" owner:nil options:nil].firstObject;
-        [self cm_titleViewBlock:_sectionView];
-        return _sectionView;
+        return self.sectionView;
     } else {
         return nil;
     }
@@ -388,30 +475,49 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 1) {
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 40)];
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 100)];
         //footerView.backgroundColor = [UIColor redColor];
+        
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.frame = CGRectMake(0, 0, 50, 50);
+        imageView.center = footerView.center;
+        //imageView.backgroundColor = [UIColor redColor];
+        imageView.image = [UIImage imageNamed:@"error_trade"];
+        [footerView addSubview:imageView];
+        
         UILabel *footTitleLab = [[UILabel alloc] init];
-        footTitleLab.center = footerView.center;
-        footTitleLab.frame = CGRectMake(0, 0, 120, 30);
+        
+        footTitleLab.frame = CGRectMake(0, 0, 200, 30);
+        footTitleLab.center = CGPointMake(imageView.center.x, imageView.center.y+40);
         footTitleLab.font = [UIFont systemFontOfSize:15];
+        footTitleLab.textAlignment = NSTextAlignmentCenter;
         footTitleLab.textColor = [UIColor cmDividerColor];
         switch (self.type) {
-            case CMProductSelectTypeComments: //评论
-            {
+            case CMProductSelecttypeAnalystsDiagnosis://分析师诊断
+                
+                break;
+            case CMProductSelectTypeComments: //行情吧
                 footTitleLab.text = @"暂无评论！";
-            }
                 break;
-            case CMProductSelectTypeNounce: //公告
-            {
-                footTitleLab.text = @"暂无公告！";
-            }
+            case CMProductSelectTypeNounce: //信息披露
+                footTitleLab.text = @"暂无信息！敬请期待";
                 break;
-            case CMProductSelectTypeEnterprise:
-            {
-                footTitleLab.text = @"暂无企业信息！";
-            }
+            case CMProductSelectTypeEnterprise: //公司概况
+                
                 break;
-            default: //企业信息
+            case CMProductSelectTypeProductAndMarket: //产品与市场
+                
+                break;
+            case CMProductSelectTypeFinancialIndicators: //财务指标
+                
+                break;
+            case CMProductSelectTypeTeamEquity: //团队与股权
+                
+                break;
+            case CMProductSelectTypeDetails: //产品详情
+                
+                break;
+            default:
                 break;
         }
         [footerView addSubview:footTitleLab];
@@ -427,48 +533,177 @@
     titleView.block = ^void(NSInteger index,UIButton *selectBtn) {
         _sectionViewSelectBtn = selectBtn;
         switch (index) {
-            case 0:
-                self.type = CMProductSelectTypeComments;
-                [self requestComments]; //评论
-                
+            case 0://分析师诊断
+                self.type = CMProductSelecttypeAnalystsDiagnosis;
+                _htmlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/Investment.aspx?pcode=", self.codeName));
+                 [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                [_curTableView hideFooter];
+                [self tableScrollToRow];
                 break;
-            case 1:
+            case 1: //行情吧
+                self.type = CMProductSelectTypeComments;
+                [self requestTopicData]; //评论
+                break;
+            case 2: //信息披露
                 self.type = CMProductSelectTypeNounce;
                 [self requestAnnouncement]; //公告
-                
+                [_curTableView hideFooter];
                 break;
-            case 2:
+            case 3: //公司概况
                 self.type = CMProductSelectTypeEnterprise;
-                [self requestEnterprise];
+                _htmlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/CompanyIntroduce.aspx?pcode=", self.codeName));
+                [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                [_curTableView hideFooter];
+                [self tableScrollToRow];
+                break;
+            case 4: //产品与市场
+                self.type = CMProductSelectTypeProductAndMarket;
+                _htmlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/ProductMarket.aspx?pcode=", self.codeName));
+                [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                [_curTableView hideFooter];
+                [self tableScrollToRow];
+                break;
+            case 5: //财务指标
+                self.type = CMProductSelectTypeFinancialIndicators;
+                _htmlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/Financial.aspx?pcode=", self.codeName));
+                [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                [_curTableView hideFooter];
+                [self tableScrollToRow];
+                break;
+            case 6: //团队与股权
+                self.type = CMProductSelectTypeTeamEquity;
+                _htmlStr = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/Equity.aspx?pcode=", self.codeName));
+                [_curTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                [_curTableView hideFooter];
+                [self tableScrollToRow];
+                break;
+            case 7: //产品详情
+               // self.type = CMProductSelectTypeDetails;
+                [self cm_commentCellSkipBoundary];
                 break;
             default:
-                self.type = CMProductSelectTypeDetails;
-                [self cm_commentCellSkipBoundary];
                 break;
         }
     };
+    
+    /*
+    switch (self.type) {
+        case CMProductSelecttypeAnalystsDiagnosis://分析师诊断
+     
+            break;
+        case CMProductSelectTypeComments: //行情吧
+       
+            break;
+        case CMProductSelectTypeNounce: //信息披露
+            
+            break;
+        case CMProductSelectTypeEnterprise: //公司概况
+            
+            break;
+        case CMProductSelectTypeProductAndMarket: //产品与市场
+            
+            break;
+        case CMProductSelectTypeFinancialIndicators: //财务指标
+            
+            break;
+        case CMProductSelectTypeTeamEquity: //团队与股权
+            
+            break;
+        case CMProductSelectTypeDetails: //产品详情
+            
+            break;
+        default:
+            break;
+    }
+*/
+    
+}
+- (void)tableScrollToRow {
+    [_curTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-
-//点击
+//点击table
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (self.type) {
-        case CMProductSelectTypeNounce: //公告
-        {
-            CMProductNotion *product = _commDataArr[indexPath.row];
-            [self cm_commentNoticeViewNoticeId:product.notionId];
-        }
+        case CMProductSelecttypeAnalystsDiagnosis://分析师诊断
+            
             break;
-        case CMProductSelectTypeComments://评论
-            [self cm_commentViewControllProductNotion:_anounDataArr[indexPath.row]];
+        case CMProductSelectTypeComments: //行情吧
+        
             break;
-        case CMProductSelectTypeDetails: //公司详情
-            [self cm_commentCellSkipBoundary];
-        default: //公司详情
+        case CMProductSelectTypeNounce: //信息披露
+            //[self cm_commentViewControllProductNotion:_commDataArr[indexPath.row]];
+            break;
+        case CMProductSelectTypeEnterprise: //公司概况
+            
+            break;
+        case CMProductSelectTypeProductAndMarket: //产品与市场
+            
+            break;
+        case CMProductSelectTypeFinancialIndicators: //财务指标
+            
+            break;
+        case CMProductSelectTypeTeamEquity: //团队与股权
+            
+            break;
+        case CMProductSelectTypeDetails: //产品详情
+            
+            break;
+        default:
             break;
     }
+}
+#pragma mark - 创建cell
+//信息披露cell
+- (UITableViewCell *)productSelectTypeNounceTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
+    CMNewCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CMNewCommentTableViewCell"];
+    if (!commentCell) {
+        commentCell = [[NSBundle mainBundle] loadNibNamed:@"CMNewCommentTableViewCell" owner:nil options:nil].firstObject;
+    }
+    commentCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    commentCell.productNotion = _commDataArr[indexPath.row];
+    return commentCell;
+}
+//行情吧
+- (UITableViewCell *)productSelectTopicTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
+    CMoptionReleaseTableViewCell *optionCell = [tableView dequeueReusableCellWithIdentifier:@"CMoptionReleaseTableViewCell"];
+    if (!optionCell) {
+        optionCell = [[NSBundle mainBundle] loadNibNamed:@"CMoptionReleaseTableViewCell" owner:nil options:nil].firstObject;
+    }
+    optionCell.delegate = self;
+    optionCell.block = ^() {
+        if (self.anounDataArr.count == 0) {
+            _topTabeViewLayout.constant = -230;
+        }
+    };
     
+    return optionCell;
+}
+- (UITableViewCell *)productSelectTopicContentTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
+    CMReplyTableViewCell *replyCell = [tableView dequeueReusableCellWithIdentifier:@"CMReplyTableViewCell"];
+    if (!replyCell) {
+        replyCell = [[NSBundle mainBundle] loadNibNamed:@"CMReplyTableViewCell" owner:nil options:nil].firstObject;
+    }
+    replyCell.delegate = self;
+    replyCell.topicList = _anounDataArr[indexPath.row - 1];
+    replyCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return replyCell;
+}
+
+//加载html的数据
+- (UITableViewCell *)productSelectTyoeHtmlTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
+    CMWebHtmlTableViewCell *htmlWeb = [tableView dequeueReusableCellWithIdentifier:@"CMWebHtmlTableViewCell"];
+    if (!htmlWeb) {
+        htmlWeb = [[NSBundle mainBundle] loadNibNamed:@"CMWebHtmlTableViewCell" owner:nil options:nil].firstObject;
+    }
+    htmlWeb.block = ^() {
+        [UIView animateWithDuration:(0.5) animations:^{
+            self.curTableView.contentOffset = CGPointMake(0, 0);
+        }];
+    };
+    htmlWeb.htmlString = _htmlStr;
+    return htmlWeb;
 }
 
 
@@ -481,6 +716,24 @@
 - (IBAction)saleBtnClick:(UIButton *)sender {
     [self pushTradeSonInterVCItemIndex:1 codeName:_codeName];
 }
+//咨询
+- (IBAction)consultingBtnClick:(UIButton *)sender {
+    CMAnalystViewController *analystVC = (CMAnalystViewController *)[CMAnalystViewController initByStoryboard];
+    [self.navigationController pushViewController:analystVC animated:YES];
+}
+//分享
+- (IBAction)shareBtnClick:(UIButton *)sender {
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    CMShareView *shareView = [[NSBundle mainBundle] loadNibNamed:@"CMShareView" owner:nil options:nil].firstObject;
+    shareView.center = window.center;
+    shareView.frame = CGRectMake(0, 0, CGRectGetWidth(window.frame), CGRectGetHeight(window.frame));
+    shareView.contentUrl = CMStringWithPickFormat(kCMMZWeb_url, CMStringWithPickFormat(@"/Products/Detail?pcode=",self.codeName));
+    shareView.titleConten = CMStringWithPickFormat(_versionPatch, @",100%安全投资，优质好项目10倍收益赚不停");
+    NSString *content = [NSString stringWithFormat:@"预期收益%@(包含保底年收益%@+浮动)%@,具有多倍增值空间--新经版，只赚不赔的10倍原始股",_earnings,_guaranteed,_versionPatch];
+    shareView.contentStr = CMStringWithPickFormat(@"100%安全和新经板，只赚不赔的10原始股是固定的",content);
+    [window addSubview:shareView];
+}
+
 //确定
 - (IBAction)defineBtnClick:(UIButton *)sender {
     [self.view endEditing:YES];
@@ -489,9 +742,20 @@
     [UIView animateWithDuration:0.25 animations:^{
         _bottomLayoutConstraint.constant = 0.0f;
     }];
-    CMProductDetailsViewController *productVC = (CMProductDetailsViewController *)[CMProductDetailsViewController initByStoryboard];
-    productVC.codeName = _numberTextField.text;
-    [self.navigationController pushViewController:productVC animated:YES];
+    if (_isSearchOrReply) {
+        CMProductDetailsViewController *productVC = (CMProductDetailsViewController *)[CMProductDetailsViewController initByStoryboard];
+        productVC.codeName = _numberTextField.text;
+        [self.navigationController pushViewController:productVC animated:YES];
+    } else {
+        _isSearchOrReply = YES;
+        [CMRequestAPI cm_marketFetchReplyCreateTopicId:_topicId content:_numberTextField.text success:^(BOOL isWin) {
+            [self hiddenAllProgressHUD];
+            [self showHUDWithMessage:@"回复成功" hiddenDelayTime:2];
+        } fail:^(NSError *error) {
+            [self showHUDWithMessage:error.message hiddenDelayTime:2];
+        }];
+    }
+    _numberTextField.text = @"";
 }
 //查找
 - (IBAction)findBtnClick:(UIButton *)sender {
@@ -510,6 +774,7 @@
 }
 - (void)keyboardWillHide:(NSNotification *)aNotification {
     _bottomLayoutConstraint.constant = 0.0f;
+    _topTabeViewLayout.constant = 0.0f;
     _btmView.hidden = YES;
     _bgView.hidden = YES;
     
@@ -567,6 +832,45 @@
     
 }
 
+#pragma mark - 发布话题
+- (void)cm_optionReleaseRequestData:(NSString *)request {
+    [self.view endEditing:YES];
+    if (CMIsLogin()) {
+        [CMRequestAPI cm_marketFetchCreateProductPcode:_codeName content:request success:^(BOOL isWin) {
+            if (isWin) {
+                [self showHUDWithMessage:@"回复成功" hiddenDelayTime:2];
+                [self requestTopicData];
+            }
+        } fail:^(NSError *error) {
+            [self showHUDWithMessage:error.message hiddenDelayTime:2];
+        }];
+    } else {
+        UINavigationController *nav = [UIStoryboard loginStoryboard].instantiateInitialViewController;
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    
+    
+}
+#pragma mark - 回复话题 CMReplyTableViewCellDelegate
+- (void)cm_replyTableTopicList:(CMTopicList *)topic {
+    if (CMIsLogin()) {
+        _topicId = topic.topicid;
+        _isSearchOrReply = NO;
+        _numberTextField.keyboardType = UIKeyboardTypeDefault;
+        [self findBtnClick:nil];
+    } else {
+        UINavigationController *nav = [UIStoryboard loginStoryboard].instantiateInitialViewController;
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    
+}
+- (void)cm_replyTableLockMore:(CMTopicList *)topic {
+    CMTopicReplyViewController *replyVC = (CMTopicReplyViewController *)[CMTopicReplyViewController initByStoryboard];
+    replyVC.topicId = topic.topicid;
+    [self.navigationController pushViewController:replyVC animated:YES];
+}
+
+
 #pragma mark - setGet
 - (UIView *)titleView {
     if (!_titleView) {
@@ -604,13 +908,21 @@
 }
 - (void)requestOpenTimer {
     __weak typeof(self) weakSelef = self;
-    _timer = [[CMTimer alloc] initTimerInterval:5];
+    _timer = [[CMTimer alloc] initTimerInterval:10];
     _timer.timerMinblock = ^(){
         //产品行情明细价格
         [weakSelef requestMarketProduct];
     };
-    
 }
+
+- (CMTitleView *)sectionView {
+    if (!_sectionView) {
+        _sectionView = [[NSBundle mainBundle] loadNibNamed:@"CMTitleView" owner:nil options:nil].firstObject;
+        [self cm_titleViewBlock:_sectionView];
+    }
+    return _sectionView;
+}
+
 - (void)requestOpenProduct {
     [self requestMarketProduct];
 }
@@ -627,7 +939,7 @@
     self.webSocket.delegate = nil;
     [self.webSocket close];
     
-    self.webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://zcapi.58cm.com:8081/market/product?"]]];
+    self.webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:CMStringWithPickFormat(kWebSocket_url, @"market/product?")]]];
     self.webSocket.delegate = self;
     
     //self.title = @"Opening Connection...";

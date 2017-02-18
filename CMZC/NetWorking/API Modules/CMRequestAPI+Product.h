@@ -15,8 +15,10 @@
  *  获得申购列表数据
  *
  *  @param page    页码
+ *  @param size
  */
 + (void)cm_applyFetchProductListOnPageIndex:(NSInteger)page
+                                   pageSize:(NSInteger)size
                                     success:(void(^)(NSArray *productArr,BOOL isPage))success
                                        fail:(void(^)(NSError *error))fail;
 

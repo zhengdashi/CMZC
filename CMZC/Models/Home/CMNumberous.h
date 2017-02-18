@@ -19,5 +19,6 @@
 @property (nonatomic,copy) NSString *price;
 @property (nonatomic,copy) NSString *redemptionperiod;
 @property (nonatomic,copy) NSString *title;
+@property (nonatomic,copy) NSString *attendPersionCount; //参与人数
 
 @end

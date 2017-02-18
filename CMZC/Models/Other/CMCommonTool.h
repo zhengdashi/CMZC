@@ -44,6 +44,12 @@ BOOL CMIsLogin();
  *  int 转换成string
  */
 NSString *CMStringWithFormat(NSInteger index);
+
+/*
+ * float 转换成string
+ */
+NSString *CMFloatStringWithFormat(CGFloat index);
+
 /**
  *  拼接两个字符串
  *

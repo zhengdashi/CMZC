@@ -14,6 +14,9 @@
 #import "CMProductType.h"
 #import "CMProductComment.h"
 #import "CMProductNotion.h"
+#import "CMTopicList.h"
+#import "CMTopicReplies.h"
+
 
 
 @implementation CMRequestAPI (ProductMark)
@@ -193,6 +196,21 @@
     
     
 }
+//产品明细
++(void)cm_marketFetchProductinfoPcode:(NSString *)pCode success:(void (^)(NSArray *))success fail:(void (^)(NSError *))fail {
+    NSString *url = CMStringWithPickFormat(kMProductInfoURL, pCode);
+    [CMRequestAPI postDataFromURLScheme:url argumentsDictionary:nil success:^(id responseObject) {
+        NSString *dataStr = responseObject[@"data"];
+        NSArray *dataArr = [dataStr componentsSeparatedByString:@","];
+        success(dataArr);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+    
+    
+}
+
+
 //评论
 + (void)cm_marketFetchProductCommentPCode:(NSString *)pCode pageIndex:(NSInteger)page success:(void (^)(NSArray *))success fail:(void (^)(NSError *))fail {
     NSDictionary *dict = @{
@@ -232,6 +250,76 @@
     } fail:^(NSError *error) {
         fail(error);
     }];
+}
+//获取话题列表
++ (void)cm_marketFetchTopicPcode:(NSString *)pcode pageIndex:(NSInteger)page success:(void (^)(NSArray *))success fail:(void (^)(NSError *))fail {
+    NSDictionary *dict = @{@"pcode":pcode,
+                           @"PageIndex":CMStringWithFormat(page)};
+    [CMRequestAPI postDataFromURLScheme:kCMProductTopictURL argumentsDictionary:dict success:^(id responseObject) {
+        NSArray *listArr = responseObject[@"data"];
+        NSMutableArray *dataListArr = [NSMutableArray array];
+        for (NSDictionary *dict in listArr) {
+            CMTopicList *topicList = [CMTopicList yy_modelWithDictionary:dict];
+            NSArray *replies = dict[@"replies"];
+            NSMutableArray *repliesArr = [NSMutableArray array];
+            for (NSDictionary *repDic in replies) {
+                CMTopicReplies *topicReplies = [CMTopicReplies yy_modelWithDictionary:repDic];
+                [repliesArr addObject:topicReplies];
+            }
+            topicList.repliesArr = repliesArr;
+            [dataListArr addObject:topicList];
+        }
+        success(dataListArr);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+    
+}
+//回复话题列表
++ (void)cm_marketFetchReplyTopicid:(NSString *)topicId pageIndex:(NSInteger)page success:(void (^)(NSArray *))success fail:(void (^)(NSError *))fail {
+    NSDictionary *dict = @{
+                           @"topicid":topicId,
+                           @"PageIndex":CMStringWithFormat(page)
+                           };
+    [CMRequestAPI postDataFromURLScheme:kCMProductTopicReplyURL argumentsDictionary:dict success:^(id responseObject) {
+        NSArray *topicArr = responseObject[@"data"];
+        NSMutableArray *dataRepliesArr = [NSMutableArray array];
+        for (NSDictionary *dict in topicArr) {
+            CMTopicReplies *replies = [CMTopicReplies yy_modelWithDictionary:dict];
+            [dataRepliesArr addObject:replies];
+        }
+        success(dataRepliesArr);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+    
+}
+
+//发布话题
++ (void)cm_marketFetchCreateProductPcode:(NSString *)pcode content:(NSString *)content success:(void (^)(BOOL))success fail:(void (^)(NSError *))fail {
+    NSDictionary *dict = @{
+                           @"pcode":pcode,
+                           @"content":content
+                           };
+    [CMRequestAPI postTradeFromURLScheme:kCMProductCreateproductTopic argumentsDictionary:dict success:^(id responseObject) {
+        success(YES);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+    
+}
+
++ (void)cm_marketFetchReplyCreateTopicId:(NSString *)topicId content:(NSString *)content success:(void (^)(BOOL))success fail:(void (^)(NSError *))fail {
+    NSDictionary *dict = @{
+                           @"TopicID":topicId,
+                           @"content":content
+                           };
+    [CMRequestAPI postTradeFromURLScheme:kCMProductReplyCreateURL argumentsDictionary:dict success:^(id responseObject) {
+        success(YES);
+    } fail:^(NSError *error) {
+        fail(error);
+    }];
+    
 }
 
 

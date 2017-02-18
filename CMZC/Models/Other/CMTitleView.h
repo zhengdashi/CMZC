@@ -15,7 +15,7 @@ typedef void(^CMTitleViewBlock)(NSInteger index,UIButton *selectBtn);
 @property (weak, nonatomic) IBOutlet UIButton *twoBtn;
 @property (weak, nonatomic) IBOutlet UIButton *threeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fourBtn;
-@property (weak, nonatomic) IBOutlet UIView *markView;
+@property (strong, nonatomic) UIView *markView;
 @property (nonatomic,copy) CMTitleViewBlock  block;
 
 @end

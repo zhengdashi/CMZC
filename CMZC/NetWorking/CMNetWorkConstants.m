@@ -8,22 +8,15 @@
 
 
 
-//#define kCM_URL @"http://192.168.1.15:8384/"
-#define kCM_URL @"http://zcapi.xinjingban.com:80/" //线上地址
-//#define kCM_URL @"http://192.168.1.49:9000/"
-NSString *const kCMBase_URL = @"http://zcapi.xinjingban.com:80/"; //线上
-//NSString *const kCMBase_URL = @"http://192.168.1.49:9000/";
-//websocket
-NSString *const kWebSocket_url = @"ws://zcapi.xinjingban.com:80/";//线上
 
+#define kCM_URL @"https://api.xinjingban.com:443/" //线上测试
 
+NSString *const kWebSocket_url = @"ws://api.xinjingban.com:80/";// webscoke线上 测试
 
 // m站地址
 //NSString *const kCMMZWeb_url = @"http://mz.58cm.com/";
 //新的地址 m站地址
-NSString *const kCMMZWeb_url = @"http://m.xinjingban.com/";
-//NSString *const kCMMZWeb_url = @"http://192.168.1.49:7080/"; //吼
-//NSString *const kCMMZWeb_url = @"http://192.168.1.225:8886/";
+NSString *const kCMMZWeb_url = @"http://m.xinjingban.com/"; //m站线上地址
 NSString *const kCMDefaultHeadPortrait = @"tupian.jpg";
 
 // 线上地址 http://zcapi.xinjingban.com
@@ -48,8 +41,13 @@ NSString *const kCMHomePageBannersURL = @"/api/promo/banners";
 //意见反馈
 NSString *const kCMHomeFeedbackURL = @"/api/promo/feedback";
 //众筹宝
-NSString *const kCMHomeFundlistURL = @"api/product/fundlist";
-
+NSString *const kCMHomeFundlistURL = @"/api/product/fundlist";
+//金牌理财师
+NSString *const kCMHomeAnalystDefaultURL = @"/api/Analyst/DefaultPageGlodService";
+//挂牌服务
+NSString *const kCMHomeCreateroubleinfoURL = @"/api/product/createroubleinfo";
+//倍利宝
+NSString *const kCMHomePurchaseNumberURL = @"/api/product/GetProductPurchaseNumber?PType=10";
 #pragma mark - 分析师
 //分析师
 NSString *const kCMAnalysListURL = @"/api/analyst/list";
@@ -61,8 +59,10 @@ NSString *const kCMAnalysDetailstPointURL = @"/api/analyst/standpointlist";
 NSString *const kCMAnalysReplyURL = @"/api/reply/create";
 //发布分析师问题
 NSString *const kCMCreateanalysttopicURL = @"/api/topic/createanalysttopic";
-
+//版本号
 NSString *const kCMHomeAllPromoAppVersionURL = @"/api/promo/AppVersion?pt=";
+//分析师详情
+NSString *const KCMAnalystsDetailsURL = @"/api/analyst/";
 
 #pragma mark - 公告接口
 // 媒体报道
@@ -130,6 +130,8 @@ NSString *const kCMProductOrderFiveURL = @"api/order/five/";
 NSString *const kMProductContractDetailURL = @"api/contract/detail/";
 //行情分时行情
 NSString *const kMProductMinuteURL = @"api/minute/market/";
+//产品明细
+NSString *const kMProductInfoURL = @"api/market/productinfo/";
 //日k
 NSString *const kMProductKlineDayURL = @"api/kline/day/";
 //周k
@@ -142,11 +144,14 @@ NSString *const kMProductContextURL = @"api/product/context/";
 NSString *const kCMProductCommentURL = @"/api/topic/producttopics";
 //公告
 NSString *const kCMProductNoticeURL = @"/api/news/productnews";
-
-
-
-
-
+//行情吧
+NSString *const kCMProductTopictURL = @"/api/topic/GetTopicPageList";
+//回复列表
+NSString *const kCMProductTopicReplyURL = @"/api/reply/GetReplyPageList";
+//发布话题
+NSString *const kCMProductCreateproductTopic = @"/api/topic/createproducttopic";
+//回复列表
+NSString *const kCMProductReplyCreateURL = @"/api/reply/create";
 
 
 

@@ -29,7 +29,7 @@
     _dateLab.text = _point.created;
     _contLab.text = _point.content;
     
-    [_titleImage sd_setImageWithURL:[NSURL URLWithString:_analyst.avatar] placeholderImage:[UIImage imageNamed:kCMDefault_imageName]];
+    [_titleImage sd_setImageWithURL:[NSURL URLWithString:_analyst.avatar] placeholderImage:kCMDefault_imageName];
     _nameLab.text = _analyst.name;
     _jieshaoLab.text = _analyst.shortdescription;
 }

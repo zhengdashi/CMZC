@@ -12,10 +12,14 @@
 
 
 typedef void(^CMAnalystDetailsBlock)(BOOL isOpt,CGFloat height);
+typedef void(^CMAnalystDetailsConsultingBlock)();
+
 
 @interface CMAnalystDetailsView : UIView
 
 @property (nonatomic,copy) CMAnalystDetailsBlock analystBlock;
+
+@property (nonatomic,copy) CMAnalystDetailsConsultingBlock consultingBlock;
 
 @property (strong, nonatomic) CMAnalystMode *analyst;
 

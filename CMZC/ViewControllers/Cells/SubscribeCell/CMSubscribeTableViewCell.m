@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *openingDeadlineLab; //期限年份
 @property (weak, nonatomic) IBOutlet UIView *applyView; //背景
 @property (weak, nonatomic) IBOutlet UILabel *applyLab;
+@property (weak, nonatomic) IBOutlet UILabel *littleTimeLab; //剩余时间
+@property (weak, nonatomic) IBOutlet UIButton *liveBtn; //路演直播
+@property (weak, nonatomic) IBOutlet UILabel *jyCodeLab;
 
 
 @end
@@ -39,7 +42,8 @@
 }
 
 - (void)setProduct:(CMPurchaseProduct *)product {
-    [_titPictureImage sd_setImageWithURL:[NSURL URLWithString:product.picture] placeholderImage:[UIImage imageNamed:kCMDefault_imageName]];
+    _product = product;
+    [_titPictureImage sd_setImageWithURL:[NSURL URLWithString:product.picture] placeholderImage:kCMDefault_imageName];
     _growthValueLab.attributedText = product.attributed;
     _positionLab.text = product.position;
     _descriptionLab.text = product.descri;
@@ -49,7 +53,7 @@
     _titleLab.text = product.title;
     NSString * incomeString = [product.income substringToIndex:product.income.length-1];
     _incomeLab.text = incomeString;
-    _openingDeadlineLab.text = [NSString stringWithFormat:@"期限%@",product.deadline];
+    _openingDeadlineLab.text = [NSString stringWithFormat:@"%@",product.deadline];
     _applyLab.text = product.status;
    
     if (product.isNextPage) {
@@ -65,6 +69,19 @@
        // _applyLab.textColor = [UIColor cmBlockColor];
     }
     
+    self.littleTimeLab.text = product.littleTime;
+    if (product.liveVideoID > 0) {
+        _liveBtn.hidden = NO;
+    } else {
+        _liveBtn.hidden = YES;
+    }
+    _jyCodeLab.text = [NSString stringWithFormat:@"(%@)",product.jyCode];
+}
+//直播
+- (IBAction)liveLock:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(cm_checkRoadshowLiveUrl:)]) {
+        [self.delegate cm_checkRoadshowLiveUrl:_product.liveVideoUrl];
+    }
 }
 
 

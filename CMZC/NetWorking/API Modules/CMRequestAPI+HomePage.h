@@ -8,6 +8,9 @@
 
 #import "CMRequestAPI.h"
 #import "CMAppVersion.h"
+#import "CMAdministrator.h"
+#import "CMAnalystMode.h"
+
 
 @interface CMRequestAPI (HomePage)
 
@@ -104,6 +107,9 @@
                                  fail:(void(^)(NSError *error))fail;
 
 
+
+
+
 //*********************意见反馈**************/
 /**
  *  意见反馈
@@ -131,6 +137,34 @@
                             contactPhone:(NSString *)contact
                                  success:(void(^)(BOOL isSuccess))success
                                     fail:(void(^)(NSError *error))fail;
+
+/**
+ 金牌理财师
+
+ @param success 成功
+ @param fail 失败
+ */
++ (void)cm_homeDefaultPageGlodServiceSuccess:(void(^)(NSArray *adminis))success
+                                        fail:(void(^)(NSError *error))fail;
+
+
+/**
+ 理财师详情
+
+ @param analystsId 理财师id
+ */
++ (void)cm_homeAnalystDetailsAnalystsId:(NSInteger)analystsId
+                                success:(void(^)(CMAnalystMode *analysts))success
+                                   fail:(void(^)(NSError *error))fail;
+
+/**
+ 获取倍利宝所有购买人数
+
+ @param success
+ @param fail
+ */
++ (void)cm_homeProductPurchaseNumberSuccess:(void(^)(NSString *buyNumber))success
+                                       fail:(void(^)(NSError *error))fail;
 
 
 @end

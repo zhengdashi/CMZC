@@ -26,4 +26,6 @@
 
 @property (strong, nonatomic) NSArray *munyArr; //众筹宝内容
 
+@property (nonatomic,copy) NSString *buyNumber;
+
 @end

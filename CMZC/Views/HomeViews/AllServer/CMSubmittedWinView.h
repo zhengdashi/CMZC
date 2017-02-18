@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^CMSubmittedBlock)();
+
 @interface CMSubmittedWinView : UIView
+
+@property (nonatomic,copy) CMSubmittedBlock block;
 
 @end

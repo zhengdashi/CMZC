@@ -26,6 +26,8 @@
 #import "CMRegisterViewController.h"
 #import "CMServerPromptView.h" //提示框
 #import "CMServiceApplicationViewController.h" //服务申请
+#import "CMCommWebViewController.h"
+
 
 
 @interface CMAllServeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -275,13 +277,13 @@
             break;
         case 3://倍利宝
         {
-            if (!CMIsLogin()) {
-                [self isLoginVC];
-            } else {
-                //自选
-                CMOptionalViewController *optionalVC = (CMOptionalViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMOptionalViewController"];
-                [self.navigationController pushViewController:optionalVC animated:YES];
-            }
+           
+                //自选 http://m.xinjingban.com/Products/FundList
+                CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];
+                
+                webVC.urlStr = CMStringWithPickFormat(kCMMZWeb_url, @"/Products/FundList");
+                [self.navigationController pushViewController:webVC animated:YES];
+            
         }
             break;
         case 5:
@@ -300,22 +302,14 @@
         }
             break;
         case 0:
-            //开户注册
+            //开户注册 CMRegisterViewController
         {
-            
-            CMRegisterViewController *registerVC = (CMRegisterViewController *)[CMRegisterViewController initByStoryboard];
-            [self.navigationController pushViewController:registerVC animated:YES];
-            
-            /*
-            if (!CMIsLogin()) {
-                [self isLoginVC];
+            if (CMIsLogin()) {
+                [self showHUDWithMessage:@"已登录，无需注册开户" hiddenDelayTime:2];
             } else {
-                //self.allType = CMAllServerViewTypeMarket;
-                CMTradeSonInterfaceController *tradeSonVC = (CMTradeSonInterfaceController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMTradeSonInterfaceController"];
-                [self.navigationController pushViewController:tradeSonVC animated:YES];
+                CMRegisterViewController *registerVC = (CMRegisterViewController *)[[UIStoryboard loginStoryboard] viewControllerWithId:@"CMRegisterViewController"]; //(CMRegisterViewController *)[CMRegisterViewController initByStoryboard];
+                [self.navigationController pushViewController:registerVC animated:YES];
             }
-             */
-            
         }
             break;
         default:
@@ -350,14 +344,18 @@
             commonalityVC = helpCoreVC;
         }
             break;
-        case 2://新手指引
+        case 2://客户服务
         {
+            CMClientServeViewController *lientServeVC = (CMClientServeViewController*)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMClientServeViewController"];
+            commonalityVC = lientServeVC;
+            /*
             //新手指引
             CMMoneyViewController *newGuideVC = (CMMoneyViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMMoneyViewController"];
             [newGuideVC cm_moneyViewTitleName:@"新手指引"
                               bgImageViewName:@"new_shou_yindao"
                                   imageHeight:2000.0f - 400];
             commonalityVC = newGuideVC;
+             */
         }
             break;
         case 3://意见反馈
@@ -409,7 +407,7 @@
     return @[@[@"strength_brand_home",@"safety_brand_home",@"media_brand_home"],
              @[@"ask_trade_home",@"price_trade_home",@"option_trade_home",@"notice_trade_home",@"analyst_trade_home",@"trade_trade_home"],
              @[@"finan_listed_serve",@"finan_capital_serve",@"finan_economy_serve",@"finan_roadshow_serve",@"finan_apply_serve",@""],
-             @[@"accout_serve_home",@"help_serve_home",@"newHand_serve_home",@"couple_serve_home",@"server_serve_home",@"shear_serve_home",]];
+             @[@"couple_serve_home",@"server_serve_home",@"shear_serve_home"]];
 }
 - (void)isLoginVC {
     UINavigationController *nav = [UIStoryboard loginStoryboard].instantiateInitialViewController;

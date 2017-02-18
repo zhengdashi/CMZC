@@ -77,7 +77,18 @@ extern NSString *const kCMHomeThreeProductURL;
  *  获取版本号
  */
 extern NSString *const kCMHomeAllPromoAppVersionURL;
-
+/**
+ *  金牌理财师
+ */
+extern NSString *const kCMHomeAnalystDefaultURL;
+/**
+ *  挂牌服务
+ */
+extern NSString *const kCMHomeCreateroubleinfoURL;
+/**
+ *  倍利宝分析师
+ */
+extern NSString *const kCMHomePurchaseNumberURL;
 
 #pragma mark - 分析师
 
@@ -102,7 +113,10 @@ extern NSString *const kCMAnalysReplyURL;
  *  发布分析师的问题
  */
 extern NSString *const kCMCreateanalysttopicURL;
-
+/**
+ *  分析师详情
+ */
+extern NSString *const KCMAnalystsDetailsURL;
 
 #pragma mark - 公告接口
 
@@ -237,6 +251,11 @@ extern NSString *const kMProductContractDetailURL;
  */
 extern NSString *const kMProductMinuteURL;
 /**
+ *  产品明细
+ */
+extern NSString *const kMProductInfoURL;
+
+/**
  *  日k
  */
 extern NSString *const kMProductKlineDayURL;
@@ -260,14 +279,22 @@ extern NSString *const kCMProductCommentURL;
  *  行情公告
  */
 extern NSString *const kCMProductNoticeURL;
-
-
-
-
-
-
-
-
+/**
+ *  行情吧评论
+ */
+extern NSString *const kCMProductTopictURL;
+/**
+ *  回复列表
+ */
+extern NSString *const kCMProductTopicReplyURL;
+/**
+ *  发布话题
+ */
+extern NSString *const kCMProductCreateproductTopic;
+/**
+ *  回复话题
+ */
+extern NSString *const kCMProductReplyCreateURL;
 
 
 

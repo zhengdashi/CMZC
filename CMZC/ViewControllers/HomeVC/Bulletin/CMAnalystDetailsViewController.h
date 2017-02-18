@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) CMAnalystMode *analyst;
 
+@property (nonatomic,assign) NSInteger analystsId; //分析师id
+
 @end

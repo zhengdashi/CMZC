@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,73 +15,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-R8-ept">
-                    <state key="normal" title="评论">
-                        <color key="titleColor" red="0.79215686269999996" green="0.79215686269999996" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="btnClickMethod:" destination="DSJ-PO-rxe" eventType="touchUpInside" id="ip2-Fq-ZD6"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-yk-snW">
-                    <state key="normal" title="企业信息">
-                        <color key="titleColor" red="0.79215686269999996" green="0.79215686269999996" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="btnClickMethod:" destination="DSJ-PO-rxe" eventType="touchUpInside" id="zh3-eO-NWX"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ll-8c-wPo">
-                    <state key="normal" title="详情">
-                        <color key="titleColor" red="0.79215686269999996" green="0.79215686269999996" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="btnClickMethod:" destination="DSJ-PO-rxe" eventType="touchUpInside" id="9DB-VV-Yni"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qu3-2K-NYb">
-                    <frame key="frameInset" minY="37" width="80" height="3"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.94509804248809814" green="0.29803922772407532" blue="0.039215687662363052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGO-tL-oaf">
-                    <state key="normal" title="公告">
-                        <color key="titleColor" red="0.79215686269999996" green="0.79215686269999996" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="btnClickMethod:" destination="DSJ-PO-rxe" eventType="touchUpInside" id="fwk-jY-zJO"/>
-                    </connections>
-                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YT-od-eMv">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="W3G-yk-snW" firstAttribute="width" secondItem="RGO-tL-oaf" secondAttribute="width" id="1At-Fh-GEL"/>
-                <constraint firstItem="W3G-yk-snW" firstAttribute="height" secondItem="RGO-tL-oaf" secondAttribute="height" id="2dD-35-ApE"/>
-                <constraint firstItem="sxM-R8-ept" firstAttribute="width" secondItem="DSJ-PO-rxe" secondAttribute="width" multiplier="1:4" id="8zI-PX-T4o"/>
-                <constraint firstItem="RGO-tL-oaf" firstAttribute="width" secondItem="sxM-R8-ept" secondAttribute="width" id="HxN-Uq-Iug"/>
-                <constraint firstItem="RGO-tL-oaf" firstAttribute="top" secondItem="sxM-R8-ept" secondAttribute="top" id="J4b-TF-pqf"/>
-                <constraint firstItem="sxM-R8-ept" firstAttribute="top" secondItem="DSJ-PO-rxe" secondAttribute="top" id="LDW-48-fUZ"/>
-                <constraint firstItem="7ll-8c-wPo" firstAttribute="top" secondItem="W3G-yk-snW" secondAttribute="top" id="WGp-hK-cxp"/>
-                <constraint firstItem="7ll-8c-wPo" firstAttribute="width" secondItem="W3G-yk-snW" secondAttribute="width" id="cvA-6K-u4M"/>
-                <constraint firstItem="W3G-yk-snW" firstAttribute="top" secondItem="RGO-tL-oaf" secondAttribute="top" id="dge-90-gbR"/>
-                <constraint firstAttribute="bottom" secondItem="sxM-R8-ept" secondAttribute="bottom" constant="8" id="gnn-f8-TYe"/>
-                <constraint firstItem="sxM-R8-ept" firstAttribute="leading" secondItem="DSJ-PO-rxe" secondAttribute="leading" id="kqR-Ee-FaA"/>
-                <constraint firstItem="RGO-tL-oaf" firstAttribute="height" secondItem="sxM-R8-ept" secondAttribute="height" id="kt6-bd-zng"/>
-                <constraint firstItem="W3G-yk-snW" firstAttribute="leading" secondItem="RGO-tL-oaf" secondAttribute="trailing" id="kur-TO-OfM"/>
-                <constraint firstItem="RGO-tL-oaf" firstAttribute="leading" secondItem="sxM-R8-ept" secondAttribute="trailing" id="mL8-1G-eZ7"/>
-                <constraint firstItem="7ll-8c-wPo" firstAttribute="leading" secondItem="W3G-yk-snW" secondAttribute="trailing" id="tAd-72-m7R"/>
-                <constraint firstItem="7ll-8c-wPo" firstAttribute="height" secondItem="W3G-yk-snW" secondAttribute="height" id="wqv-Ya-2KN"/>
+                <constraint firstAttribute="bottom" secondItem="8YT-od-eMv" secondAttribute="bottom" id="C0W-TO-EOh"/>
+                <constraint firstItem="8YT-od-eMv" firstAttribute="top" secondItem="DSJ-PO-rxe" secondAttribute="top" id="QTD-4I-gf8"/>
+                <constraint firstAttribute="trailing" secondItem="8YT-od-eMv" secondAttribute="trailing" id="ZdO-so-RvO"/>
+                <constraint firstItem="8YT-od-eMv" firstAttribute="leading" secondItem="DSJ-PO-rxe" secondAttribute="leading" id="pRN-3q-vDY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="fourBtn" destination="7ll-8c-wPo" id="4Ze-WN-vNW"/>
-                <outlet property="markView" destination="qu3-2K-NYb" id="0Qi-Hi-iIY"/>
-                <outlet property="oneBtn" destination="sxM-R8-ept" id="pi3-DM-u3L"/>
-                <outlet property="threeBtn" destination="W3G-yk-snW" id="m7J-XM-Pu0"/>
-                <outlet property="twoBtn" destination="RGO-tL-oaf" id="rFz-d8-edh"/>
+                <outlet property="curScrollView" destination="8YT-od-eMv" id="Q7X-qY-Z9d"/>
             </connections>
-            <point key="canvasLocation" x="-54" y="-249"/>
+            <point key="canvasLocation" x="34" y="-623"/>
         </view>
     </objects>
 </document>

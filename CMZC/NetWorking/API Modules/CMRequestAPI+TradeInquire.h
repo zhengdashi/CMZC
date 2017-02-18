@@ -171,7 +171,7 @@
  *
  *  @param pcode   页码
  */
-+ (void)cm_tradeFetchProductContextPcode:(NSInteger)pcode
++ (void)cm_tradeFetchProductContextPcode:(NSString *)pcode
                                  success:(void(^)(NSString *dataStr))success
                                     fail:(void(^)(NSError *error))fail;
 

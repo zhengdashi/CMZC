@@ -25,14 +25,16 @@
 #import "CMWebSocket.h"
 #import "CMRegisterViewController.h"
 
-
+#import "CMProductDetails.h"
 #import "CMMediaNews.h"
 #import "CMNoticeModel.h"
 #import "CMSubscribeTableViewCell.h"
 #import "CMGoldMedalTableViewCell.h"
+#import "CMAnalystDetailsViewController.h"
 
-
-@interface CMHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CMEditionTableViewCellDelegate,CMOptionTableViewCellDelegate,CMNewQualityCellDelegate,CMWebSocketDelegate,CMAllServerViewControllerDelegate>
+@interface CMHomeViewController ()<UITableViewDelegate,UITableViewDataSource,CMEditionTableViewCellDelegate,CMOptionTableViewCellDelegate,CMNewQualityCellDelegate,CMWebSocketDelegate,CMAllServerViewControllerDelegate,CMGoldMedalTableViewCellDelegate,CMSubscribeTableViewCellDelegate> {
+    NSString *_buyNumber; //多少人购买
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *curTableView;//表
 
@@ -49,6 +51,8 @@
 @property (strong, nonatomic) CMWebSocket *webSocket; //webSocket
 
 @property (strong, nonatomic) NSArray *purchaseArr; //申购数据arr
+
+@property (strong, nonatomic) NSArray *glodServiceArr; //金牌服务
 
 @end
 
@@ -78,6 +82,10 @@
     //[self requestPrictThree];
     //广告
    [self requestTrends];
+    //申购
+    [self requestPurchase];
+    //金牌服务
+    [self requestGlodService];
     
     //监听登陆成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful) name:@"loginWin" object:nil];
@@ -148,14 +156,24 @@
     
     [CMRequestAPI cm_homeFetchProductFundlistPageSize:3 success:^(NSArray *fundlistArr) {
         [self.manyFulfilArr removeAllObjects];
-        [self.manyFulfilArr addObjectsFromArray:fundlistArr];
         [_curTableView beginUpdates];
+        [self.manyFulfilArr addObjectsFromArray:fundlistArr];
+        
         NSIndexPath *index = [NSIndexPath indexPathForRow:2 inSection:0];
         [_curTableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
         [_curTableView endUpdates];
     } fail:^(NSError *error) {
         MyLog(@"众筹产品请求失败");
     }];
+    
+    
+    [CMRequestAPI cm_homeProductPurchaseNumberSuccess:^(NSString *buyNumber) {
+        _buyNumber = buyNumber;
+        [_curTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    } fail:^(NSError *error) {
+        MyLog(@"人数请求失败");
+    }];
+    
 }
 
 
@@ -174,26 +192,48 @@
     [CMRequestAPI cm_homeFetchProductThreePageSize:3 success:^(NSArray *threeArr) {
         [self.proictArr removeAllObjects];
         [self.proictArr addObjectsFromArray:threeArr];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
         [_curTableView beginUpdates];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+        
         [_curTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [_curTableView endUpdates];
         
     } fail:^(NSError *error) {
         MyLog(@"请求三个产品失败");
     }];
-    
 }
-
+//申购列表
+- (void)requestPurchase {
+    [CMRequestAPI cm_applyFetchProductListOnPageIndex:0 pageSize:3 success:^(NSArray *productArr, BOOL isPage) {
+        self.purchaseArr = productArr;
+        [_curTableView reloadData];
+    } fail:^(NSError *error) {
+        MyLog(@"请求申购列表");
+    }];
+}
+//金牌理财师
+- (void)requestGlodService {
+    [CMRequestAPI cm_homeDefaultPageGlodServiceSuccess:^(NSArray *adminis) {
+        self.glodServiceArr = adminis;
+        [_curTableView reloadData];
+    } fail:^(NSError *error) {
+        MyLog(@"金牌理财师请求失败");
+    }];
+}
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 9+self.purchaseArr.count;
+    if (self.trendsArr.count >3) {
+        return 5+self.purchaseArr.count+3;
+    } else{
+        return 5+self.purchaseArr.count+self.trendsArr.count;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        if (self.proictArr.count == 0 || self.proictArr.count == 1) {
+        if (self.proictArr.count == 0 ) {
             return 0;
         } else {
             return 111;
@@ -217,7 +257,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        if (self.proictArr.count == 0 || self.proictArr.count == 1) {
+        if (self.proictArr.count == 0 ) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -241,6 +281,7 @@
         if (self.manyFulfilArr.count > 0) {
             qualityCell.munyArr = self.manyFulfilArr;
         }
+        qualityCell.buyNumber = _buyNumber;
         qualityCell.delegate = self;
         qualityCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return qualityCell;
@@ -248,6 +289,12 @@
         UITableViewCell *goldCell = [tableView dequeueReusableCellWithIdentifier:@"goldCell"];
         if (!goldCell) {
             goldCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goldCell"];
+            UILabel *moreLab = [[UILabel alloc] init];
+            moreLab.frame = CGRectMake(CGRectGetMaxX(self.view.frame)-60, 5, 50, 30);
+            moreLab.font = [UIFont systemFontOfSize:13];
+            moreLab.textColor = [UIColor cmTacitlyFontColor];
+            moreLab.text = @"更多";
+            [goldCell addSubview:moreLab];
         }
         goldCell.textLabel.text = @"申购";
         goldCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -258,12 +305,17 @@
         if (!subscribeCell) {
             subscribeCell = [[NSBundle mainBundle] loadNibNamed:@"CMSubscribeTableViewCell" owner:nil options:nil].firstObject;
         }
+        subscribeCell.delegate = self;
+        subscribeCell.product = self.purchaseArr[indexPath.row-4];
+        subscribeCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return subscribeCell;
     } else if (indexPath.row == 4 + self.purchaseArr.count) {
         CMGoldMedalTableViewCell *goldCell = [tableView dequeueReusableCellWithIdentifier:@"CMGoldMedalTableViewCell"];
         if (!goldCell) {
             goldCell = [[NSBundle mainBundle] loadNibNamed:@"CMGoldMedalTableViewCell" owner:nil options:nil].firstObject;
         }
+        goldCell.delegate = self;
+        goldCell.glodServiceArr = self.glodServiceArr;
         return goldCell;
         
     } else if (indexPath.row == 5 + self.purchaseArr.count) {
@@ -297,7 +349,10 @@
     if (indexPath.row == 3) { //申购更多
         [self showTabBarViewControllerType:1];
     } else if (indexPath.row > 3 && indexPath.row <=self.purchaseArr.count +3) { //申购详情
-        
+        CMProductDetails *product = self.purchaseArr[indexPath.row-4];
+        CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];
+        webVC.urlStr = CMStringWithPickFormat(kCMMZWeb_url,CMStringWithPickFormat(@"/Products/Detail?pid=",CMStringWithFormat(product.productId)));
+        [self.navigationController pushViewController:webVC animated:YES];
     } else if (indexPath.row >= 5+self.purchaseArr.count) { // 最新动态
         CMNoticeModel *media = self.trendsArr[indexPath.row- 5 - self.purchaseArr.count];
         CMCommWebViewController *commWebVC = (CMCommWebViewController *)[[UIStoryboard mainStoryboard] viewControllerWithId:@"CMCommWebViewController"];
@@ -328,7 +383,18 @@
     [self.navigationController pushViewController:webVC animated:YES];
 }
 
-
+#pragma mark - CMGoldMedalTableViewCellDelegate
+- (void)cm_goldMedalAnalystsId:(NSInteger)analystsId {
+    CMAnalystDetailsViewController  *analystVC = (CMAnalystDetailsViewController *)[CMAnalystDetailsViewController initByStoryboard];
+    analystVC.analystsId = analystsId;
+    [self.navigationController pushViewController:analystVC animated:YES];
+}
+#pragma mark - CMSubscribeTableViewCellDelegate
+- (void)cm_checkRoadshowLiveUrl:(NSString *)liveUrl {
+    CMCommWebViewController *webVC = (CMCommWebViewController *)[CMCommWebViewController initByStoryboard];
+    webVC.urlStr = liveUrl;
+    [self.navigationController pushViewController:webVC animated:YES];
+}
 #pragma mark - CMOptionTableViewCellDelegate 
 //四个选项
 - (void)cm_optionTableViewCellButTag:(NSInteger)btTag {
@@ -352,7 +418,7 @@
 //                //位登录。显示登录
 //                UINavigationController *nav = [UIStoryboard loginStoryboard].instantiateInitialViewController;
 //                [self presentViewController:nav animated:YES completion:nil];
-//            } else {
+//            } else {http://192.168.1.225:8886/Products/FundList
                 [self cm_commWebViewURL:CMStringWithPickFormat(kCMMZWeb_url, @"Products/FundList")];
            // }
         }
@@ -477,9 +543,7 @@
     return _manyFulfilArr;
 }
 //
-- (NSArray *)purchaseArr {
-    return @[@"123"];
-}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"loginWin"];
 }

@@ -43,7 +43,7 @@
 
 - (void)setAnalyst:(CMAnalystAnswer *)analyst {
     _analyst = analyst;
-    [_titleImage sd_setImageWithURL:[NSURL URLWithString:analyst.useravatar] placeholderImage:[UIImage imageNamed:kCMDefault_imageName]];
+    [_titleImage sd_setImageWithURL:[NSURL URLWithString:analyst.useravatar] placeholderImage:kCMDefault_imageName];
     _responseLab.text = analyst.created;
     _introduceLab.text = analyst.content;
     

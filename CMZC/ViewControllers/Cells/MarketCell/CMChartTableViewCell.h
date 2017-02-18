@@ -19,4 +19,6 @@
 
 @property (nonatomic,copy) NSString *code;
 
+@property (strong, nonatomic) NSArray *productArr;
+
 @end

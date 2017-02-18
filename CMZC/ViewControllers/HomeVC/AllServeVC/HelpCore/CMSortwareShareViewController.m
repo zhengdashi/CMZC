@@ -7,6 +7,7 @@
 //
 
 #define kCMShareTitle @"新经板-只赚不赔的“原始股"
+#define kShare_url @"http://m.xinjingban.com/About/APPClient"
 
 #import "CMSortwareShareViewController.h"
 #import "UMSocialQQHandler.h"
@@ -31,25 +32,27 @@
 //qq分享
 - (IBAction)qqShareBtnClick:(UIButton *)sender {
     [UMSocialData defaultData].extConfig.qqData.title = kCMShareTitle;
+    [UMSocialData defaultData].extConfig.qqData.url = kShare_url;
     [self umsocialDataServicPostSNSWithTypes:@[UMShareToQQ]];
     
 }
-
 //qq空间
 - (IBAction)qzoneBtnClick:(UIButton *)sender {
     [UMSocialData defaultData].extConfig.qzoneData.title = kCMShareTitle;
+    [UMSocialData defaultData].extConfig.qzoneData.url = kShare_url;
     [self umsocialDataServicPostSNSWithTypes:@[UMShareToQzone]];
 }
 //微信
 - (IBAction)wechatBtnClick:(UIButton *)sender {
     [UMSocialData defaultData].extConfig.wechatSessionData.title = kCMShareTitle;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = kShare_url;
     [self umsocialDataServicPostSNSWithTypes:@[UMShareToWechatSession]];
 }
-
 //微信朋友圈
 - (IBAction)wechatTimeBtnClick:(id)sender {
     
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = kCMShareTitle;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = kShare_url;
     [self umsocialDataServicPostSNSWithTypes:@[UMShareToWechatTimeline]];
 }
 //新浪微博
@@ -57,7 +60,6 @@
     //[UMSocialData defaultData].extConfig.sinaData.title = kCMShareTitle;
     [self umsocialDataServicPostSNSWithTypes:@[UMShareToSina]];
 }
-
 //分享内容
 - (void)umsocialDataServicPostSNSWithTypes:(NSArray *)typeArr {
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:typeArr

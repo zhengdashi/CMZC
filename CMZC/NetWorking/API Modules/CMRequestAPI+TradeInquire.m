@@ -312,8 +312,8 @@
     
 }
 //企业信息
-+ (void)cm_tradeFetchProductContextPcode:(NSInteger)pcode success:(void (^)(NSString *))success fail:(void (^)(NSError *))fail {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",kMProductContextURL,CMNumberWithFormat(pcode)];
++ (void)cm_tradeFetchProductContextPcode:(NSString *)pcode success:(void (^)(NSString *))success fail:(void (^)(NSError *))fail {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",kMProductContextURL,pcode];
     
     [CMRequestAPI postDataFromURLScheme:urlStr argumentsDictionary:nil success:^(id responseObject) {
         NSString *dataStr = responseObject[@"data"];

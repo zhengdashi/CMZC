@@ -54,7 +54,7 @@
     _product = product;
     _copiesIndex = product.startquantity;
     _variableNumber = product.startquantity;
-    [self.titleImage sd_setImageWithURL:[NSURL URLWithString:product.picture] placeholderImage:[UIImage imageNamed:kCMDefault_imageName]];
+    [self.titleImage sd_setImageWithURL:[NSURL URLWithString:product.picture] placeholderImage:kCMDefault_imageName];
     self.titleName.text = product.title;
     self.functionLab.text = product.descri;
     NSString *outNumber = [NSString stringWithFormat:@"%@",@(product.income.floatValue)];

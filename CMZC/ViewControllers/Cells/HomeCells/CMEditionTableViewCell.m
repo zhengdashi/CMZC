@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *threeUpLab;
 @property (weak, nonatomic) IBOutlet UILabel *threeUpPriceLab;
 @property (weak, nonatomic) IBOutlet UIView *threeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *whatLayoutConstraintLayout;
 
 
 
@@ -72,15 +73,29 @@
 - (void)setPrictArr:(NSArray *)prictArr {
     _prictArr = prictArr;
     //NSLog(@"--%@--",prictArr);
-    if (prictArr.count == 0 || prictArr.count == 1) {
+    if (prictArr.count == 0) {
         return;
     }
-    //第一个产品
-    NSArray *firstArr = prictArr.firstObject;
-    //第二个产品
-    NSArray *twoArr = prictArr[1];
-    //第三个产品
-    NSArray *lastArr = prictArr.lastObject;
+    if (prictArr.count == 1) {//一个产品
+        self.whatLayoutConstraintLayout.constant =[UIScreen mainScreen].bounds.size.width-125;
+        [self initFirstViewArr:prictArr.firstObject];
+    } else if (prictArr.count == 2) { //两个产品
+        self.whatLayoutConstraintLayout.constant = kCMScreen_width/2-125;
+        [self initFirstViewArr:prictArr.firstObject];
+        [self initTwoViewArr:prictArr[1]];
+    } else { //三个产品
+        [self initFirstViewArr:prictArr.firstObject];
+        [self initTwoViewArr:prictArr[1]];
+        [self initLastArr:prictArr.lastObject];
+    }
+    
+    
+    
+    
+   
+}
+//一个产品
+- (void)initFirstViewArr:(NSArray *)firstArr {
     //第一个产品
     _oneNameLab.text = firstArr[1];
     _onePriceLab.text = firstArr[2];
@@ -94,6 +109,8 @@
     }
     _oneUpLab.text = firstArr[4] ;
     _oneUpPercentLab.text = [NSString stringWithFormat:@"%.2f%%",upOrFall];
+}
+- (void)initTwoViewArr:(NSArray *)twoArr {
     //第二个产品
     _twoNameLab.text = twoArr[1];
     _twoPriceLab.text = twoArr[2];
@@ -107,6 +124,8 @@
     }
     _twoUpLab.text = twoArr[4];
     _twoUpPercentLab.text = [NSString stringWithFormat:@"%.2f%%",twoUpOrFall];
+}
+- (void)initLastArr:(NSArray *)lastArr {
     //第三个产品
     _threeNameLab.text = lastArr[1];
     _threePriceLab.text = lastArr[2];
@@ -120,13 +139,13 @@
     }
     _threeUpLab.text = lastArr[4];
     _threeUpPriceLab.text = [NSString stringWithFormat:@"%.2f%%",threeUpOrFall] ;
-    if (prictArr.count <3) {
-        _threeView.hidden = YES;
-    } else {
-        _threeView.hidden = NO;
-    }
-    
+//    if (prictArr.count <3) {
+//        _threeView.hidden = YES;
+//    } else {
+//        _threeView.hidden = NO;
+//    }
 }
+
 //第一个产品
 - (void)firstPricotColor:(UIColor *)color {
     _onePriceLab.textColor = color;
